@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+
+<html class="dark scroll-smooth" lang="en" style="">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Nusa Dagang Resources | High-End Culinary Trade</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@400;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+    <style>
+        :root {
+            --bg-color: #ffffff;
+            --surface-color: #ffffff;
+            --accent-gold: #f2ca50;
+            --dark-green: #1a2e23;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: #e5e2e1;
+            overflow-x: hidden;
+        }
+
+        .cursive-tag {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            color: var(--accent-gold);
+            opacity: 0.9;
+        }
+
+        /* Entrance Animations */
+        .reveal-on-scroll {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 1s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .reveal-on-scroll.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .stagger-1 {
+            transition-delay: 0.1s;
+        }
+
+        .stagger-2 {
+            transition-delay: 0.2s;
+        }
+
+        .stagger-3 {
+            transition-delay: 0.3s;
+        }
+
+        /* Micro-interactions */
+        .scale-lifts {
+            transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.6s ease;
+        }
+
+        .scale-lifts:hover {
+            transform: scale(1.03);
+            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.6);
+        }
+
+        /* Shimmer Button */
+        .shimmer-btn {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .shimmer-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(120deg,
+                    transparent,
+                    rgba(242, 202, 80, 0.2),
+                    transparent);
+            transition: all 0.6s;
+        }
+
+        .shimmer-btn:hover::before {
+            left: 100%;
+        }
+
+        .btn-underline::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 1px;
+            bottom: -4px;
+            left: 50%;
+            background-color: var(--accent-gold);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        .btn-underline:hover::after {
+            width: 100%;
+        }
+
+        /* Journey Floating & Drawing */
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-15px);
+            }
+
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        .floating-circle {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .journey-path path {
+            stroke-dasharray: 2000;
+            stroke-dashoffset: 2000;
+            transition: stroke-dashoffset 3s ease-in-out;
+        }
+
+        .journey-path.active path {
+            stroke-dashoffset: 0;
+        }
+
+        /* Journey SVG is drawn dynamically by JS */
+
+        /* RTC Glow */
+        .rtc-img-container {
+            position: relative;
+            aspect-ratio: 3/2;
+            overflow: hidden;
+            border-radius: 12px;
+            border: 1px solid rgba(242, 202, 80, 0.1);
+            background: #1a1a1a;
+            transition: all 0.5s ease;
+        }
+
+        .rtc-img-container:hover {
+            border-color: rgba(242, 202, 80, 0.8);
+            box-shadow: 0 0 25px rgba(242, 202, 80, 0.15);
+        }
+
+        .rtc-img-container::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -150%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.05), transparent);
+            transition: left 0.8s ease;
+        }
+
+        .rtc-img-container:hover::after {
+            left: 150%;
+        }
+
+        /* Target Audience Fill */
+        .audience-pill {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .audience-pill::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--accent-gold);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: -1;
+        }
+
+        .audience-pill:hover::before {
+            transform: scaleX(1);
+        }
+
+        .audience-pill:hover span {
+            color: var(--bg-color);
+        }
+
+        .pillar-card {
+            background-color: var(--dark-green);
+            transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .pillar-card:hover {
+            transform: translateY(-12px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Nav link underline + active state */
+        .nav-link {
+            position: relative;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -4px;
+            width: 0;
+            height: 1px;
+            background: var(--accent-gold);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after,
+        .nav-link.active-section::after {
+            width: 100%;
+        }
+
+        .nav-link.active-section {
+            color: var(--accent-gold) !important;
+        }
+
+        /* Reduced Motion */
+        @media (prefers-reduced-motion: reduce) {
+
+            .reveal-on-scroll,
+            .floating-circle,
+            .journey-path path,
+            .scale-lifts,
+            .pillar-card,
+            .audience-pill::before {
+                transition: none !important;
+                animation: none !important;
+                opacity: 1 !important;
+                transform: none !important;
+            }
+        }
+    </style>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary-fixed-dim": "#e9c349",
+                        "surface-container-lowest": "#0e0e0e",
+                        "surface-dim": "#131313",
+                        "on-background": "#e5e2e1",
+                        "on-secondary-container": "#b8b9b4",
+                        "secondary-fixed-dim": "#c6c7c2",
+                        "surface-container-low": "#1c1b1b",
+                        "on-primary-fixed": "#241a00",
+                        "outline": "#99907c",
+                        "tertiary": "#d0cdcd",
+                        "tertiary-fixed": "#e5e2e1",
+                        "secondary-fixed": "#e3e3de",
+                        "on-tertiary-container": "#454544",
+                        "on-secondary": "#2f312e",
+                        "secondary-container": "#484a46",
+                        "on-primary-fixed-variant": "#574500",
+                        "error": "#ffb4ab",
+                        "inverse-primary": "#735c00",
+                        "surface-tint": "#e9c349",
+                        "on-tertiary-fixed": "#1c1b1b",
+                        "surface-container": "#201f1f",
+                        "inverse-on-surface": "#313030",
+                        "surface-container-high": "#2a2a2a",
+                        "surface-variant": "#353534",
+                        "on-tertiary": "#313030",
+                        "on-surface": "#e5e2e1",
+                        "primary-container": "#d4af37",
+                        "error-container": "#93000a",
+                        "primary-fixed": "#ffe088",
+                        "on-secondary-fixed": "#1a1c19",
+                        "on-primary-container": "#554300",
+                        "inverse-surface": "#e5e2e1",
+                        "surface-bright": "#393939",
+                        "background": "#0e0e0e",
+                        "outline-variant": "#4d4635",
+                        "surface": "#131313",
+                        "on-error": "#690005",
+                        "tertiary-fixed-dim": "#c8c6c5",
+                        "on-primary": "#3c2f00",
+                        "tertiary-container": "#b4b2b2",
+                        "on-tertiary-fixed-variant": "#474746",
+                        "secondary": "#c6c7c2",
+                        "on-error-container": "#ffdad6",
+                        "surface-container-highest": "#353534",
+                        "primary": "#f2ca50",
+                        "on-secondary-fixed-variant": "#454744",
+                        "on-surface-variant": "#d0c5af"
+                    },
+                    "spacing": {
+                        "section-gap": "120px",
+                        "gutter": "32px",
+                        "unit": "8px",
+                        "container-max": "1440px",
+                        "margin-edge": "64px"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["Playfair Display", "serif"],
+                        "body-md": ["Inter", "Montserrat", "sans-serif"],
+                        "headline-md": ["Playfair Display", "serif"],
+                        "headline-lg": ["Playfair Display", "serif"]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="font-body-md text-on-surface bg-background" style="overflow: auto;">
+    <!-- TopNavBar -->
+    <nav class="fixed top-0 w-full z-50 transition-all duration-500" id="main-nav">
+        <div class="flex justify-between items-center px-margin-edge py-5 w-full max-w-container-max mx-auto">
+            <!-- Logo: click to scroll to top -->
+            <a href="#hero-section" class="font-display-lg text-headline-md tracking-tighter text-primary"
+                style="scroll-behavior:smooth;">NUSA DAGANG</a>
+
+            <!-- Desktop nav -->
+            <div class="hidden md:flex items-center gap-10">
+                <a class="nav-link font-body-md text-[13px] uppercase tracking-widest text-on-surface hover:text-primary transition-colors duration-300"
+                    href="#hero-section" data-section="hero-section">Homepage</a>
+                <a class="nav-link font-body-md text-[13px] uppercase tracking-widest text-on-surface hover:text-primary transition-colors duration-300"
+                    href="#trading" data-section="trading">Trading</a>
+                <a class="nav-link font-body-md text-[13px] uppercase tracking-widest text-on-surface hover:text-primary transition-colors duration-300"
+                    href="#food-supply" data-section="food-supply">Food Supply</a>
+                <a class="nav-link font-body-md text-[13px] uppercase tracking-widest text-on-surface hover:text-primary transition-colors duration-300"
+                    href="#rtc" data-section="rtc">Ready-to-Cook (RTC)</a>
+                <a class="nav-link font-body-md text-[13px] uppercase tracking-widest text-on-surface hover:text-primary transition-colors duration-300"
+                    href="#target-audience" data-section="target-audience">Target Audience</a>
+            </div>
+
+            <!-- Mobile hamburger -->
+            <button class="md:hidden text-primary" id="mobile-menu-btn" aria-label="Open menu">
+                <span class="material-symbols-outlined text-3xl">menu</span>
+            </button>
+        </div>
+
+        <!-- Mobile dropdown -->
+        <div class="hidden flex-col gap-5 px-margin-edge pb-6 pt-2" id="mobile-menu"
+            style="background:rgba(14,14,14,0.98);backdrop-filter:blur(20px);">
+            <a class="font-body-md text-[13px] uppercase tracking-widest text-on-surface hover:text-primary transition-colors"
+                href="#hero-section" onclick="closeMobileMenu()">Homepage</a>
+            <a class="font-body-md text-[13px] uppercase tracking-widest text-on-surface hover:text-primary transition-colors"
+                href="#trading" onclick="closeMobileMenu()">Trading</a>
+            <a class="font-body-md text-[13px] uppercase tracking-widest text-on-surface hover:text-primary transition-colors"
+                href="#food-supply" onclick="closeMobileMenu()">Food Supply</a>
+            <a class="font-body-md text-[13px] uppercase tracking-widest text-on-surface hover:text-primary transition-colors"
+                href="#rtc" onclick="closeMobileMenu()">Ready-to-Cook (RTC)</a>
+            <a class="font-body-md text-[13px] uppercase tracking-widest text-on-surface hover:text-primary transition-colors"
+                href="#target-audience" onclick="closeMobileMenu()">Target Audience</a>
+        </div>
+    </nav>
+    <main class="w-full">
+        <!-- Section 1: Hero -->
+        <section class="relative h-screen min-h-[700px] flex items-center justify-center overflow-hidden"
+            id="hero-section">
+            <div class="absolute inset-0 z-0" id="hero-bg">
+                <img alt="Premium Culinary Trade Background"
+                    class="w-full h-full object-cover transition-transform duration-700 ease-out scale-110"
+                    id="parallax-img"
+                    src="https://lh3.googleusercontent.com/aida/AP1WRLuh8LeAQM0ys-01ol5_VMogns0DRhHuaMa5BNU1HvoE1MWaVmfj61-Kw3WlXqCrz3ElEgBBJ5qzxlkGGClZFlupRYiorVVlFKBbdgAMWdVRemHDT3sccc7trJeIu2ocIubzCBRhMwGcdrlXyQ5o8iKwjbriagXUwVyoy459uNQIrpn72Cj67ka2-VegnfDidPZJ_I1Y9N8Dk-StLDE8S9YeKMt6OKkhfBcG4uP7FMADFu4kYRjD8-ROng" />
+                <div class="absolute inset-0 bg-black/65"></div>
+            </div>
+            <div class="relative z-10 text-center px-margin-edge max-w-4xl mx-auto">
+                <span class="reveal-on-scroll cursive-tag text-section-tag block mb-6 italic stagger-1">Exclusive Trade
+                    Network</span>
+                <h1 class="reveal-on-scroll font-display-lg text-display-lg mb-6 leading-tight text-white stagger-2">A
+                    Premium Role in the Food Supply Ecosystem</h1>
+                <p class="reveal-on-scroll text-on-surface text-body-lg mb-10 max-w-lg mx-auto opacity-90 stagger-3">
+                    desc</p>
+                <div class="reveal-on-scroll flex justify-center stagger-3">
+                    <button
+                        class="shimmer-btn relative text-primary font-bold uppercase tracking-widest btn-underline py-2 px-6 group">
+                        Partner With Us
+                    </button>
+                </div>
+            </div>
+        </section>
+        <!-- Section 1.5: Descriptive Section -->
+        <section class="py-section-gap px-margin-edge bg-background">
+            <div class="max-w-container-max mx-auto text-center reveal-on-scroll">
+                <h2 class="font-display-lg text-headline-lg mb-8">Nusa Dagang</h2>
+                <p class="font-body-md text-on-surface-variant text-body-lg max-w-3xl mx-auto leading-relaxed">
+                    desc
+                </p>
+            </div>
+        </section>
+        <!-- Section 2: Trading -->
+        <section class="py-section-gap px-margin-edge w-full max-w-container-max mx-auto overflow-hidden" id="trading">
+            <div class="text-center mb-16 reveal-on-scroll">
+                <span class="cursive-tag text-section-tag block mb-4 italic">Discover</span>
+                <h2 class="font-display-lg text-headline-lg">Our Trading Services</h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div class="reveal-on-scroll pillar-card p-10 flex flex-col items-center text-center stagger-1">
+                    <div class="mb-8">
+                        <span class="material-symbols-outlined text-primary text-5xl">inventory_2</span>
+                    </div>
+                    <h3 class="font-display-lg text-headline-md mb-4 text-primary">Bulk Supply</h3>
+                    <p class="font-body-md text-on-surface-variant text-body-md opacity-80 leading-relaxed">
+                        Seamless flow of fast-moving consumer goods to a refined network of neighborhood establishments.
+                    </p>
+                </div>
+                <!-- Card 2: Visual Image Center Piece -->
+                <div class="reveal-on-scroll relative group overflow-hidden cursor-pointer stagger-2"
+                    onclick="openLightbox(this)">
+                    <img alt="A premium close-up of high-end grocery stock in a dark, minimalist pantry setting."
+                        class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuBkmxSB6wilHs4rkTJ8n92V9z_9GgbusFgi8IxksZA2xuS31GnQSxA6QPYm5ouC-fAeY4rlFXOh0LmTihPUzFiut-mcyJTUfvgsEcycw9NqUizNk1OFVrnOZNd_roCNxKFEc0Toa2vBkh3QW2Z8-1LuRt9H1ZFnNBCBMIhviFwNeVqzJT7n795ekzZzjFluxYI4CuSz3wPpig4LQ8Maisu7QI6aCHZYzzwnpex90-eCNR5fZNu2Bfq9QyLFlzfCocO9C8WTvBEOL9s" />
+                    <div class="absolute inset-0 bg-black/30 group-hover:bg-black/10 transition-all duration-500"></div>
+                </div>
+                <!-- Card 3 -->
+                <div class="reveal-on-scroll pillar-card p-10 flex flex-col items-center text-center stagger-3">
+                    <div class="mb-8">
+                        <span class="material-symbols-outlined text-primary text-5xl">hub</span>
+                    </div>
+                    <h3 class="font-display-lg text-headline-md mb-4 text-primary">Strategic Logistics</h3>
+                    <p class="font-body-md text-on-surface-variant text-body-md opacity-80 leading-relaxed">
+                        Bridging the gap between global supply and local demand with unparalleled precision and speed.
+                    </p>
+                </div>
+            </div>
+        </section>
+        <!-- Section 3: Food Supply Journey -->
+        <section class="py-section-gap px-margin-edge bg-background relative overflow-hidden" id="food-supply">
+            <div class="max-w-container-max mx-auto relative">
+                <div class="text-center mb-24 reveal-on-scroll">
+                    <span class="cursive-tag text-section-tag block mb-4 italic">Fresh Processing</span>
+                    <h2 class="font-display-lg text-headline-lg">Food Supply Essentials</h2>
+                    <p class="font-body-md text-on-surface-variant text-body-lg max-w-3xl mx-auto mt-6 leading-relaxed">
+                        desc</p>
+                </div>
+                <!-- Vertical Journey Path -->
+                <div class="relative max-w-5xl mx-auto space-y-40" id="journey-container">
+                    <!-- Dynamic SVG — drawn by initJourneyPath() after layout renders -->
+                    <svg id="journey-svg" class="hidden lg:block absolute top-0 left-0 pointer-events-none z-0"
+                        style="overflow:visible;"></svg>
+                    <!-- Product 1 -->
+                    <div class="journey-item flex flex-col lg:flex-row items-center gap-12 lg:gap-24 reveal-on-scroll">
+                        <div class="w-full lg:w-1/2 flex justify-center lg:justify-end">
+                            <div class="circular-frame floating-circle w-64 h-64 lg:w-80 lg:h-80 border-2 border-primary/20 scale-lifts group cursor-pointer overflow-hidden rounded-full shadow-2xl"
+                                data-journey-circle="1" onclick="openLightbox(this)">
+                                <img alt="Red Onion" class="w-full h-full object-cover"
+                                    src="https://lh3.googleusercontent.com/aida/AP1WRLuS8h7UfMxRVXj7ISiEh5B7DPa4g5AqSc06JFyer1SuuuchY9VQO_nADP3GOFX8g4KXGy37k4FKxLqR8pTtHvou0inw2ogNB5l6FqrdE9COvwMEnD5H1-kg_ouz9Yse5IGt_IE7h5-O7ujANs-cNQDSK1ir3qlRY35yLn0qd0Y8coLB-S7rdCyGa9fKomFw93rFEaVlaBckVsBBOXYMyd57o4rV9yv_uje-CA5uKO9N_RMH5hBujvyu1g" />
+                            </div>
+                        </div>
+                        <div class="w-full lg:w-1/2 text-center lg:text-left">
+                            <h3 class="font-display-lg text-headline-md text-primary mb-4">Red Onion</h3>
+                            <p
+                                class="font-body-md text-on-surface-variant text-body-md opacity-80 leading-relaxed max-w-xs mx-auto lg:mx-0">
+                                desc</p>
+                        </div>
+                    </div>
+                    <!-- Product 2 -->
+                    <div
+                        class="journey-item flex flex-col lg:flex-row-reverse items-center gap-12 lg:gap-24 reveal-on-scroll">
+                        <div class="w-full lg:w-1/2 flex justify-center lg:justify-start">
+                            <div class="circular-frame floating-circle w-64 h-64 lg:w-80 lg:h-80 border-2 border-primary/20 scale-lifts group cursor-pointer overflow-hidden rounded-full shadow-2xl"
+                                data-journey-circle="2" onclick="openLightbox(this)" style="animation-delay: -1.5s;">
+                                <img alt="Shallots" class="w-full h-full object-cover"
+                                    src="https://lh3.googleusercontent.com/aida/AP1WRLuIEECtctQ8-n8GsnfxA4q3b2pPja_AduyQXpl8RmZqEPvJyk6b6kuLhL6lpHLFKvqgFhvUL6--iprKtznfuLxwmphjbRhO_hQ3TWKplyxW3-emuJRqXFi3hO1RO_dIhP6mROhMvYNiKW9_T68TVaMI196nbWWhqD69zPmG1EwRMrT6I4djvAGhE7kjWq1Wg3yXVYkd5JGUydOjf8S27FZ9nY49pqvBYd-FQu-jTao9poug-QZ_i2KUI0E" />
+                            </div>
+                        </div>
+                        <div class="w-full lg:w-1/2 text-center lg:text-right">
+                            <h3 class="font-display-lg text-headline-md text-primary mb-4">Shallots</h3>
+                            <p
+                                class="font-body-md text-on-surface-variant text-body-md opacity-80 leading-relaxed max-w-xs mx-auto lg:ml-auto">
+                                desc</p>
+                        </div>
+                    </div>
+                    <!-- Product 3 -->
+                    <div class="journey-item flex flex-col lg:flex-row items-center gap-12 lg:gap-24 reveal-on-scroll">
+                        <div class="w-full lg:w-1/2 flex justify-center lg:justify-end">
+                            <div class="circular-frame floating-circle w-64 h-64 lg:w-80 lg:h-80 border-2 border-primary/20 scale-lifts group cursor-pointer overflow-hidden rounded-full shadow-2xl"
+                                data-journey-circle="3" onclick="openLightbox(this)" style="animation-delay: -3s;">
+                                <img alt="White Onion" class="w-full h-full object-cover"
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuCxEChAZY9ZpKbx4B3t4OqUMR442b6u_d3PD5n52qdmGh1k_gsw0l0BkB7YUx9fghiedJFzpJec1laE9M06ZHy5rTN5r4bYy3ZXuN3fzjrLmWSI0KIKY_s6tFYpfO0rZoILDGt_R1X0QMh794Sn5YBz-2Nk4EzqM2kzbWPF46uADtk3vBdUi12jDYQoNiRI-_4FaZiAEv8m8FIwEWnU-ZZw5WjgETbBBjx3MucmqJVtTTqqA3lmkiesaBIDVQGFffR2DqGGTz27K0JdEA" />
+                            </div>
+                        </div>
+                        <div class="w-full lg:w-1/2 text-center lg:text-left">
+                            <h3 class="font-display-lg text-headline-md text-primary mb-4">White Onion</h3>
+                            <p
+                                class="font-body-md text-on-surface-variant text-body-md opacity-80 leading-relaxed max-w-xs mx-auto lg:mx-0">
+                                desc</p>
+                        </div>
+                    </div>
+                    <!-- Product 4: Old Ginger (Right) -->
+                    <!-- Product 4: Old Ginger -->
+                    <div
+                        class="journey-item flex flex-col lg:flex-row-reverse items-center gap-12 lg:gap-24 reveal-on-scroll active">
+                        <div class="w-full lg:w-1/2 flex justify-center lg:justify-start">
+                            <div class="circular-frame floating-circle w-64 h-64 lg:w-80 lg:h-80 border-2 border-primary/20 scale-lifts group cursor-pointer overflow-hidden rounded-full shadow-2xl"
+                                data-journey-circle="4" onclick="openLightbox(this)" style="animation-delay: -3s;">
+                                <img alt="Old Ginger" class="w-full h-full object-cover" src="ginger.jpg" />
+                            </div>
+                        </div>
+
+                        <div class="w-full lg:w-1/2 text-center lg:text-right">
+                            <h3 class="font-display-lg text-headline-md text-primary mb-4">Old Ginger</h3>
+                            <p
+                                class="font-body-md text-on-surface-variant text-body-md opacity-80 leading-relaxed max-w-xs mx-auto lg:ml-auto">
+                                desc
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Section 4: Ready-to-Cook (RTC) -->
+        <section class="py-section-gap px-margin-edge bg-background" id="rtc">
+            <div class="max-w-4xl mx-auto">
+                <div class="text-center mb-20 reveal-on-scroll">
+                    <span
+                        class="font-body-md font-bold uppercase tracking-[0.2em] text-primary text-[11px] block mb-4">Operational
+                        Efficiency</span>
+                    <h2 class="font-display-lg text-headline-lg">Ready-to-Cook (RTC)</h2>
+                    <p class="font-body-md text-on-surface-variant text-body-md max-w-2xl mx-auto mt-6 leading-relaxed">
+                        Engineered for the modern high-volume environment. Our frozen, blended, and chopped convenience
+                        products eliminate prep time without compromising quality.
+                    </p>
+                </div>
+                <div class="space-y-16">
+                    <!-- Row 1: BAWANG BESAR -->
+                    <div class="reveal-on-scroll grid grid-cols-3 items-center gap-4 lg:gap-8 stagger-1">
+                        <div class="flex flex-col items-center">
+                            <div class="rtc-img-container w-full cursor-pointer" onclick="openLightbox(this)">
+                                <img alt="Chopped Bawang Besar" class="w-full h-full object-cover"
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuA374garVTdnFnkv3wwDH4JxrKsZQdcwKPs6yn7upXfcu4Q7LHRRgl5VNagNVVbcpETyXTiC1fI1YlKwrlm3BBFTpJZL4X6BRj6wOzxCd4-xsZbxce6DZHZtdlMe12nRT-oetdaO_52-wPCaXmVHhK3CBQHxlkDaC91WVTKyF1l1Juxy89bwFOthJJ9qY76Le15mLiPoDi9r8sYpOkdstAMjwEjP1QcdnfUUPfNpj6F6ig5ciMRNmlP4UBMaSMXYzhPZD_q-DQw7hB18Q" />
+                            </div>
+                            <span
+                                class="font-body-md font-bold uppercase tracking-widest text-on-surface-variant text-[10px] mt-4">CHOPPED</span>
+                        </div>
+                        <div class="text-center">
+                            <h4
+                                class="font-display-lg text-[13px] lg:text-[16px] uppercase tracking-[0.3em] text-primary">
+                                Bawang Besar</h4>
+                        </div>
+                        <div class="flex flex-col items-center">
+                            <div class="rtc-img-container w-full cursor-pointer" onclick="openLightbox(this)">
+                                <img alt="Blended Bawang Besar" class="w-full h-full object-cover"
+                                    src="https://lh3.googleusercontent.com/aida/AP1WRLui5cJT9LUp_7DBvk3qcANz32yyv7crd72M6aEoJ3qydJEMkEa92AYCRXdEtpGdQOVc5fL_Dz36ARosTrJzQdRycFG4THJ7gumcBiDutEp7EK4TdcI_Zdpi5lALvBVMNXRV4H4iLNMyPmUrR-QL0Osqo-8tLAXsexM2eIYZMgDigmHt14OxoO4l6uA8iJDtdH2h0UppB0fRgHDyEYKgpc1xVWSmp6DAIec1ssQWjV40tVAhMhL9oCqG0EE" />
+                            </div>
+                            <span
+                                class="font-body-md font-bold uppercase tracking-widest text-on-surface-variant text-[10px] mt-4">BLENDED</span>
+                        </div>
+                    </div>
+                    <!-- Row 2: BAWANG KECIL -->
+                    <div class="grid grid-cols-3 items-center gap-4 lg:gap-8">
+                        <div class="flex flex-col items-center">
+                            <div class="rtc-img-container w-full cursor-pointer" onclick="openLightbox(this)">
+                                <img alt="Chopped Bawang Kecil" class="w-full h-full object-cover"
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuDtqr6JsVRMneXe_pbUZ55TF4YusCBsez37SYhuNbDPWrGpX7r1hrJ6w7Lxv-zOA74j6K-7hNd41TP6tJTnVLysbD6n6uqNw-63Xvv8DkV9eYCIt5VZFimnLakcxk9WYoB9lNyLwHTsLHRZLY9VqzIcEYxCLnMiFKEZ9uOp6FGEzWx1XUkHHac4mZdhINdHR3wRtfRVv8Cs_Wsq3QfU2lBw7lJhTW9SKlhEM3KoLP8uWwFuO1WVF_UUIKUAV-5muVfJRoJQErP9Zds">
+                            </div>
+                            <span
+                                class="font-body-md font-bold uppercase tracking-widest text-on-surface-variant text-[10px] mt-4">CHOPPED</span>
+                        </div>
+                        <div class="text-center">
+                            <h4
+                                class="font-display-lg text-[13px] lg:text-[16px] uppercase tracking-[0.3em] text-primary">
+                                Bawang Kecil</h4>
+                        </div>
+                        <div class="flex flex-col items-center">
+                            <div class="rtc-img-container w-full cursor-pointer" onclick="openLightbox(this)">
+                                <img alt="Blended Bawang Kecil" class="w-full h-full object-cover"
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuCL97oAEN6WPuakPObkngKP_KYwqXwvw2pQhJScDHXF0fFrwv0ayLxVM3az6CHhGHRRo9qujeODRwWAZJj2m6PzJsv9PuLUMlkr1eIcIwaDJeYARurSo6pme0IXHwU22sBP4aFpVr_1EJKPySFv9cfhojN4h1UYeWIxiwcY8HGx9ebdlQwvw7xcZepudm-ItuW46lX4A7TJQLli8SlUCJ8bkxhjOkTuX_n6XinnchTURkvYTj6fYOikLAw4e20a5Pm5G3P-TRQkJG9GrQ">
+                            </div>
+                            <span
+                                class="font-body-md font-bold uppercase tracking-widest text-on-surface-variant text-[10px] mt-4">BLENDED</span>
+                        </div>
+                    </div>
+                    <!-- Row 3: BAWANG PUTIH -->
+                    <div class="grid grid-cols-3 items-center gap-4 lg:gap-8">
+                        <div class="flex flex-col items-center">
+                            <div class="rtc-img-container w-full cursor-pointer" onclick="openLightbox(this)">
+                                <img alt="Chopped Bawang Putih" class="w-full h-full object-cover"
+                                    src="https://lh3.googleusercontent.com/aida/AP1WRLs-G4SZALU69P034rojlc8T3rXy0zHQ2LLCievuDAtTxn024OyvBAAlCROG-bnT1i2UhwtxZMeeR-hBtSJYXSZIkQyaQNhncHLjcom9SxVwn6ofC0q9pQz4DP9je0nVzJRlqRgVMl2-iZeOUQHRy8md-hzFoXYJI_iQO5DQ67KJZ_BFk_5q9dfPIUB3p9cLzrOG7lXXFHGxXVkTSdXfWXnKU8IfybHBJsgDn0OJhoZpbjgbAGajyRkW_7A">
+                            </div>
+                            <span
+                                class="font-body-md font-bold uppercase tracking-widest text-on-surface-variant text-[10px] mt-4">CHOPPED</span>
+                        </div>
+                        <div class="text-center">
+                            <h4
+                                class="font-display-lg text-[13px] lg:text-[16px] uppercase tracking-[0.3em] text-primary">
+                                Bawang Putih</h4>
+                        </div>
+                        <div class="flex flex-col items-center">
+                            <div class="rtc-img-container w-full cursor-pointer" onclick="openLightbox(this)">
+                                <img alt="Blended Bawang Putih" class="w-full h-full object-cover"
+                                    src="https://lh3.googleusercontent.com/aida/AP1WRLsd_Govx-iL7_qzVOuDSixd-aH8XxBC-8asFPqIWecEzBEh7Z9KtZmjPF95u5MkHpYmJAv9B5d6qfaXQrOfPoIba0zjJKhN3ZfcGIJulP5_WuEVFtnPtGRg9MBf0xiaNLhQyTlc7hkxj04s1sWgJsxznXy8fks9ee4Ee1_PE08QFyuW1iv9Xfyhv5_KufM1Tc_u2jRpYQ9Tahl6ZQHBX08nIsaCZ8BAGN5QBxSXIgzori5jRCBWq0ncIP4">
+                            </div>
+                            <span
+                                class="font-body-md font-bold uppercase tracking-widest text-on-surface-variant text-[10px] mt-4">BLENDED</span>
+                        </div>
+                    </div>
+                    <!-- Row 4: OLD GINGER -->
+                    <div class="grid grid-cols-3 items-center gap-4 lg:gap-8">
+                        <div class="invisible">
+                            <div class="rtc-img-container w-full"></div>
+                        </div>
+                        <div class="text-center">
+                            <h4
+                                class="font-display-lg text-[13px] lg:text-[16px] uppercase tracking-[0.3em] text-primary">
+                                Old Ginger</h4>
+                        </div>
+                        <div class="flex flex-col items-center">
+                            <div class="rtc-img-container w-full cursor-pointer" onclick="openLightbox(this)"> <img
+                                    alt="Blended Old Ginger" class="w-full h-full object-cover" src="ginger.jpg">
+                            </div>
+
+                            <span
+                                class="font-body-md font-bold uppercase tracking-widest text-on-surface-variant text-[10px] mt-4">BLENDED</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: Target Audience -->
+        <section class="py-section-gap px-margin-edge bg-background" id="target-audience">
+            <div class="max-w-container-max mx-auto">
+                <div class="text-center mb-16 reveal-on-scroll">
+                    <h2 class="font-display-lg text-headline-lg uppercase tracking-widest">Target Audience</h2>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                    <!-- Category 1 -->
+                    <div
+                        class="reveal-on-scroll audience-pill border border-on-surface/20 rounded-full py-8 px-12 flex items-center justify-center text-center cursor-default stagger-1">
+                        <span class="font-body-md text-body-lg text-on-surface">1. Food &amp; spice brands</span>
+                    </div>
+                    <!-- Category 2 -->
+                    <div
+                        class="reveal-on-scroll audience-pill border border-on-surface/20 rounded-full py-8 px-12 flex items-center justify-center text-center cursor-default stagger-2">
+                        <span class="font-body-md text-body-lg text-on-surface">2. Retailers &amp; mini-markets</span>
+                    </div>
+                    <!-- Category 3 -->
+                    <div
+                        class="reveal-on-scroll audience-pill border border-on-surface/20 rounded-full py-8 px-12 flex items-center justify-center text-center cursor-default stagger-3">
+                        <span class="font-body-md text-body-lg text-on-surface">3. OEM / small-to-mid
+                            manufacturers</span>
+                    </div>
+                    <!-- Category 4 -->
+                    <div
+                        class="reveal-on-scroll audience-pill border border-on-surface/20 rounded-full py-8 px-12 flex items-center justify-center text-center cursor-default stagger-3">
+                        <span class="font-body-md text-body-lg text-on-surface">4. Strategic partners &amp;
+                            investors</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Footer -->
+        <footer class="bg-surface-container-lowest border-none mt-24">
+            <div
+                class="grid grid-cols-1 md:grid-cols-3 gap-gutter px-margin-edge py-section-gap w-full max-w-container-max mx-auto">
+                <div class="space-y-6">
+                    <div class="font-display-lg text-headline-md text-primary">NUSA DAGANG</div>
+                    <p class="font-body-md text-on-surface-variant text-body-md opacity-60">
+                        Nusa Dagang Resources (202503267841-V)
+                    </p>
+                </div>
+                <div class="space-y-4">
+                    <h4 class="font-body-md font-bold uppercase tracking-widest text-primary text-[11px]">Communication
+                    </h4>
+                    <ul class="space-y-2">
+                        <li class=""><a
+                                class="font-body-md text-on-surface-variant hover:text-primary transition-colors text-body-md"
+                                href="mailto:admin@nusadagang.com">admin@nusadagang.com</a></li>
+                        <li class=""><a
+                                class="font-body-md text-on-surface-variant hover:text-primary transition-colors text-body-md"
+                                href="mailto:hello@nusadagang.com">hello@nusadagang.com</a></li>
+                        <li class=""><a
+                                class="font-body-md text-on-surface-variant hover:text-primary transition-colors text-body-md"
+                                href="mailto:sales@nusadagang.com">sales@nusadagang.com</a></li>
+                    </ul>
+                </div>
+                <div class="space-y-4">
+                    <h4 class="font-body-md font-bold uppercase tracking-widest text-primary text-[11px]">Presence</h4>
+                    <p class="font-body-md text-on-surface-variant text-body-md">
+                        Kuala Lumpur, Malaysia
+                    </p>
+                    <p class="font-body-md text-on-surface-variant text-[11px] mt-8 opacity-40">
+                        © 2025 Nusa Dagang Resources. All rights reserved.
+                    </p>
+                </div>
+            </div>
+        </footer>
+    </main>
+    <!-- Lightbox Modal -->
+    <div class="fixed inset-0 z-[100] flex items-center justify-center p-8 cursor-zoom-out hidden" id="lightbox"
+        onclick="closeLightbox()" style="background:rgba(0,0,0,0.95);opacity:0;transition:opacity 0.5s ease;">
+        <img class="max-w-full max-h-full object-contain shadow-2xl" id="lightbox-img" src=""
+            style="transform:scale(0.92);transition:transform 0.5s cubic-bezier(0.22,1,0.36,1);" />
+    </div>
+    <script>
+        // Parallax Effect for Hero
+        const heroBg = document.getElementById('hero-section');
+        const parallaxImg = document.getElementById('parallax-img');
+
+        if (heroBg && parallaxImg) {
+            heroBg.addEventListener('mousemove', (e) => {
+                const { width, height } = heroBg.getBoundingClientRect();
+                const xVal = (e.clientX - width / 2) / width;
+                const yVal = (e.clientY - height / 2) / height;
+
+                const xMove = xVal * 20;
+                const yMove = yVal * 20;
+
+                parallaxImg.style.transform = `scale(1.1) translate(${xMove}px, ${yMove}px)`;
+            });
+        }
+
+        // Intersection Observer for Reveal Animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+
+                    // Specifically trigger journey path drawing
+                    if (entry.target.classList.contains('journey-path')) {
+                        entry.target.classList.add('active');
+                    }
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal-on-scroll').forEach(el => revealObserver.observe(el));
+
+        // ── Dynamic Journey Path ─────────────────────────────────────────────
+        function initJourneyPath() {
+            const svg = document.getElementById('journey-svg');
+            const container = document.getElementById('journey-container');
+            if (!svg || !container || window.innerWidth < 1024) {
+                if (svg) svg.innerHTML = '';
+                return;
+            }
+            const circles = Array.from(document.querySelectorAll('[data-journey-circle]'))
+                .sort((a, b) => +a.dataset.journeyCircle - +b.dataset.journeyCircle);
+            if (circles.length < 2) return;
+
+            circles.forEach(c => { c.style.animationPlayState = 'paused'; });
+            requestAnimationFrame(() => requestAnimationFrame(() => {
+                const cRect = container.getBoundingClientRect();
+                const W = container.offsetWidth, H = container.offsetHeight;
+                const pts = circles.map(c => {
+                    const r = c.getBoundingClientRect();
+                    return { x: r.left + r.width / 2 - cRect.left, y: r.top + r.height / 2 - cRect.top };
+                });
+                circles.forEach(c => { c.style.animationPlayState = 'running'; });
+
+                svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
+                svg.style.width = W + 'px'; svg.style.height = H + 'px';
+
+                let d = `M ${pts[0].x} ${pts[0].y}`;
+                for (let i = 0; i < pts.length - 1; i++) {
+                    const p = pts[i], n = pts[i + 1], midY = (p.y + n.y) / 2;
+                    d += ` C ${p.x} ${midY} ${n.x} ${midY} ${n.x} ${n.y}`;
+                }
+
+                const pulseDots = pts.map(pt => `
+                    <circle cx="${pt.x}" cy="${pt.y}" r="5" fill="#f2ca50" opacity="0.9"/>
+                    <circle cx="${pt.x}" cy="${pt.y}" r="5" fill="none" stroke="#f2ca50" stroke-width="1.5" opacity="0">
+                        <animate attributeName="r" from="5" to="28" dur="2s" repeatCount="indefinite" begin="0.3s"/>
+                        <animate attributeName="opacity" from="0.5" to="0" dur="2s" repeatCount="indefinite" begin="0.3s"/>
+                    </circle>`).join('');
+
+                svg.innerHTML = `
+                    <defs>
+                        <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
+                            <feGaussianBlur in="SourceGraphic" stdDeviation="3" result="blur"/>
+                            <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+                        </filter>
+                    </defs>
+                    <path id="journey-path" d="${d}" stroke="#f2ca50" stroke-width="1.5" fill="none"
+                        stroke-linecap="round" opacity="0.55" filter="url(#glow)"/>
+                    <g id="journey-nodes" opacity="0">${pulseDots}</g>`;
+
+                const pathEl = document.getElementById('journey-path');
+                const totalLen = pathEl.getTotalLength();
+                pathEl.style.strokeDasharray = totalLen;
+                pathEl.style.strokeDashoffset = totalLen;
+                pathEl.style.transition = 'none';
+
+                if (window._journeyObs) window._journeyObs.disconnect();
+                let drawn = false;
+                window._journeyObs = new IntersectionObserver(([entry]) => {
+                    if (entry.isIntersecting && !drawn) {
+                        drawn = true;
+                        setTimeout(() => {
+                            pathEl.style.transition = 'stroke-dashoffset 2.8s cubic-bezier(0.4, 0, 0.2, 1)';
+                            pathEl.style.strokeDashoffset = '0';
+                            setTimeout(() => {
+                                document.getElementById('journey-nodes').style.transition = 'opacity 0.6s ease';
+                                document.getElementById('journey-nodes').style.opacity = '1';
+                            }, 2400);
+                        }, 300);
+                        window._journeyObs.disconnect();
+                    }
+                }, { threshold: 0.15 });
+                window._journeyObs.observe(container);
+            }));
+        }
+
+        window.addEventListener('load', () => setTimeout(initJourneyPath, 500));
+        window.addEventListener('resize', () => {
+            clearTimeout(window._journeyResizeTimer);
+            window._journeyResizeTimer = setTimeout(initJourneyPath, 250);
+        });
+
+        // Lightbox Functionality
+        function openLightbox(element) {
+            const img = element.querySelector('img');
+            if (!img) return;
+            const imgSrc = img.src;
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+
+            lightboxImg.src = imgSrc;
+            lightbox.classList.remove('hidden');
+            // Use inline styles — Tailwind CDN does not safelist dynamically-added classes
+            requestAnimationFrame(() => {
+                requestAnimationFrame(() => {
+                    lightbox.style.opacity = '1';
+                    lightboxImg.style.transform = 'scale(1)';
+                });
+            });
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+
+            lightbox.style.opacity = '0';
+            lightboxImg.style.transform = 'scale(0.92)';
+            setTimeout(() => {
+                lightbox.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+            }, 500);
+        }
+
+        // Close lightbox on Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                const lightbox = document.getElementById('lightbox');
+                if (!lightbox.classList.contains('hidden')) closeLightbox();
+            }
+        });
+
+        // Header scroll glass effect
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('main-nav');
+            if (window.scrollY > 80) {
+                nav.style.background = 'rgba(14,14,14,0.9)';
+                nav.style.backdropFilter = 'blur(20px)';
+                nav.style.boxShadow = '0 30px 60px rgba(0,0,0,0.5)';
+            } else {
+                nav.style.background = '';
+                nav.style.backdropFilter = '';
+                nav.style.boxShadow = '';
+            }
+        });
+
+        // ── Active nav section highlight ─────────────────────────────────────
+        // Watches each section; when it enters the viewport the matching
+        // nav link gets the gold active-section class.
+        const navLinks = document.querySelectorAll('.nav-link[data-section]');
+        const sections = ['hero-section', 'trading', 'food-supply', 'rtc', 'target-audience']
+            .map(id => document.getElementById(id))
+            .filter(Boolean);
+
+        const sectionObs = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const id = entry.target.id;
+                    navLinks.forEach(link => {
+                        link.classList.toggle('active-section', link.dataset.section === id);
+                    });
+                }
+            });
+        }, { threshold: 0.35 });
+
+        sections.forEach(s => sectionObs.observe(s));
+
+        // ── Smooth scroll offset for fixed nav ───────────────────────────────
+        // Intercept anchor clicks to account for the fixed nav height
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const target = document.querySelector(this.getAttribute('href'));
+                if (!target) return;
+                e.preventDefault();
+                const navH = document.getElementById('main-nav').offsetHeight;
+                const top = target.getBoundingClientRect().top + window.pageYOffset - navH - 8;
+                window.scrollTo({ top, behavior: 'smooth' });
+            });
+        });
+
+        // ── Mobile menu ──────────────────────────────────────────────────────
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        if (mobileMenuBtn) {
+            mobileMenuBtn.addEventListener('click', () => {
+                const m = document.getElementById('mobile-menu');
+                m.classList.toggle('hidden');
+                m.classList.toggle('flex');
+            });
+        }
+        function closeMobileMenu() {
+            const m = document.getElementById('mobile-menu');
+            if (m) { m.classList.add('hidden'); m.classList.remove('flex'); }
+        }
+
+        // Hero entrance on load
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.querySelectorAll('#hero-section .reveal-on-scroll').forEach(el => {
+                    el.classList.add('active');
+                });
+            }, 300);
+        });
+    </script>
+</body>
+
+</html>
