@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>Nusa Dagang Resources | Homepage</title>
+  <meta name="description"
+    content="Nusa Dagang Resources — A premium role in the food supply ecosystem. High-end B2B culinary and trade network." />
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="{{ url_for('static', path='/css/style.css') }}" />
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: { "surface-container-lowest": "#ffffff", "on-surface": "#1c1a17", "on-surface-variant": "#5c5650", "background": "#f9f7f4", "surface": "#f0ede8", "primary": "#f2ca50", "outline": "#a09278", "surface-container": "#ebe8e2" },
+          spacing: { "section-gap": "120px", "gutter": "32px", "unit": "8px", "container-max": "1440px", "margin-edge": "64px" },
+          fontFamily: { "display-lg": ["Playfair Display", "serif"], "body-md": ["Inter", "sans-serif"], "headline-md": ["Playfair Display", "serif"], "headline-lg": ["Playfair Display", "serif"] }
+        }
+      }
+    }
+  </script>
+</head>
+
+<body class="font-body-md text-on-surface bg-background">
+
+  <!-- Nav -->
+  <nav class="fixed top-0 w-full z-50 transition-all duration-500" id="main-nav">
+    <div class="flex justify-between items-center px-margin-edge py-5 w-full max-w-container-max mx-auto">
+      <a href="/">
+        <img src="{{ url_for('static', path='/logo1.png') }}" alt="Nusa Dagang Logo" class="h-12 w-auto">
+      </a>
+      <div class="hidden md:flex items-center gap-10">
+        <a class="nav-link active-page font-body-md text-[13px] uppercase tracking-widest transition-colors duration-300"
+          href="/">Homepage</a>
+        <a class="nav-link font-body-md text-[13px] uppercase tracking-widest text-on-surface hover:text-primary transition-colors duration-300"
+          href="/about">Ready-to-Cook(RTC)</a>
+        <a class="nav-link font-body-md text-[13px] uppercase tracking-widest text-on-surface hover:text-primary transition-colors duration-300"
+          href="/services">Product&Service</a>
+        <a class="nav-link font-body-md text-[13px] uppercase tracking-widest text-on-surface hover:text-primary transition-colors duration-300"
+          href="/contact">Contact</a>
+      </div>
+      <!-- Mobile hamburger -->
+      <button class="md:hidden text-primary" id="mobile-menu-btn" aria-label="Open menu">
+        <span class="material-symbols-outlined text-3xl">menu</span>
+      </button>
+    </div>
+    <!-- Mobile Menu -->
+    <div class="hidden md:hidden flex-col gap-4 px-margin-edge pb-6 pt-2" id="mobile-menu"
+      style="background:rgba(0, 0, 0, 0.98);backdrop-filter:blur(20px);">
+      <a class="font-body-md text-[13px] uppercase tracking-widest text-primary" href="/">Homepage</a>
+      <a class="font-body-md text-[13px] uppercase tracking-widest text-on-surface" href="/about">Ready-to-Cook(RTC)</a>
+      <a class="font-body-md text-[13px] uppercase tracking-widest text-on-surface" href="/services">Product&Service</a>
+      <a class="font-body-md text-[13px] uppercase tracking-widest text-on-surface" href="/contact">Contact</a>
+    </div>
+  </nav>
+
+  <main class="w-full">
+    <!-- Hero -->
+    <section class="relative h-screen min-h-[700px] flex items-center justify-center overflow-hidden" id="hero-section">
+      <div class="absolute inset-0 z-0">
+        <img alt="Premium Culinary Trade Background"
+          class="w-full h-full object-cover transition-transform duration-700 ease-out scale-110" id="parallax-img"
+          src="https://lh3.googleusercontent.com/aida/AP1WRLuh8LeAQM0ys-01ol5_VMogns0DRhHuaMa5BNU1HvoE1MWaVmfj61-Kw3WlXqCrz3ElEgBBJ5qzxlkGGClZFlupRYiorVVlFKBbdgAMWdVRemHDT3sccc7trJeIu2ocIubzCBRhMwGcdrlXyQ5o8iKwjbriagXUwVyoy459uNQIrpn72Cj67ka2-VegnfDidPZJ_I1Y9N8Dk-StLDE8S9YeKMt6OKkhfBcG4uP7FMADFu4kYRjD8-ROng" />
+        <div class="absolute inset-0 bg-black/65"></div>
+      </div>
+      <div class="relative z-10 text-center px-margin-edge max-w-4xl mx-auto">
+        <span class="reveal-on-scroll cursive-tag text-xl block mb-6 italic stagger-1">Exclusive Trade Network</span>
+        <h1 class="reveal-on-scroll font-display-lg text-5xl lg:text-7xl mb-6 leading-tight text-white stagger-2">A
+          Premium Role in the<br>Food Supply Ecosystem</h1>
+        <p class="reveal-on-scroll text-on-surface text-lg mb-10 max-w-lg mx-auto opacity-90 stagger-3">Connecting
+          premium culinary producers to the markets that matter most.</p>
+        <div class="reveal-on-scroll flex justify-center gap-6 stagger-3">
+          <a href="/services"
+            class="shimmer-btn btn-underline text-primary font-bold uppercase tracking-widest py-2 px-6">Explore
+            Product&Service</a>
+          <a href="/contact"
+            class="shimmer-btn btn-underline text-on-surface font-bold uppercase tracking-widest py-2 px-6 opacity-70 hover:opacity-100 hover:text-primary transition-all">Contact
+            Us →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section class="py-section-gap px-margin-edge bg-background">
+      <div class="max-w-container-max mx-auto text-center reveal-on-scroll">
+        <h2 class="font-display-lg text-4xl mb-8">ABOUT US</h2>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto mb-16 text-left items-stretch">
+          <!-- Left Column: Who We Are -->
+          <div class="content-box green-theme slide-up-box reveal-on-scroll p-10 h-full flex flex-col justify-center">
+            <h3 class="font-display-lg text-4xl mb-6 text-[#2e7d32]">Who We Are</h3>
+            <p class="font-body-md text-on-surface-variant text-[15px] leading-relaxed mb-4">
+              NUSA DAGANG RESOURCES is a company specializing in the supply and processing of food ingredients,
+              particularly
+              in the categories of ground, minced, and spice-based products.
+            </p>
+            <p class="font-body-md text-on-surface-variant text-[15px] leading-relaxed mb-4">
+              Established with the goal of simplifying food preparation processes, making them faster, more consistent,
+              and
+              more efficient, Nusa Dagang focuses on innovation within the food industry by offering high-quality
+              products
+              that are free from preservatives.
+            </p>
+            <p class="font-body-md text-on-surface-variant text-[15px] leading-relaxed mb-4">
+              We understand the operational challenges faced by the F&B industry, central kitchens, and catering
+              businesses.
+              Therefore, our products are specially designed to help customers save time, reduce labor costs, and
+              improve
+              daily productivity.
+            </p>
+            <p class="font-body-md text-on-surface-variant text-[15px] leading-relaxed">
+              With a strong commitment to quality and hygiene, every product is produced through carefully controlled
+              processes to ensure freshness and a shelf life of up to 2 months when stored frozen.
+            </p>
+          </div>
+
+          <!-- Right Column: Mission & Vision -->
+          <div class="flex flex-col gap-8 h-full">
+            <div
+              class="content-box green-theme slide-up-box reveal-on-scroll stagger-1 p-10 flex-1 flex flex-col justify-center">
+              <h3 class="font-display-lg text-3xl mb-4 text-[#2e7d32]">MISSION</h3>
+              <p class="font-body-md text-on-surface-variant text-[15px] leading-relaxed">
+                To provide high-quality, preservative-free food
+                processing solutions that enhance efficiency and
+                consistency for businesses in the food industry.
+              </p>
+            </div>
+            <div
+              class="content-box green-theme slide-up-box reveal-on-scroll stagger-2 p-10 flex-1 flex flex-col justify-center">
+              <h3 class="font-display-lg text-3xl mb-4 text-[#2e7d32]">VISION</h3>
+              <p class="font-body-md text-on-surface-variant text-[15px] leading-relaxed">
+                To become a leading and trusted food processing
+                partner, delivering innovative solutions that
+                support the growth of the food service industry.
+              </p>
+            </div>
+          </div>
+        </div>
+        <!-- Process Flow -->
+        <h2 class="font-display-lg text-3xl mb-8">OUR VALUE PROMISES</h2>
+        <div class="mt-16 w-full overflow-x-auto hide-scrollbar py-12 px-8" style="text-align: left;">
+          <div class="flex items-start min-w-max gap-0 justify-between">
+            <!-- Step 1 -->
+            <div class="connector-line slide-up-box reveal-on-scroll relative flex flex-col items-start gap-4 pr-8 w-48"
+              style="animation-delay: 0.1s;">
+              <div class="step-circle font-display-lg text-[32px] font-extrabold"
+                style="background-color: #ccff80; color: #131412;">1</div>
+              <div class="flex flex-col">
+                <h3 class="font-display-lg text-1xl mb-2" style="color: #ccff80;">Ready-to-Cook:</h3>
+                <p class="font-body-sm text-[14px]" style="color: #c2cab0;">Minimal effort, maximum flavor.</p>
+              </div>
+            </div>
+            <!-- Step 2 -->
+            <div class="connector-line slide-up-box reveal-on-scroll relative flex flex-col items-start gap-4 pr-8 w-48"
+              style="animation-delay: 0.3s;">
+              <div class="step-circle font-display-lg text-[32px] font-extrabold"
+                style="background-color: #ccff80; color: #131412; animation-delay: 0.5s;">2</div>
+              <div class="flex flex-col">
+                <h3 class="font-display-lg text-1xl mb-2" style="color: #ccff80;">Frozen Fresh:</h3>
+                <p class="font-body-sm text-[14px]" style="color: #c2cab0;"> Long-lasting quality with zero
+                  preservatives.</p>
+              </div>
+            </div>
+            <!-- Step 3 -->
+            <div class="connector-line slide-up-box reveal-on-scroll relative flex flex-col items-start gap-4 pr-8 w-48"
+              style="animation-delay: 0.5s;">
+              <div class="step-circle font-display-lg text-[32px] font-extrabold"
+                style="background-color: #ccff80; color: #131412; animation-delay: 1s;">3</div>
+              <div class="flex flex-col">
+                <h3 class="font-display-lg text-1xl mb-2" style="color: #ccff80;">Consistent Excellence:</h3>
+                <p class="font-body-sm text-[14px]" style="color: #c2cab0;"> The same great taste, every time.</p>
+              </div>
+            </div>
+            <!-- Step 4 -->
+            <div class="connector-line slide-up-box reveal-on-scroll relative flex flex-col items-start gap-4 pr-8 w-48"
+              style="animation-delay: 0.7s;">
+              <div class="step-circle font-display-lg text-[32px] font-extrabold"
+                style="background-color: #ccff80; color: #131412; animation-delay: 1.5s;">4</div>
+              <div class="flex flex-col">
+                <h3 class="font-display-lg text-1xl mb-2" style="color: #ccff80;">Cut Prep Time by 70%:</h3>
+                <p class="font-body-sm text-[14px]" style="color: #c2cab0;"> Work smarter, not harder.</p>
+              </div>
+            </div>
+            <!-- Step 5 -->
+            <div class="connector-line slide-up-box reveal-on-scroll relative flex flex-col items-start gap-4 w-48"
+              style="animation-delay: 0.9s;">
+              <div class="step-circle font-display-lg text-[32px] font-extrabold"
+                style="background-color: #ccff80; color: #131412; animation-delay: 2s;">5</div>
+              <div class="flex flex-col">
+                <h3 class="font-display-lg text-1xl mb-2" style="color: #ccff80;">Kitchen-Ready: </h3>
+                <p class="font-body-sm text-[14px]" style="color: #c2cab0;">Your secret weapon for high-demand service
+                  and emergency rush hours.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <br><br>
+        <h2 class="font-display-lg text-3xl mb-16 text-[#131412]">OUR CLIENTS</h2>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-7xl mx-auto items-stretch">
+          <!-- Hospitality Partners -->
+          <div class="content-box bg-[#ffffff] rounded-xl p-12 flex flex-col items-center h-full">
+            <h3 class="font-display-lg text-2xl mb-12 text-[bg-black] border-b-2 border-[#ccff80] inline-block pb-2">
+              HOSPITALITY PARTNERS</h3>
+            <div class="flex flex-wrap justify-center items-center gap-8 md:gap-12 mt-auto mb-auto">
+              <img src="{{ url_for('static', path='images/p1.png') }}"
+                class="w-32 md:w-40 h-auto object-contain animate-float-rotate" alt="Hospitality Partner 1"
+                style="animation-delay: 0s;">
+              <img src="{{ url_for('static', path='images/p2.png') }}"
+                class="w-32 md:w-40 h-auto object-contain animate-float-rotate" alt="Hospitality Partner 2"
+                style="animation-delay: 0.1s;">
+              <img src="{{ url_for('static', path='images/p3.png') }}"
+                class="w-32 md:w-40 h-auto object-contain animate-float-rotate" alt="Hospitality Partner 3"
+                style="animation-delay: 0.2s;">
+              <img src="{{ url_for('static', path='images/p4.png') }}"
+                class="w-32 md:w-40 h-auto object-contain animate-float-rotate" alt="Hospitality Partner 4"
+                style="animation-delay: 0.3s;">
+            </div>
+          </div>
+
+          <!-- Food Service Partners -->
+          <div class="content-box bg-[#ffffff] rounded-xl p-12 flex flex-col items-center h-full">
+            <h3 class="font-display-lg text-2xl mb-12 text-[bg-black] border-b-2 border-[#ccff80] inline-block pb-2">
+              FOOD SERVICE PARTNERS</h3>
+            <div class="flex flex-wrap justify-center items-center gap-8 md:gap-12 mt-auto mb-auto">
+              <img src="{{ url_for('static', path='images/pp1.png') }}"
+                class="w-32 md:w-40 h-auto object-contain animate-float-rotate" alt="Food Service Partner 1"
+                style="animation-delay: 0.5s;">
+              <img src="{{ url_for('static', path='images/pp2.png') }}"
+                class="w-32 md:w-40 h-auto object-contain animate-float-rotate" alt="Food Service Partner 2"
+                style="animation-delay: 1.5s;">
+              <img src="{{ url_for('static', path='images/pp3.png') }}"
+                class="w-32 md:w-40 h-auto object-contain animate-float-rotate" alt="Food Service Partner 3"
+                style="animation-delay: 2.5s;">
+            </div>
+          </div>
+        </div>
+        <BR><BR>
+        <!-- why nusa -->
+        <P class="font-display-lg text-1xl mb-8">WHY CHOOSE US</P>
+        <h2 class="font-display-lg text-3xl mb-8">WHY NUSA DAGANG?</h2>
+        <p>We are more than just a food supplier; we are your strategic partner in the kitchen. By combining high-tech
+          processing with pure, natural ingredients, we help you streamline your workflow and eliminate unnecessary
+          fillers. When you partner with us, you get a reliable solution that saves you time, reduces operational
+          pressure, and ensures your dishes always meet the high standards your reputation depends on.</p>
+
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-surface-container-lowest border-none mt-24">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 px-margin-edge py-16 w-full max-w-container-max mx-auto">
+      <div class="space-y-6">
+        <div class="font-display-lg text-2xl text-primary">NUSA DAGANG</div>
+        <p class="font-body-md text-on-surface-variant text-sm opacity-60">Nusa Dagang Resources (202503267841-V)</p>
+      </div>
+      <div class="space-y-4">
+        <h4 class="font-body-md font-bold uppercase tracking-widest text-primary text-[11px]">Communication</h4>
+        <ul class="space-y-2">
+          <li><a class="text-on-surface-variant hover:text-primary transition-colors text-sm"
+              href="mailto:admin@nusadagang.com">admin@nusadagang.com</a></li>
+          <li><a class="text-on-surface-variant hover:text-primary transition-colors text-sm"
+              href="mailto:hello@nusadagang.com">hello@nusadagang.com</a></li>
+          <li><a class="text-on-surface-variant hover:text-primary transition-colors text-sm"
+              href="mailto:sales@nusadagang.com">sales@nusadagang.com</a></li>
+        </ul>
+      </div>
+      <div class="space-y-4">
+        <h4 class="font-body-md font-bold uppercase tracking-widest text-primary text-[11px]">Presence</h4>
+        <p class="text-on-surface-variant text-sm">Kuala Lumpur, Malaysia</p>
+        <p class="text-on-surface-variant text-[11px] mt-8 opacity-40">© 2025 Nusa Dagang Resources. All rights
+          reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Parallax
+    const heroBg = document.getElementById('hero-section');
+    const parallaxImg = document.getElementById('parallax-img');
+    if (heroBg && parallaxImg) {
+      heroBg.addEventListener('mousemove', (e) => {
+        const { width, height } = heroBg.getBoundingClientRect();
+        parallaxImg.style.transform = `scale(1.1) translate(${(e.clientX - width / 2) / width * 20}px,${(e.clientY - height / 2) / height * 20}px)`;
+      });
+    }
+    // Scroll reveal
+    const obs = new IntersectionObserver((entries) => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('active'); }), { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+    document.querySelectorAll('.reveal-on-scroll').forEach(el => obs.observe(el));
+    // Hero entrance
+    window.addEventListener('load', () => { setTimeout(() => { document.querySelectorAll('#hero-section .reveal-on-scroll').forEach(el => el.classList.add('active')); }, 300); });
+    // Nav scroll glass
+    window.addEventListener('scroll', () => {
+      const nav = document.getElementById('main-nav');
+      if (window.scrollY > 80) { nav.style.background = 'rgba(249,247,244,0.95)'; nav.style.backdropFilter = 'blur(20px)'; nav.style.boxShadow = '0 2px 24px rgba(0,0,0,0.08)'; }
+      else { nav.style.background = ''; nav.style.backdropFilter = ''; nav.style.boxShadow = ''; }
+    });
+    // Mobile menu toggle
+    document.getElementById('mobile-menu-btn').addEventListener('click', () => {
+      const menu = document.getElementById('mobile-menu');
+      menu.classList.toggle('hidden');
+      menu.classList.toggle('flex');
+    });
+    // Process Flow interaction
+    document.querySelectorAll('.connector-line').forEach(item => {
+      const circle = item.querySelector('.step-circle');
+      if (circle) {
+        item.addEventListener('touchstart', () => {
+          circle.style.transform = 'scale(1.15)';
+          circle.style.boxShadow = '0 0 25px 8px rgba(204, 255, 128, 0.5)';
+        });
+        item.addEventListener('touchend', () => {
+          circle.style.transform = '';
+          circle.style.boxShadow = '';
+        });
+      }
+    });
+  </script>
+</body>
+
+</html>
