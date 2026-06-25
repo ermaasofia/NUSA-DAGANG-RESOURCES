@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>Food Supply | Nusa Dagang Resources</title>
+  <meta name="description"
+    content="Nusa Dagang Food Supply — Fresh essentials including red onion, shallots, white onion, and old ginger." />
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+    rel="stylesheet" />
+  <style>
+    :root { --bg-color:#f9f7f4; --surface-color:#f0ede8; --accent-gold:#f2ca50; }
+  body { background-color:var(--bg-color); color:#1c1a17; overflow-x:hidden; }
+
+    .cursive-tag {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      color: var(--accent-gold);
+      opacity: .9;
+    }
+
+    .reveal-on-scroll {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 1s cubic-bezier(0.44, 1, 0.36, 1);
+    }
+
+    .reveal-on-scroll.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .stagger-1 {
+      transition-delay: .1s;
+    }
+
+    .stagger-2 {
+      transition-delay: .2s;
+    }
+
+    .stagger-3 {
+      transition-delay: .3s;
+    }
+
+    .nav-link {
+      position: relative;
+    }
+
+    .nav-link.active-page {
+      color: var(--accent-gold) !important;
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -4px;
+      width: 0;
+      height: 1px;
+      background: var(--accent-gold);
+      transition: width .3s ease;
+    }
+
+    .nav-link:hover::after,
+    .nav-link.active-page::after {
+      width: 100%;
+    }
+
+    @keyframes float {
+
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-15px);
+      }
+    }
+
+    .floating-circle {
+      animation: float 6s ease-in-out infinite;
+    }
+
+    .scale-lifts {
+      transition: transform .6s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow .6s ease;
+    }
+
+    .scale-lifts:hover {
+      transform: scale(1.05);
+      box-shadow: 0 40px 80px rgba(0, 0, 0, .6);
+    }
+
+    /* journey SVG is drawn dynamically by JS */
+    .page-hero { padding-top:160px; padding-bottom:80px; background:linear-gradient(180deg,#f0ede8 0%,#f9f7f4 100%); border-bottom:1px solid rgba(0,0,0,0.06); }
+
+    @media (prefers-reduced-motion:reduce) {
+
+      .reveal-on-scroll,
+      .floating-circle,
+      .scale-lifts,
+      .journey-path path {
+        transition: none !important;
+        animation: none !important;
+        opacity: 1 !important;
+        transform: none !important;
+      }
+    }
+  </style>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors:{"surface-container-lowest":"#ffffff","on-surface":"#1c1a17","on-surface-variant":"#5c5650","background":"#f9f7f4","surface":"#f0ede8","primary":"#f2ca50"},
+          spacing: { "section-gap": "120px", "gutter": "32px", "unit": "8px", "container-max": "1440px", "margin-edge": "64px" },
+          fontFamily: { "display-lg": ["Playfair Display", "serif"], "body-md": ["Inter", "sans-serif"], "headline-md": ["Playfair Display", "serif"], "headline-lg": ["Playfair Display", "serif"] }
+        }
+      }
+    }
+  </script>
+</head>
+
+<body class="font-body-md text-on-surface bg-background">
+
+  <!-- Nav -->
+  <nav class="fixed top-0 w-full z-50 transition-all duration-500" id="main-nav">
+    <div class="flex justify-between items-center px-margin-edge py-5 w-full max-w-container-max mx-auto">
+      <a href="index.html" class="font-display-lg text-2xl tracking-tighter text-primary">NUSA DAGANG</a>
+      <div class="hidden md:flex items-center gap-10">
+        <a class="nav-link font-body-md text-[13px] uppercase tracking-widest text-on-surface hover:text-primary transition-colors duration-300"
+          href="index.html">Homepage</a>
+        <a class="nav-link font-body-md text-[13px] uppercase tracking-widest text-on-surface hover:text-primary transition-colors duration-300"
+          href="trading.html">Trading</a>
+        <a class="nav-link active-page font-body-md text-[13px] uppercase tracking-widest transition-colors duration-300"
+          href="food-supply.html">Food Supply</a>
+        <a class="nav-link font-body-md text-[13px] uppercase tracking-widest text-on-surface hover:text-primary transition-colors duration-300"
+          href="rtc.html">Ready-to-Cook (RTC)</a>
+        <a class="nav-link font-body-md text-[13px] uppercase tracking-widest text-on-surface hover:text-primary transition-colors duration-300"
+          href="target-audience.html">Target Audience</a>
+      </div>
+      <button class="md:hidden text-primary" id="mobile-menu-btn" aria-label="Open menu">
+        <span class="material-symbols-outlined text-3xl">menu</span>
+      </button>
+    </div>
+    <div class="hidden md:hidden flex-col gap-4 px-margin-edge pb-6 pt-2" id="mobile-menu"
+      style="background:rgba(249,247,244,0.98);backdrop-filter:blur(20px);">
+      <a class="font-body-md text-[13px] uppercase tracking-widest text-on-surface" href="index.html">Homepage</a>
+      <a class="font-body-md text-[13px] uppercase tracking-widest text-on-surface" href="trading.html">Trading</a>
+      <a class="font-body-md text-[13px] uppercase tracking-widest text-primary" href="food-supply.html">Food Supply</a>
+      <a class="font-body-md text-[13px] uppercase tracking-widest text-on-surface" href="rtc.html">Ready-to-Cook
+        (RTC)</a>
+      <a class="font-body-md text-[13px] uppercase tracking-widest text-on-surface" href="target-audience.html">Target
+        Audience</a>
+    </div>
+  </nav>
+
+  <main class="w-full">
+    <!-- Page Hero -->
+    <div class="page-hero px-margin-edge">
+      <div class="max-w-container-max mx-auto">
+        <span class="cursive-tag text-xl block mb-4 italic reveal-on-scroll stagger-1">Fresh Processing</span>
+        <h1 class="font-display-lg text-6xl lg:text-7xl reveal-on-scroll stagger-2">Food Supply Essentials</h1>
+        <p class="text-on-surface-variant text-lg max-w-2xl mt-6 leading-relaxed reveal-on-scroll stagger-3">From farm
+          to table, we source and distribute the finest fresh produce for culinary establishments across the region.</p>
+      </div>
+    </div>
+
+    <!-- Journey Section -->
+    <section class="py-section-gap px-margin-edge bg-background relative overflow-hidden" id="food-supply">
+      <div class="max-w-container-max mx-auto relative">
+        <!-- Journey container: SVG is drawn here dynamically by JS after layout -->
+        <div class="relative max-w-5xl mx-auto space-y-40" id="journey-container">
+
+          <!-- Dynamic SVG overlay — populated by initJourneyPath() -->
+          <svg id="journey-svg" class="hidden lg:block absolute top-0 left-0 pointer-events-none z-0"
+            style="overflow:visible;"></svg>
+
+          <!-- Product 1: Red Onion -->
+          <div class="journey-item flex flex-col lg:flex-row items-center gap-12 lg:gap-24 reveal-on-scroll">
+            <div class="w-full lg:w-1/2 flex justify-center lg:justify-end">
+              <div
+                class="floating-circle w-64 h-64 lg:w-80 lg:h-80 border-2 border-primary/20 scale-lifts cursor-pointer overflow-hidden rounded-full shadow-2xl"
+                data-journey-circle="1" onclick="openLightbox(this)">
+                <img alt="Red Onion" class="w-full h-full object-cover"
+                  src="https://lh3.googleusercontent.com/aida/AP1WRLuS8h7UfMxRVXj7ISiEh5B7DPa4g5AqSc06JFyer1SuuuchY9VQO_nADP3GOFX8g4KXGy37k4FKxLqR8pTtHvou0inw2ogNB5l6FqrdE9COvwMEnD5H1-kg_ouz9Yse5IGt_IE7h5-O7ujANs-cNQDSK1ir3qlRY35yLn0qd0Y8coLB-S7rdCyGa9fKomFw93rFEaVlaBckVsBBOXYMyd57o4rV9yv_uje-CA5uKO9N_RMH5hBujvyu1g" />
+              </div>
+            </div>
+            <div class="w-full lg:w-1/2 text-center lg:text-left">
+              <h2 class="font-display-lg text-4xl text-primary mb-4">Red Onion</h2>
+              <p
+                class="font-body-md text-on-surface-variant text-base opacity-80 leading-relaxed max-w-xs mx-auto lg:mx-0">
+                Premium grade red onions sourced directly from trusted farms. Rich in flavour, essential to the region's
+                culinary identity.</p>
+            </div>
+          </div>
+
+          <!-- Product 2: Shallots -->
+          <div class="journey-item flex flex-col lg:flex-row-reverse items-center gap-12 lg:gap-24 reveal-on-scroll">
+            <div class="w-full lg:w-1/2 flex justify-center lg:justify-start">
+              <div
+                class="floating-circle w-64 h-64 lg:w-80 lg:h-80 border-2 border-primary/20 scale-lifts cursor-pointer overflow-hidden rounded-full shadow-2xl"
+                data-journey-circle="2" onclick="openLightbox(this)" style="animation-delay:-1.5s;">
+                <img alt="Shallots" class="w-full h-full object-cover"
+                  src="https://lh3.googleusercontent.com/aida/AP1WRLuIEECtctQ8-n8GsnfxA4q3b2pPja_AduyQXpl8RmZqEPvJyk6b6kuLhL6lpHLFKvqgFhvUL6--iprKtznfuLxwmphjbRhO_hQ3TWKplyxW3-emuJRqXFi3hO1RO_dIhP6mROhMvYNiKW9_T68TVaMI196nbWWhqD69zPmG1EwRMrT6I4djvAGhE7kjWq1Wg3yXVYkd5JGUydOjf8S27FZ9nY49pqvBYd-FQu-jTao9poug-QZ_i2KUI0E" />
+              </div>
+            </div>
+            <div class="w-full lg:w-1/2 text-center lg:text-right">
+              <h2 class="font-display-lg text-4xl text-primary mb-4">Shallots</h2>
+              <p
+                class="font-body-md text-on-surface-variant text-base opacity-80 leading-relaxed max-w-xs mx-auto lg:ml-auto">
+                Delicate and aromatic, our shallots are a cornerstone of Southeast Asian cuisine and a staple in
+                professional kitchens.</p>
+            </div>
+          </div>
+
+          <!-- Product 3: White Onion -->
+          <div class="journey-item flex flex-col lg:flex-row items-center gap-12 lg:gap-24 reveal-on-scroll">
+            <div class="w-full lg:w-1/2 flex justify-center lg:justify-end">
+              <div
+                class="floating-circle w-64 h-64 lg:w-80 lg:h-80 border-2 border-primary/20 scale-lifts cursor-pointer overflow-hidden rounded-full shadow-2xl"
+                data-journey-circle="3" onclick="openLightbox(this)" style="animation-delay:-3s;">
+                <img alt="White Onion" class="w-full h-full object-cover"
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuCxEChAZY9ZpKbx4B3t4OqUMR442b6u_d3PD5n52qdmGh1k_gsw0l0BkB7YUx9fghiedJFzpJec1laE9M06ZHy5rTN5r4bYy3ZXuN3fzjrLmWSI0KIKY_s6tFYpfO0rZoILDGt_R1X0QMh794Sn5YBz-2Nk4EzqM2kzbWPF46uADtk3vBdUi12jDYQoNiRI-_4FaZiAEv8m8FIwEWnU-ZZw5WjgETbBBjx3MucmqJVtTTqqA3lmkiesaBIDVQGFffR2DqGGTz27K0JdEA" />
+              </div>
+            </div>
+            <div class="w-full lg:w-1/2 text-center lg:text-left">
+              <h2 class="font-display-lg text-4xl text-primary mb-4">White Onion</h2>
+              <p
+                class="font-body-md text-on-surface-variant text-base opacity-80 leading-relaxed max-w-xs mx-auto lg:mx-0">
+                Crisp and mild-flavoured white onions with excellent shelf life, ideal for large-scale catering and food
+                processing.</p>
+            </div>
+          </div>
+
+          <!-- Product 4: Old Ginger -->
+          <div class="journey-item flex flex-col lg:flex-row-reverse items-center gap-12 lg:gap-24 reveal-on-scroll">
+            <div class="w-full lg:w-1/2 flex justify-center lg:justify-start">
+              <div
+                class="floating-circle w-64 h-64 lg:w-80 lg:h-80 border-2 border-primary/20 scale-lifts cursor-pointer overflow-hidden rounded-full shadow-2xl"
+                data-journey-circle="4" onclick="openLightbox(this)" style="animation-delay:-4.5s;">
+                <img alt="Old Ginger" class="w-full h-full object-cover"
+                  src="https://lh3.googleusercontent.com/aida/AP1WRLs-G4SZALU69P034rojlc8T3rXy0zHQ2LLCievuDAtTxn024OyvBAAlCROG-bnT1i2UhwtxZMeeR-hBtSJYXSZIkQyaQNhncHLjcom9SxVwn6ofC0q9pQz4DP9je0nVzJRlqRgVMl2-iZeOUQHRy8md-hzFoXYJI_iQO5DQ67KJZ_BFk_5q9dfPIUB3p9cLzrOG7lXXFHGxXVkTSdXfWXnKU8IfybHBJsgDn0OJhoZpbjgbAGajyRkW_7A" />
+              </div>
+            </div>
+            <div class="w-full lg:w-1/2 text-center lg:text-right">
+              <h2 class="font-display-lg text-4xl text-primary mb-4">Old Ginger</h2>
+              <p
+                class="font-body-md text-on-surface-variant text-base opacity-80 leading-relaxed max-w-xs mx-auto lg:ml-auto">
+                Mature, fibrous old ginger with intense aroma and heat. Preferred by chefs for stocks, broths, and spice
+                pastes.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-surface-container-lowest border-none mt-24">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 px-margin-edge py-16 w-full max-w-container-max mx-auto">
+      <div class="space-y-6">
+        <div class="font-display-lg text-2xl text-primary">NUSA DAGANG</div>
+        <p class="text-on-surface-variant text-sm opacity-60">Nusa Dagang Resources (202503267841-V)</p>
+      </div>
+      <div class="space-y-4">
+        <h4 class="font-bold uppercase tracking-widest text-primary text-[11px]">Communication</h4>
+        <ul class="space-y-2">
+          <li><a class="text-on-surface-variant hover:text-primary transition-colors text-sm"
+              href="mailto:admin@nusadagang.com">admin@nusadagang.com</a></li>
+          <li><a class="text-on-surface-variant hover:text-primary transition-colors text-sm"
+              href="mailto:hello@nusadagang.com">hello@nusadagang.com</a></li>
+          <li><a class="text-on-surface-variant hover:text-primary transition-colors text-sm"
+              href="mailto:sales@nusadagang.com">sales@nusadagang.com</a></li>
+        </ul>
+      </div>
+      <div class="space-y-4">
+        <h4 class="font-bold uppercase tracking-widest text-primary text-[11px]">Presence</h4>
+        <p class="text-on-surface-variant text-sm">Kuala Lumpur, Malaysia</p>
+        <p class="text-on-surface-variant text-[11px] mt-8 opacity-40">© 2025 Nusa Dagang Resources. All rights
+          reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Lightbox -->
+  <div class="fixed inset-0 z-[100] flex items-center justify-center p-8 cursor-zoom-out hidden" id="lightbox"
+    onclick="closeLightbox()" style="background:rgba(0,0,0,0.95);opacity:0;transition:opacity 0.5s ease;">
+    <img class="max-w-full max-h-full object-contain shadow-2xl" id="lightbox-img" src=""
+      style="transform:scale(0.92);transition:transform 0.5s cubic-bezier(0.22,1,0.36,1);" />
+  </div>
+
+  <script>
+    // ── Scroll reveal ──────────────────────────────────────────────────
+    const obs = new IntersectionObserver(
+      (entries) => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('active'); }),
+      { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
+    );
+    document.querySelectorAll('.reveal-on-scroll').forEach(el => obs.observe(el));
+
+    // Hero entrance
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        document.querySelectorAll('.page-hero .reveal-on-scroll').forEach(el => el.classList.add('active'));
+      }, 200);
+    });
+
+    // Nav glass scroll
+    window.addEventListener('scroll', () => {
+      const nav = document.getElementById('main-nav');
+      if (window.scrollY > 80) {
+      nav.style.background = 'rgba(249,247,244,0.95)';
+      nav.style.backdropFilter = 'blur(20px)';
+      nav.style.boxShadow = '0 2px 24px rgba(0,0,0,0.08)';
+    } else {
+        nav.style.background = '';
+        nav.style.backdropFilter = '';
+        nav.style.boxShadow = '';
+      }
+    });
+
+    // Mobile menu
+    document.getElementById('mobile-menu-btn').addEventListener('click', () => {
+      const m = document.getElementById('mobile-menu');
+      m.classList.toggle('hidden');
+      m.classList.toggle('flex');
+    });
+
+    // ── Lightbox ───────────────────────────────────────────────────────
+    function openLightbox(el) {
+      const img = el.querySelector('img'); if (!img) return;
+      const lb = document.getElementById('lightbox'), lbImg = document.getElementById('lightbox-img');
+      lbImg.src = img.src; lb.classList.remove('hidden');
+      requestAnimationFrame(() => requestAnimationFrame(() => {
+        lb.style.opacity = '1'; lbImg.style.transform = 'scale(1)';
+      }));
+      document.body.style.overflow = 'hidden';
+    }
+    function closeLightbox() {
+      const lb = document.getElementById('lightbox'), lbImg = document.getElementById('lightbox-img');
+      lb.style.opacity = '0'; lbImg.style.transform = 'scale(0.92)';
+      setTimeout(() => { lb.classList.add('hidden'); document.body.style.overflow = 'auto'; }, 500);
+    }
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && !document.getElementById('lightbox').classList.contains('hidden')) closeLightbox();
+    });
+
+    // ── Dynamic Journey Path ───────────────────────────────────────────
+    // Measures each circle's actual on-screen center after layout renders,
+    // builds a smooth bezier S-curve through all 4 points, then draws it
+    // circle-by-circle as the section scrolls into view.
+    function initJourneyPath() {
+      const svg = document.getElementById('journey-svg');
+      const container = document.getElementById('journey-container');
+      if (!svg || !container || window.innerWidth < 1024) {
+        if (svg) svg.innerHTML = ''; // hide on mobile
+        return;
+      }
+
+      // Collect circles in order
+      const circles = Array.from(document.querySelectorAll('[data-journey-circle]'))
+        .sort((a, b) => +a.dataset.journeyCircle - +b.dataset.journeyCircle);
+      if (circles.length < 2) return;
+
+      // Pause float animation so getBoundingClientRect is stable
+      circles.forEach(c => { c.style.animationPlayState = 'paused'; });
+
+      // Two rAF ticks to let paint settle
+      requestAnimationFrame(() => requestAnimationFrame(() => {
+        const cRect = container.getBoundingClientRect();
+        const W = container.offsetWidth;
+        const H = container.offsetHeight;
+
+        // Measure each circle center relative to the container
+        const pts = circles.map(c => {
+          const r = c.getBoundingClientRect();
+          return {
+            x: r.left + r.width / 2 - cRect.left,
+            y: r.top + r.height / 2 - cRect.top
+          };
+        });
+
+        // Resume float
+        circles.forEach(c => { c.style.animationPlayState = 'running'; });
+
+        // Size the SVG to exactly cover the container
+        svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
+        svg.style.width = W + 'px';
+        svg.style.height = H + 'px';
+
+        // Build smooth cubic bezier path through all centers
+        // Each segment: C ctrl1 ctrl2 endpoint
+        // ctrl1 = same x as start, halfway y; ctrl2 = same x as end, halfway y
+        let d = `M ${pts[0].x} ${pts[0].y}`;
+        for (let i = 0; i < pts.length - 1; i++) {
+          const p = pts[i], n = pts[i + 1];
+          const midY = (p.y + n.y) / 2;
+          d += ` C ${p.x} ${midY} ${n.x} ${midY} ${n.x} ${n.y}`;
+        }
+
+        // Build glow dot pulses for each node
+        const ns = 'http://www.w3.org/2000/svg';
+        const pulseDots = pts.map(pt => `
+        <circle cx="${pt.x}" cy="${pt.y}" r="5" fill="#f2ca50" opacity="0.9"/>
+        <circle cx="${pt.x}" cy="${pt.y}" r="5" fill="none" stroke="#f2ca50" stroke-width="1.5" opacity="0">
+          <animate attributeName="r"       from="5"   to="28"  dur="2s" repeatCount="indefinite" begin="0.3s"/>
+          <animate attributeName="opacity" from="0.5" to="0"   dur="2s" repeatCount="indefinite" begin="0.3s"/>
+        </circle>
+      `).join('');
+
+        svg.innerHTML = `
+        <defs>
+          <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="3" result="blur"/>
+            <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+        </defs>
+
+        <!-- Main connecting path -->
+        <path id="journey-path"
+          d="${d}"
+          stroke="#f2ca50"
+          stroke-width="1.5"
+          fill="none"
+          stroke-linecap="round"
+          opacity="0.55"
+          filter="url(#glow)"
+        />
+
+        <!-- Pulse rings + center dots at each circle -->
+        <g id="journey-nodes" opacity="0">
+          ${pulseDots}
+        </g>
+      `;
+
+        // Set up draw animation using actual path length
+        const pathEl = document.getElementById('journey-path');
+        const totalLen = pathEl.getTotalLength();
+        pathEl.style.strokeDasharray = totalLen;
+        pathEl.style.strokeDashoffset = totalLen;
+        pathEl.style.transition = 'none';
+
+        // Trigger draw when section enters viewport
+        if (window._journeyObs) window._journeyObs.disconnect();
+        let drawn = false;
+        window._journeyObs = new IntersectionObserver(([entry]) => {
+          if (entry.isIntersecting && !drawn) {
+            drawn = true;
+            // Start drawing after a short delay
+            setTimeout(() => {
+              pathEl.style.transition = 'stroke-dashoffset 2.8s cubic-bezier(0.4, 0, 0.2, 1)';
+              pathEl.style.strokeDashoffset = '0';
+              // Fade in node dots after path reaches them
+              setTimeout(() => {
+                document.getElementById('journey-nodes').style.transition = 'opacity 0.6s ease';
+                document.getElementById('journey-nodes').style.opacity = '1';
+              }, 2400);
+            }, 300);
+            window._journeyObs.disconnect();
+          }
+        }, { threshold: 0.15 });
+        window._journeyObs.observe(container);
+      }));
+    }
+
+    // Init on load; reinit on resize with debounce
+    window.addEventListener('load', () => setTimeout(initJourneyPath, 500));
+    window.addEventListener('resize', () => {
+      clearTimeout(window._journeyResizeTimer);
+      window._journeyResizeTimer = setTimeout(initJourneyPath, 250);
+    });
+  </script>
+</body>
+
+</html>
