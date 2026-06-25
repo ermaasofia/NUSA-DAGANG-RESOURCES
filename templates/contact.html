@@ -17,7 +17,7 @@
       darkMode: "class",
       theme: {
         extend: {
-          colors:{"surface-container-lowest":"#ffffff","on-surface":"#1c1a17","on-surface-variant":"#5c5650","background":"#f9f7f4","surface":"#f0ede8","primary":"#f2ca50","outline":"#a09278","surface-container":"#ebe8e2"},
+          colors:{"surface-container-lowest":"#ffffff","on-surface":"#1c1a17","on-surface-variant":"#5c5650","background":"#5B805B","surface":"#f0ede8","primary":"#f2ca50","outline":"#a09278","surface-container":"#ebe8e2"},
           spacing: { "section-gap": "120px", "gutter": "32px", "unit": "8px", "container-max": "1440px", "margin-edge": "64px" },
           fontFamily: { "display-lg": ["Playfair Display", "serif"], "body-md": ["Inter", "sans-serif"], "headline-md": ["Playfair Display", "serif"], "headline-lg": ["Playfair Display", "serif"] }
         }
@@ -32,7 +32,7 @@
   <nav class="fixed top-0 w-full z-50 transition-all duration-500" id="main-nav">
     <div class="flex justify-between items-center px-margin-edge py-5 w-full max-w-container-max mx-auto">
       <a href="/">
-        <img src="{{ url_for('static', path='/logo1.png') }}" alt="Nusa Dagang Logo" class="h-12 w-auto">
+        <img src="{{ url_for('static', path='/logo1.png') }}" alt="Nusa Dagang Logo" class="h-28 w-auto" style="mix-blend-mode: multiply; filter: contrast(1.2) brightness(1.1);">
       </a>
       <div class="hidden md:flex items-center gap-10">
         <a class="nav-link font-body-md text-[13px] uppercase tracking-widest text-on-surface hover:text-primary transition-colors duration-300"
@@ -51,7 +51,7 @@
     </div>
     <!-- Mobile Menu -->
     <div class="hidden md:hidden flex-col gap-4 px-margin-edge pb-6 pt-2" id="mobile-menu"
-      style="background:rgba(249,247,244,0.98);backdrop-filter:blur(20px);">
+      style="background:rgba(91,128,91,0.98);backdrop-filter:blur(20px);">
       <a class="font-body-md text-[13px] uppercase tracking-widest text-on-surface" href="/">Homepage</a>
       <a class="font-body-md text-[13px] uppercase tracking-widest text-on-surface" href="/about">Ready-to-Cook(RTC)</a>
       <a class="font-body-md text-[13px] uppercase tracking-widest text-on-surface" href="/services">Product&Service</a>
@@ -61,8 +61,8 @@
 
   <main class="w-full">
     <!-- Hero / Header Section -->
-    <section class="relative pt-40 pb-20 bg-surface border-bottom border-on-surface/10 flex items-center justify-center overflow-hidden">
-      <div class="relative z-10 text-center px-margin-edge max-w-4xl mx-auto">
+    <section class="relative py-12 lg:py-16 bg-surface rounded-[3rem] mx-6 lg:mx-auto max-w-7xl mt-28 mb-12 shadow-2xl flex items-center justify-center overflow-hidden">
+      <div class="relative z-10 text-center px-margin-edge max-w-5xl mx-auto">
         <span class="reveal-on-scroll cursive-tag text-xl block mb-4 italic stagger-1">Get in Touch</span>
         <h1 class="reveal-on-scroll font-display-lg text-4xl lg:text-6xl mb-6 leading-tight stagger-2">Contact Us</h1>
         <p class="reveal-on-scroll text-on-surface-variant text-lg max-w-lg mx-auto opacity-90 stagger-3">Let's discuss how Nusa Dagang can support your culinary supply chain needs.</p>
@@ -157,7 +157,7 @@
     // Nav scroll glass
     window.addEventListener('scroll', () => {
       const nav = document.getElementById('main-nav');
-      if (window.scrollY > 80) { nav.style.background='rgba(249,247,244,0.95)'; nav.style.backdropFilter='blur(20px)'; nav.style.boxShadow='0 2px 24px rgba(0,0,0,0.08)'; }
+      if (window.scrollY > 80) { nav.style.background='rgba(91,128,91,0.95)'; nav.style.backdropFilter='blur(20px)'; nav.style.boxShadow='0 2px 24px rgba(0,0,0,0.08)'; }
       else { nav.style.background = ''; nav.style.backdropFilter = ''; nav.style.boxShadow = ''; }
     });
     // Mobile menu toggle

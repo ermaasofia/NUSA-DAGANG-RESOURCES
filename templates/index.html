@@ -17,7 +17,7 @@
       darkMode: "class",
       theme: {
         extend: {
-          colors: { "surface-container-lowest": "#ffffff", "on-surface": "#1c1a17", "on-surface-variant": "#5c5650", "background": "#f9f7f4", "surface": "#f0ede8", "primary": "#f2ca50", "outline": "#a09278", "surface-container": "#ebe8e2" },
+          colors: { "surface-container-lowest": "#ffffff", "on-surface": "#1c1a17", "on-surface-variant": "#5c5650", "background": "#5B805B", "surface": "#f0ede8", "primary": "#f2ca50", "outline": "#a09278", "surface-container": "#ebe8e2" },
           spacing: { "section-gap": "120px", "gutter": "32px", "unit": "8px", "container-max": "1440px", "margin-edge": "64px" },
           fontFamily: { "display-lg": ["Playfair Display", "serif"], "body-md": ["Inter", "sans-serif"], "headline-md": ["Playfair Display", "serif"], "headline-lg": ["Playfair Display", "serif"] }
         }
@@ -32,7 +32,8 @@
   <nav class="fixed top-0 w-full z-50 transition-all duration-500" id="main-nav">
     <div class="flex justify-between items-center px-margin-edge py-5 w-full max-w-container-max mx-auto">
       <a href="/">
-        <img src="{{ url_for('static', path='/logo1.png') }}" alt="Nusa Dagang Logo" class="h-12 w-auto">
+        <img src="{{ url_for('static', path='/logo1.png') }}" alt="Nusa Dagang Logo" class="h-20 w-auto"
+          style="mix-blend-mode: multiply; filter: contrast(1.2) brightness(1.1);">
       </a>
       <div class="hidden md:flex items-center gap-10">
         <a class="nav-link active-page font-body-md text-[13px] uppercase tracking-widest transition-colors duration-300"
@@ -61,30 +62,24 @@
 
   <main class="w-full">
     <!-- Hero -->
-    <section class="relative h-screen min-h-[700px] flex items-center justify-center overflow-hidden" id="hero-section">
-      <div class="absolute inset-0 z-0">
-        <img alt="Premium Culinary Trade Background"
-          class="w-full h-full object-cover transition-transform duration-700 ease-out scale-110" id="parallax-img"
-          src="https://lh3.googleusercontent.com/aida/AP1WRLuh8LeAQM0ys-01ol5_VMogns0DRhHuaMa5BNU1HvoE1MWaVmfj61-Kw3WlXqCrz3ElEgBBJ5qzxlkGGClZFlupRYiorVVlFKBbdgAMWdVRemHDT3sccc7trJeIu2ocIubzCBRhMwGcdrlXyQ5o8iKwjbriagXUwVyoy459uNQIrpn72Cj67ka2-VegnfDidPZJ_I1Y9N8Dk-StLDE8S9YeKMt6OKkhfBcG4uP7FMADFu4kYRjD8-ROng" />
-        <div class="absolute inset-0 bg-black/65"></div>
-      </div>
+    <section
+      class="relative py-16 lg:py-24 rounded-[2rem] w-[92%] max-w-6xl mx-auto mt-[100px] mb-12 shadow-2xl flex items-center justify-center overflow-hidden border border-white/10"
+      style="background-image: url('{{ url_for('static', path='images/bg.png') }}'); background-size: cover; background-position: center;"
+      id="hero-section">
+      <div class="absolute inset-0 bg-black/60 z-0"></div>
       <div class="relative z-10 text-center px-margin-edge max-w-4xl mx-auto">
-        <span class="reveal-on-scroll cursive-tag text-xl block mb-6 italic stagger-1">Exclusive Trade Network</span>
         <h1 class="reveal-on-scroll font-display-lg text-5xl lg:text-7xl mb-6 leading-tight text-white stagger-2">A
           Premium Role in the<br>Food Supply Ecosystem</h1>
-        <p class="reveal-on-scroll text-on-surface text-lg mb-10 max-w-lg mx-auto opacity-90 stagger-3">Connecting
-          premium culinary producers to the markets that matter most.</p>
         <div class="reveal-on-scroll flex justify-center gap-6 stagger-3">
           <a href="/services"
-            class="shimmer-btn btn-underline text-primary font-bold uppercase tracking-widest py-2 px-6">Explore
+            class="bg-primary text-black font-bold uppercase tracking-widest py-3 px-8 rounded-md hover:bg-opacity-90 transition-all shadow-lg">Explore
             Product&Service</a>
           <a href="/contact"
-            class="shimmer-btn btn-underline text-on-surface font-bold uppercase tracking-widest py-2 px-6 opacity-70 hover:opacity-100 hover:text-primary transition-all">Contact
+            class="bg-white text-black font-bold uppercase tracking-widest py-3 px-8 rounded-md hover:bg-gray-200 transition-all shadow-lg">Contact
             Us →</a>
         </div>
       </div>
     </section>
-
     <!-- About -->
     <section class="py-section-gap px-margin-edge bg-background">
       <div class="max-w-container-max mx-auto text-center reveal-on-scroll">
@@ -94,28 +89,11 @@
           <div class="content-box green-theme slide-up-box reveal-on-scroll p-10 h-full flex flex-col justify-center">
             <h3 class="font-display-lg text-4xl mb-6 text-[#2e7d32]">Who We Are</h3>
             <p class="font-body-md text-on-surface-variant text-[15px] leading-relaxed mb-4">
-              NUSA DAGANG RESOURCES is a company specializing in the supply and processing of food ingredients,
-              particularly
-              in the categories of ground, minced, and spice-based products.
-            </p>
-            <p class="font-body-md text-on-surface-variant text-[15px] leading-relaxed mb-4">
-              Established with the goal of simplifying food preparation processes, making them faster, more consistent,
-              and
-              more efficient, Nusa Dagang focuses on innovation within the food industry by offering high-quality
-              products
-              that are free from preservatives.
-            </p>
-            <p class="font-body-md text-on-surface-variant text-[15px] leading-relaxed mb-4">
-              We understand the operational challenges faced by the F&B industry, central kitchens, and catering
-              businesses.
-              Therefore, our products are specially designed to help customers save time, reduce labor costs, and
-              improve
-              daily productivity.
-            </p>
-            <p class="font-body-md text-on-surface-variant text-[15px] leading-relaxed">
-              With a strong commitment to quality and hygiene, every product is produced through carefully controlled
-              processes to ensure freshness and a shelf life of up to 2 months when stored frozen.
-            </p>
+              Nusa Dagang Resources specializes in high-quality, preservative-free food ingredients, including ground
+              pastes and spice-based products. We streamline kitchen operations for the F&B industry, central kitchens,
+              and catering businesses by reducing prep time and labor costs. Committed to hygiene and consistency, our
+              products are processed under strict controls to ensure freshness, with a frozen shelf life of up to two
+              months.</p>
           </div>
 
           <!-- Right Column: Mission & Vision -->
@@ -151,7 +129,7 @@
                 style="background-color: #ccff80; color: #131412;">1</div>
               <div class="flex flex-col">
                 <h3 class="font-display-lg text-1xl mb-2" style="color: #ccff80;">Ready-to-Cook:</h3>
-                <p class="font-body-sm text-[14px]" style="color: #c2cab0;">Minimal effort, maximum flavor.</p>
+                <p class="font-body-sm text-[14px]" style="color: #ffffff;">Minimal effort, maximum flavor.</p>
               </div>
             </div>
             <!-- Step 2 -->
@@ -161,7 +139,7 @@
                 style="background-color: #ccff80; color: #131412; animation-delay: 0.5s;">2</div>
               <div class="flex flex-col">
                 <h3 class="font-display-lg text-1xl mb-2" style="color: #ccff80;">Frozen Fresh:</h3>
-                <p class="font-body-sm text-[14px]" style="color: #c2cab0;"> Long-lasting quality with zero
+                <p class="font-body-sm text-[14px]" style="color: #ffffff;"> Long-lasting quality with zero
                   preservatives.</p>
               </div>
             </div>
@@ -172,7 +150,7 @@
                 style="background-color: #ccff80; color: #131412; animation-delay: 1s;">3</div>
               <div class="flex flex-col">
                 <h3 class="font-display-lg text-1xl mb-2" style="color: #ccff80;">Consistent Excellence:</h3>
-                <p class="font-body-sm text-[14px]" style="color: #c2cab0;"> The same great taste, every time.</p>
+                <p class="font-body-sm text-[14px]" style="color: #ffffff;"> The same great taste, every time.</p>
               </div>
             </div>
             <!-- Step 4 -->
@@ -182,7 +160,7 @@
                 style="background-color: #ccff80; color: #131412; animation-delay: 1.5s;">4</div>
               <div class="flex flex-col">
                 <h3 class="font-display-lg text-1xl mb-2" style="color: #ccff80;">Cut Prep Time by 70%:</h3>
-                <p class="font-body-sm text-[14px]" style="color: #c2cab0;"> Work smarter, not harder.</p>
+                <p class="font-body-sm text-[14px]" style="color: #ffffff;"> Work smarter, not harder.</p>
               </div>
             </div>
             <!-- Step 5 -->
@@ -192,7 +170,7 @@
                 style="background-color: #ccff80; color: #131412; animation-delay: 2s;">5</div>
               <div class="flex flex-col">
                 <h3 class="font-display-lg text-1xl mb-2" style="color: #ccff80;">Kitchen-Ready: </h3>
-                <p class="font-body-sm text-[14px]" style="color: #c2cab0;">Your secret weapon for high-demand service
+                <p class="font-body-sm text-[14px]" style="color: #ffffff;">Your secret weapon for high-demand service
                   and emergency rush hours.</p>
               </div>
             </div>
@@ -296,7 +274,7 @@
     // Nav scroll glass
     window.addEventListener('scroll', () => {
       const nav = document.getElementById('main-nav');
-      if (window.scrollY > 80) { nav.style.background = 'rgba(249,247,244,0.95)'; nav.style.backdropFilter = 'blur(20px)'; nav.style.boxShadow = '0 2px 24px rgba(0,0,0,0.08)'; }
+      if (window.scrollY > 80) { nav.style.background = 'rgba(91,128,91,0.95)'; nav.style.backdropFilter = 'blur(20px)'; nav.style.boxShadow = '0 2px 24px rgba(0,0,0,0.08)'; }
       else { nav.style.background = ''; nav.style.backdropFilter = ''; nav.style.boxShadow = ''; }
     });
     // Mobile menu toggle

@@ -17,7 +17,7 @@
       darkMode: "class",
       theme: {
         extend: {
-          colors: { "surface-container-lowest": "#ffffff", "on-surface": "#1c1a17", "on-surface-variant": "#5c5650", "background": "#f9f7f4", "surface": "#f0ede8", "primary": "#f2ca50", "outline": "#a09278", "surface-container": "#ebe8e2" },
+          colors: { "surface-container-lowest": "#ffffff", "on-surface": "#1c1a17", "on-surface-variant": "#5c5650", "background": "#5B805B", "surface": "#f0ede8", "primary": "#f2ca50" },
           spacing: { "section-gap": "120px", "gutter": "32px", "unit": "8px", "container-max": "1440px", "margin-edge": "64px" },
           fontFamily: { "display-lg": ["Playfair Display", "serif"], "body-md": ["Inter", "sans-serif"], "headline-md": ["Playfair Display", "serif"], "headline-lg": ["Playfair Display", "serif"] }
         }
@@ -32,7 +32,8 @@
   <nav class="fixed top-0 w-full z-50 transition-all duration-500" id="main-nav">
     <div class="flex justify-between items-center px-margin-edge py-5 w-full max-w-container-max mx-auto">
       <a href="/">
-        <img src="{{ url_for('static', path='/logo1.png') }}" alt="Nusa Dagang Logo" class="h-12 w-auto">
+        <img src="{{ url_for('static', path='/logo1.png') }}" alt="Nusa Dagang Logo" class="h-28 w-auto"
+          style="mix-blend-mode: multiply; filter: contrast(1.2) brightness(1.1);">
       </a>
       <div class="hidden md:flex items-center gap-10">
         <a class="nav-link font-body-md text-[13px] uppercase tracking-widest text-on-surface hover:text-primary transition-colors duration-300"
@@ -51,7 +52,7 @@
     </div>
     <!-- Mobile Menu -->
     <div class="hidden md:hidden flex-col gap-4 px-margin-edge pb-6 pt-2" id="mobile-menu"
-      style="background:rgba(249,247,244,0.98);backdrop-filter:blur(20px);">
+      style="background:rgba(91,128,91,0.98);backdrop-filter:blur(20px);">
       <a class="font-body-md text-[13px] uppercase tracking-widest text-on-surface" href="/">Homepage</a>
       <a class="font-body-md text-[13px] uppercase tracking-widest text-primary" href="/about">Ready-to-Cook(RTC)</a>
       <a class="font-body-md text-[13px] uppercase tracking-widest text-on-surface" href="/services">Product&Service</a>
@@ -60,185 +61,139 @@
   </nav>
 
   <main class="w-full">
-    <section class="py-section-gap px-margin-edge bg-[#050505] text-white min-h-screen">
-      <div class="max-w-container-max mx-auto reveal-on-scroll">
-        <div class="text-center mb-20">
-          <h2 class="font-display-lg text-4xl lg:text-5xl mb-4 font-semibold">Choose your Plan</h2>
-          <p class="text-gray-400 text-lg">Discover the perfect plan tailored just for you.</p>
-        </div>
 
-        <!-- Blended Section -->
-        <div class="mb-24">
-          <h3 class="font-display-lg text-3xl mb-10 text-center text-white/90">Blended</h3>
-          <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-5 gap-6">
-            <!-- Box 1 -->
+    <div class="max-w-container-max py-section-gap px-margin-edge mx-auto reveal-on-scroll min-h-screen">
+      <div class="text-center mb-20">
+        <h2 class="font-display-lg text-4xl lg:text-5xl mb-4 font-semibold">Ready-to-Cook</h2>
+        <p class="text-gray-400 text-lg">Simplify your prep with CUBUIZZ, our range of ready-to-cook blended pastes. We
+          offer flexible packaging sizes to suit your kitchen’s specific requirements. For maximum value, take advantage
+          of our competitive wholesale pricing on all orders of 30kg or more.</p>
+      </div>
+
+      <!-- Blended Section -->
+      <div class="mb-24">
+        <h3 class="font-display-lg text-3xl mb-10 text-center text-black/90">Blended</h3>
+        <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-5 gap-6">
+          <!-- Box 1 -->
+          <div
+            class="group bg-[#0f0f0f] border border-white/10 text-white rounded-3xl p-3 flex flex-col transition-all duration-500 hover:-translate-y-2 hover:border-[#1cd085] hover:shadow-[0_0_40px_rgba(28,208,133,0.15)] relative overflow-hidden">
             <div
-              class="group bg-[#0f0f0f] border border-white/10 rounded-3xl p-3 flex flex-col transition-all duration-500 hover:-translate-y-2 hover:border-[#1cd085] hover:shadow-[0_0_40px_rgba(28,208,133,0.15)] relative overflow-hidden">
-              <div
-                class="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-32 bg-[#1cd085] opacity-0 group-hover:opacity-20 blur-[50px] transition-opacity duration-500 rounded-full">
-              </div>
-              <h4 class="text-2xl font-semibold mb-4 relative z-10">Basic</h4>
-              <img src="{{ url_for('static', path='images/RTC1.png') }}" alt="Product"
-                class="w-full h-32 object-cover rounded-xl mb-4 relative z-10" />
-              <div class="mb-6 relative z-10"><span class="text-4xl font-bold">RM 12.50</span><span
-                  class="text-gray-500 text-sm"> / kilogram</span></div>
-              <li class="flex items-center gap-3 text-sm text-gray-300">
-                <svg class="w-5 h-5 text-[#1cd085]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                </svg>
-                Country of Origin:India/London
-              </li>
-
-              </ul>
-
+              class="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-32 bg-[#1cd085] opacity-0 group-hover:opacity-20 blur-[50px] transition-opacity duration-500 rounded-full">
             </div>
+            <h4 class="text-2xl font-semibold mb-4 relative z-10">Bawang Besar</h4>
+            <img src="{{ url_for('static', path='images/RTC1.png') }}" alt="Product"
+              class="w-full h-32 object-cover rounded-xl mb-4 relative z-10" />
+            <div class="mb-6 relative z-10"><span class="text-2xl font-bold">RM 12.50</span><span
+                class="text-gray-500 text-sm"> / kilogram</span></div>
+            </ul>
 
-            <!-- Box 2 -->
-            <div
-              class="group bg-[#0f0f0f] border border-white/10 rounded-3xl p-3 flex flex-col transition-all duration-500 hover:-translate-y-2 hover:border-[#1cd085] hover:shadow-[0_0_40px_rgba(28,208,133,0.15)] relative overflow-hidden">
-              <div
-                class="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-32 bg-[#1cd085] opacity-0 group-hover:opacity-20 blur-[50px] transition-opacity duration-500 rounded-full">
-              </div>
-              <h4 class="text-2xl font-semibold mb-4 relative z-10">Basic</h4>
-              <img src="{{ url_for('static', path='images/RTC3.png') }}" alt="Product"
-                class="w-full h-32 object-cover rounded-xl mb-4 relative z-10" />
-              <div class="mb-6 relative z-10"><span class="text-4xl font-bold">RM 12.50</span><span
-                  class="text-gray-500 text-sm"> / kilogram</span></div>
-              <li class="flex items-center gap-3 text-sm text-gray-300">
-                <svg class="w-5 h-5 text-[#1cd085]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                </svg>
-                Country of Origin:India/London
-              </li>
-
-              </ul>
-
-            </div>
-            <!-- Box 1 -->
-            <div
-              class="group bg-[#0f0f0f] border border-white/10 rounded-3xl p-3 flex flex-col transition-all duration-500 hover:-translate-y-2 hover:border-[#1cd085] hover:shadow-[0_0_40px_rgba(28,208,133,0.15)] relative overflow-hidden">
-              <div
-                class="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-32 bg-[#1cd085] opacity-0 group-hover:opacity-20 blur-[50px] transition-opacity duration-500 rounded-full">
-              </div>
-              <h4 class="text-2xl font-semibold mb-4 relative z-10">Basic</h4>
-              <img src="{{ url_for('static', path='images/RTC4.png') }}" alt="Product"
-                class="w-full h-32 object-cover rounded-xl mb-4 relative z-10" />
-              <div class="mb-6 relative z-10"><span class="text-4xl font-bold">RM 12.50</span><span
-                  class="text-gray-500 text-sm"> / kilogram</span></div>
-              <li class="flex items-center gap-3 text-sm text-gray-300">
-                <svg class="w-5 h-5 text-[#1cd085]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                </svg>
-                Country of Origin:India/London
-              </li>
-
-              </ul>
-
-            </div>
-            <!-- Box 4 -->
-            <div
-              class="group bg-[#0f0f0f] border border-white/10 rounded-3xl p-3 flex flex-col transition-all duration-500 hover:-translate-y-2 hover:border-[#1cd085] hover:shadow-[0_0_40px_rgba(28,208,133,0.15)] relative overflow-hidden">
-              <div
-                class="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-32 bg-[#1cd085] opacity-0 group-hover:opacity-20 blur-[50px] transition-opacity duration-500 rounded-full">
-              </div>
-              <h4 class="text-2xl font-semibold mb-4 relative z-10">Basic</h4>
-              <img src="{{ url_for('static', path='images/RTC5.png') }}" alt="Product"
-                class="w-full h-32 object-cover rounded-xl mb-4 relative z-10" />
-              <div class="mb-6 relative z-10"><span class="text-4xl font-bold">RM 12.50</span><span
-                  class="text-gray-500 text-sm"> / kilogram</span></div>
-              <li class="flex items-center gap-3 text-sm text-gray-300">
-                <svg class="w-5 h-5 text-[#1cd085]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                </svg>
-                Country of Origin:India/London
-              </li>
-
-              </ul>
-
-            </div>
-            <!-- Box 5 -->
-            <div
-              class="group bg-[#0f0f0f] border border-white/10 rounded-3xl p-3 flex flex-col transition-all duration-500 hover:-translate-y-2 hover:border-[#1cd085] hover:shadow-[0_0_40px_rgba(28,208,133,0.15)] relative overflow-hidden">
-              <div
-                class="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-32 bg-[#1cd085] opacity-0 group-hover:opacity-20 blur-[50px] transition-opacity duration-500 rounded-full">
-              </div>
-              <h4 class="text-2xl font-semibold mb-4 relative z-10">Basic</h4>
-              <img src="{{ url_for('static', path='images/RTC6.png') }}" alt="Product"
-                class="w-full h-32 object-cover rounded-xl mb-4 relative z-10" />
-              <div class="mb-6 relative z-10"><span class="text-4xl font-bold">RM 12.50</span><span
-                  class="text-gray-500 text-sm"> / kilogram</span></div>
-              <li class="flex items-center gap-3 text-sm text-gray-300">
-                <svg class="w-5 h-5 text-[#1cd085]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                </svg>
-                Country of Origin:India/London
-              </li>
-
-              </ul>
-
-            </div>
           </div>
-        </div>
 
-        <!-- Chopped Section -->
-        <div>
-          <h3 class="font-display-lg text-3xl mb-10 text-center text-white/90">Chopped</h3>
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-            <!-- Box 1 -->
-            <!-- Box 4 -->
+          <!-- Box 2 -->
+          <!-- Box 4 -->
+          <div
+            class="group bg-[#0f0f0f] border border-white/10 text-white rounded-3xl p-3 flex flex-col transition-all duration-500 hover:-translate-y-2 hover:border-[#1cd085] hover:shadow-[0_0_40px_rgba(28,208,133,0.15)] relative overflow-hidden">
             <div
-              class="group bg-[#0f0f0f] border border-white/10 rounded-3xl p-3 flex flex-col transition-all duration-500 hover:-translate-y-2 hover:border-[#1cd085] hover:shadow-[0_0_40px_rgba(28,208,133,0.15)] relative overflow-hidden">
-              <div
-                class="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-32 bg-[#1cd085] opacity-0 group-hover:opacity-20 blur-[50px] transition-opacity duration-500 rounded-full">
-              </div>
-              <h4 class="text-2xl font-semibold mb-4 relative z-10">Basic</h4>
-              <img src="{{ url_for('static', path='images/RTC5.png') }}" alt="Product"
-                class="w-full h-32 object-cover rounded-xl mb-4 relative z-10" />
-              <div class="mb-6 relative z-10"><span class="text-4xl font-bold">RM 12.50</span><span
-                  class="text-gray-500 text-sm"> / kilogram</span></div>
-              <li class="flex items-center gap-3 text-sm text-gray-300">
-                <svg class="w-5 h-5 text-[#1cd085]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                </svg>
-                Country of Origin:India/London
-              </li>
-
-              </ul>
-
+              class="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-32 bg-[#1cd085] opacity-0 group-hover:opacity-20 blur-[50px] transition-opacity duration-500 rounded-full">
             </div>
-            <!-- Box 2 -->
-            <!-- Box 4 -->
+            <h4 class="text-2xl font-semibold mb-4 relative z-10">Bawang Putih</h4>
+            <img src="{{ url_for('static', path='images/RTC5.png') }}" alt="Product"
+              class="w-full h-32 object-cover rounded-xl mb-4 relative z-10" />
+            <div class="mb-6 relative z-10"><span class="text-2xl font-bold">RM 12.50</span><span
+                class="text-gray-500 text-sm"> / kilogram</span></div>
+
+            </ul>
+
+          </div>
+
+          <!-- Box 3 -->
+          <div
+            class="group bg-[#0f0f0f] border border-white/10 text-white rounded-3xl p-3 flex flex-col transition-all duration-500 hover:-translate-y-2 hover:border-[#1cd085] hover:shadow-[0_0_40px_rgba(28,208,133,0.15)] relative overflow-hidden">
             <div
-              class="group bg-[#0f0f0f] border border-white/10 rounded-3xl p-3 flex flex-col transition-all duration-500 hover:-translate-y-2 hover:border-[#1cd085] hover:shadow-[0_0_40px_rgba(28,208,133,0.15)] relative overflow-hidden">
-              <div
-                class="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-32 bg-[#1cd085] opacity-0 group-hover:opacity-20 blur-[50px] transition-opacity duration-500 rounded-full">
-              </div>
-              <h4 class="text-2xl font-semibold mb-4 relative z-10">Basic</h4>
-              <img src="{{ url_for('static', path='images/RTC5.png') }}" alt="Product"
-                class="w-full h-32 object-cover rounded-xl mb-4 relative z-10" />
-              <div class="mb-6 relative z-10"><span class="text-4xl font-bold">RM 12.50</span><span
-                  class="text-gray-500 text-sm"> / kilogram</span></div>
-              <li class="flex items-center gap-3 text-sm text-gray-300">
-                <svg class="w-5 h-5 text-[#1cd085]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                </svg>
-                Country of Origin:India/London
-              </li>
-
-              </ul>
-
+              class="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-32 bg-[#1cd085] opacity-0 group-hover:opacity-20 blur-[50px] transition-opacity duration-500 rounded-full">
             </div>
+            <h4 class="text-2xl font-semibold mb-4 text-center relative z-10">Lengkuas</h4>
+            <img src="{{ url_for('static', path='images/RTC4.png') }}" alt="Product"
+              class="w-full h-32 object-cover rounded-xl mb-4 relative z-10" />
+            <div class="mb-6 relative z-10"><span class="text-2xl font-bold">RM 9.50</span><span
+                class="text-gray-500 text-sm"> / kilogram</span></div>
+
+            </ul>
+
+          </div>
+          <!-- Box 4 -->
+          <div
+            class="group bg-[#0f0f0f] border border-white/10 text-white rounded-3xl p-3 flex flex-col transition-all duration-500 hover:-translate-y-2 hover:border-[#1cd085] hover:shadow-[0_0_40px_rgba(28,208,133,0.15)] relative overflow-hidden">
+            <div
+              class="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-32 bg-[#1cd085] opacity-0 group-hover:opacity-20 blur-[50px] transition-opacity duration-500 rounded-full">
+            </div>
+            <h4 class="text-2xl font-semibold mb-4 text-center z-10">Halia</h4>
+            <img src="{{ url_for('static', path='images/RTC3.png') }}" alt="Product"
+              class="w-full h-32 object-cover rounded-xl mb-4 relative z-10" />
+            <div class="mb-6 relative z-10"><span class="text-2xl font-bold">RM 11.50</span><span
+                class="text-gray-500 text-sm"> / kilogram</span></div>
+
+            </ul>
+
+          </div>
+          <!-- Box 5 -->
+          <div
+            class="group bg-[#0f0f0f] border border-white/10 text-white rounded-3xl p-3 flex flex-col transition-all duration-500 hover:-translate-y-2 hover:border-[#1cd085] hover:shadow-[0_0_40px_rgba(28,208,133,0.15)] relative overflow-hidden">
+            <div
+              class="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-32 bg-[#1cd085] opacity-0 group-hover:opacity-20 blur-[50px] transition-opacity duration-500 rounded-full">
+            </div>
+            <h4 class="text-2xl font-semibold mb-4 text-center relative z-10">Serai</h4>
+            <img src="{{ url_for('static', path='images/RTC6.png') }}" alt="Product"
+              class="w-full h-32 object-cover rounded-xl mb-4 relative z-10" />
+            <div class="mb-6 relative z-10"><span class="text-2xl font-bold">RM 7.50</span><span
+                class="text-gray-500 text-sm"> / kilogram</span></div>
+
+            </ul>
+
           </div>
         </div>
       </div>
-    </section>
+
+      <!-- Chopped Section -->
+      <div>
+        <h3 class="font-display-lg text-3xl mb-10 text-center text-black/90">Chopped</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+          <!-- Box 1 -->
+
+          <div
+            class="group bg-[#0f0f0f] border border-white/10 text-white rounded-3xl p-3 flex flex-col transition-all duration-500 hover:-translate-y-2 hover:border-[#1cd085] hover:shadow-[0_0_40px_rgba(28,208,133,0.15)] relative overflow-hidden">
+            <div
+              class="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-32 bg-[#1cd085] opacity-0 group-hover:opacity-20 blur-[50px] transition-opacity duration-500 rounded-full">
+            </div>
+            <h4 class="text-2xl font-semibold mb-4 relative z-10">Bawang Besar</h4>
+            <img src="{{ url_for('static', path='images/RTC7.png') }}" alt="Product"
+              class="w-full h-32 object-cover rounded-xl mb-4 relative z-10" />
+            <div class="mb-6 relative z-10"><span class="text-2xl font-bold">RM 8.20</span><span
+                class="text-gray-500 text-sm"> / kilogram</span></div>
+
+            </ul>
+
+          </div>
+          <!-- Box 2 -->
+
+          <div
+            class="group bg-[#0f0f0f] border border-white/10 text-white rounded-3xl p-3 flex flex-col transition-all duration-500 hover:-translate-y-2 hover:border-[#1cd085] hover:shadow-[0_0_40px_rgba(28,208,133,0.15)] relative overflow-hidden">
+            <div
+              class="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-32 bg-[#1cd085] opacity-0 group-hover:opacity-20 blur-[50px] transition-opacity duration-500 rounded-full">
+            </div>
+            <h4 class="text-2xl font-semibold mb-4 relative z-10">Bawang Putih</h4>
+            <img src="{{ url_for('static', path='images/RTC8.png') }}" alt="Product"
+              class="w-full h-32 object-cover rounded-xl mb-4 relative z-10" />
+            <div class="mb-6 relative z-10"><span class="text-2xl font-bold">RM 12.70</span><span
+                class="text-gray-500 text-sm"> / kilogram</span></div>
+
+            </ul>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
   </main>
 
   <!-- Footer -->
@@ -277,7 +232,7 @@
     // Nav scroll glass
     window.addEventListener('scroll', () => {
       const nav = document.getElementById('main-nav');
-      if (window.scrollY > 80) { nav.style.background = 'rgba(249,247,244,0.95)'; nav.style.backdropFilter = 'blur(20px)'; nav.style.boxShadow = '0 2px 24px rgba(0,0,0,0.08)'; }
+      if (window.scrollY > 80) { nav.style.background = 'rgba(91,128,91,0.95)'; nav.style.backdropFilter = 'blur(20px)'; nav.style.boxShadow = '0 2px 24px rgba(0,0,0,0.08)'; }
       else { nav.style.background = ''; nav.style.backdropFilter = ''; nav.style.boxShadow = ''; }
     });
     // Mobile menu toggle
