@@ -1,302 +1,1028 @@
 <!DOCTYPE html>
-<html class="scroll-smooth" lang="en">
+<html lang="en">
 
 <head>
   <meta charset="utf-8" />
-  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-  <title>Nusa Dagang Resources | Homepage</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NusaDagang — Authentic Flavors & Culinary Solutions</title>
   <meta name="description"
-    content="Nusa Dagang Resources — A premium role in the food supply ecosystem. High-end B2B culinary and trade network." />
-  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    content="NusaDagang Resources — Premium preservative-free food processing for the F&B industry. Authentic Malaysian spice pastes, ready-to-cook blends, and culinary solutions." />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&display=swap"
     rel="stylesheet" />
+
+  <!-- Material Symbols -->
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1" />
+
+  <!-- GSAP -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+  <!-- Lenis Smooth Scroll -->
+  <script src="https://unpkg.com/lenis@1.1.14/dist/lenis.min.js"></script>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Main stylesheet -->
   <link rel="stylesheet" href="{{ url_for('static', path='/css/style.css') }}" />
-  <script id="tailwind-config">
-    tailwind.config = {
-      darkMode: "class",
-      theme: {
-        extend: {
-          colors: { "surface-container-lowest": "#ffffff", "on-surface": "#1c1a17", "on-surface-variant": "#5c5650", "background": "#5B805B", "surface": "#f0ede8", "primary": "#f2ca50", "outline": "#a09278", "surface-container": "#ebe8e2" },
-          spacing: { "section-gap": "120px", "gutter": "32px", "unit": "8px", "container-max": "1440px", "margin-edge": "64px" },
-          fontFamily: { "display-lg": ["Playfair Display", "serif"], "body-md": ["Inter", "sans-serif"], "headline-md": ["Playfair Display", "serif"], "headline-lg": ["Playfair Display", "serif"] }
-        }
-      }
+
+  <style>
+    /* Page-specific inline overrides */
+    #section-brand {
+      min-height: 100vh;
     }
-  </script>
+
+    .brand-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      background-image:url('{{ url_for("static", path="images/bg.png") }}');
+      background-size: cover;
+      background-position: center;
+      transform: scale(1.06);
+    }
+
+    .brand-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(13, 13, 13, 0.9) 0%, rgba(13, 13, 13, 0.55) 50%, rgba(13, 13, 13, 0.9) 100%);
+    }
+
+    #shopfront-img {
+      content: url('{{ url_for("static", path="images/shopfront.png") }}');
+    }
+
+    .spices-img {
+      content: url('{{ url_for("static", path="images/spices.png") }}');
+    }
+  </style>
 </head>
 
-<body class="font-body-md text-on-surface bg-background">
+<body>
 
-  <!-- Nav -->
-  <nav class="fixed top-0 w-full z-50 transition-all duration-500" id="main-nav">
-    <div class="flex justify-between items-center px-margin-edge py-5 w-full max-w-container-max mx-auto">
-      <a href="/">
-        <img src="{{ url_for('static', path='/logo1.png') }}" alt="Nusa Dagang Logo" class="h-20 w-auto"
-          style="mix-blend-mode: multiply; filter: contrast(1.2) brightness(1.1);">
-      </a>
-      <div class="hidden md:flex items-center gap-10">
-        <a class="nav-link active-page font-body-md text-[13px] uppercase tracking-widest transition-colors duration-300"
-          href="/">Homepage</a>
-        <a class="nav-link font-body-md text-[13px] uppercase tracking-widest text-on-surface hover:text-primary transition-colors duration-300"
-          href="/about">Ready-to-Cook(RTC)</a>
-        <a class="nav-link font-body-md text-[13px] uppercase tracking-widest text-on-surface hover:text-primary transition-colors duration-300"
-          href="/services">Product&Service</a>
-        <a class="nav-link font-body-md text-[13px] uppercase tracking-widest text-on-surface hover:text-primary transition-colors duration-300"
-          href="/contact">Contact</a>
-      </div>
-      <!-- Mobile hamburger -->
-      <button class="md:hidden text-primary" id="mobile-menu-btn" aria-label="Open menu">
-        <span class="material-symbols-outlined text-3xl">menu</span>
-      </button>
+  <!-- ═══════════════════════════════════════════════
+       CUSTOM CURSOR
+  ═══════════════════════════════════════════════ -->
+  <div id="cursor-dot"></div>
+  <div id="cursor-ring"></div>
+
+  <!-- ═══════════════════════════════════════════════
+       PORTAL FADE OVERLAY (black screen on transition)
+  ═══════════════════════════════════════════════ -->
+  <div id="portal-fade"></div>
+
+  <!-- ═══════════════════════════════════════════════
+       SECTION 1: PORTAL — 2.5D SHOPFRONT SCENE
+  ═══════════════════════════════════════════════ -->
+  <div id="portal-scene" role="main" aria-label="NusaDagang Shopfront Entrance">
+
+    <div id="shopfront-bg"></div>
+
+    <!-- Particle/ambient glow backdrop -->
+    <div style="position:absolute;inset:0;z-index:1;pointer-events:none;
+         background:radial-gradient(ellipse 80% 50% at 50% 100%, rgba(242,202,80,0.05) 0%, transparent 60%);"></div>
+
+    <!-- Portal heading -->
+    <div id="portal-text">
+      <h1 id="portal-title">NusaDagang</h1>
+      <p id="portal-subtitle">Click the Shop Door to Enter</p>
     </div>
-    <!-- Mobile Menu -->
-    <div class="hidden md:hidden flex-col gap-4 px-margin-edge pb-6 pt-2" id="mobile-menu"
-      style="background:rgba(0, 0, 0, 0.98);backdrop-filter:blur(20px);">
-      <a class="font-body-md text-[13px] uppercase tracking-widest text-primary" href="/">Homepage</a>
-      <a class="font-body-md text-[13px] uppercase tracking-widest text-on-surface" href="/about">Ready-to-Cook(RTC)</a>
-      <a class="font-body-md text-[13px] uppercase tracking-widest text-on-surface" href="/services">Product&Service</a>
-      <a class="font-body-md text-[13px] uppercase tracking-widest text-on-surface" href="/contact">Contact</a>
-    </div>
-  </nav>
 
-  <main class="w-full">
-    <!-- Hero -->
-    <section
-      class="relative py-16 lg:py-24 rounded-[2rem] w-[92%] max-w-6xl mx-auto mt-[100px] mb-12 shadow-2xl flex items-center justify-center overflow-hidden border border-white/10"
-      style="background-image: url('{{ url_for('static', path='images/bg.png') }}'); background-size: cover; background-position: center;"
-      id="hero-section">
-      <div class="absolute inset-0 bg-black/60 z-0"></div>
-      <div class="relative z-10 text-center px-margin-edge max-w-4xl mx-auto">
-        <h1 class="reveal-on-scroll font-display-lg text-5xl lg:text-7xl mb-6 leading-tight text-white stagger-2">A
-          Premium Role in the<br>Food Supply Ecosystem</h1>
-        <div class="reveal-on-scroll flex justify-center gap-6 stagger-3">
-          <a href="/services"
-            class="bg-primary text-black font-bold uppercase tracking-widest py-3 px-8 rounded-md hover:bg-opacity-90 transition-all shadow-lg">Explore
-            Product&Service</a>
-          <a href="/contact"
-            class="bg-white text-black font-bold uppercase tracking-widest py-3 px-8 rounded-md hover:bg-gray-200 transition-all shadow-lg">Contact
-            Us →</a>
-        </div>
+    <!-- Shopfront illustration container (this gets the zoom transform) -->
+    <div id="shopfront-container">
+      <!-- The actual shopfront illustration -->
+      <img id="shopfront-img" src="{{ url_for('static', path='images/shopfront.png') }}"
+        alt="NusaDagang Shopfront Illustration" draggable="false" />
+
+      <!-- Interactive Door Hotspot -->
+      <div id="door-hotspot" role="button" tabindex="0" aria-label="Enter the NusaDagang Shop" title="Enter Shop">
+        <div class="door-glow"></div>
+        <div class="door-enter-label">Enter</div>
       </div>
-    </section>
-    <!-- About -->
-    <section class="py-section-gap px-margin-edge bg-background">
-      <div class="max-w-container-max mx-auto text-center reveal-on-scroll">
-        <h2 class="font-display-lg text-4xl mb-8">ABOUT US</h2>
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto mb-16 text-left items-stretch">
-          <!-- Left Column: Who We Are -->
-          <div class="content-box green-theme slide-up-box reveal-on-scroll p-10 h-full flex flex-col justify-center">
-            <h3 class="font-display-lg text-4xl mb-6 text-[#2e7d32]">Who We Are</h3>
-            <p class="font-body-md text-on-surface-variant text-[15px] leading-relaxed mb-4">
-              Nusa Dagang Resources specializes in high-quality, preservative-free food ingredients, including ground
-              pastes and spice-based products. We streamline kitchen operations for the F&B industry, central kitchens,
-              and catering businesses by reducing prep time and labor costs. Committed to hygiene and consistency, our
-              products are processed under strict controls to ensure freshness, with a frozen shelf life of up to two
-              months.</p>
-          </div>
+    </div>
 
-          <!-- Right Column: Mission & Vision -->
-          <div class="flex flex-col gap-8 h-full">
-            <div
-              class="content-box green-theme slide-up-box reveal-on-scroll stagger-1 p-10 flex-1 flex flex-col justify-center">
-              <h3 class="font-display-lg text-3xl mb-4 text-[#2e7d32]">MISSION</h3>
-              <p class="font-body-md text-on-surface-variant text-[15px] leading-relaxed">
-                To provide high-quality, preservative-free food
-                processing solutions that enhance efficiency and
-                consistency for businesses in the food industry.
-              </p>
-            </div>
-            <div
-              class="content-box green-theme slide-up-box reveal-on-scroll stagger-2 p-10 flex-1 flex flex-col justify-center">
-              <h3 class="font-display-lg text-3xl mb-4 text-[#2e7d32]">VISION</h3>
-              <p class="font-body-md text-on-surface-variant text-[15px] leading-relaxed">
-                To become a leading and trusted food processing
-                partner, delivering innovative solutions that
-                support the growth of the food service industry.
-              </p>
-            </div>
-          </div>
-        </div>
-        <!-- Process Flow -->
-        <h2 class="font-display-lg text-3xl mb-8">OUR VALUE PROMISES</h2>
-        <div class="mt-16 w-full overflow-x-auto hide-scrollbar py-12 px-8" style="text-align: left;">
-          <div class="flex items-start min-w-max gap-0 justify-between">
-            <!-- Step 1 -->
-            <div class="connector-line slide-up-box reveal-on-scroll relative flex flex-col items-start gap-4 pr-8 w-48"
-              style="animation-delay: 0.1s;">
-              <div class="step-circle font-display-lg text-[32px] font-extrabold"
-                style="background-color: #ccff80; color: #131412;">1</div>
-              <div class="flex flex-col">
-                <h3 class="font-display-lg text-1xl mb-2" style="color: #ccff80;">Ready-to-Cook:</h3>
-                <p class="font-body-sm text-[14px]" style="color: #ffffff;">Minimal effort, maximum flavor.</p>
-              </div>
-            </div>
-            <!-- Step 2 -->
-            <div class="connector-line slide-up-box reveal-on-scroll relative flex flex-col items-start gap-4 pr-8 w-48"
-              style="animation-delay: 0.3s;">
-              <div class="step-circle font-display-lg text-[32px] font-extrabold"
-                style="background-color: #ccff80; color: #131412; animation-delay: 0.5s;">2</div>
-              <div class="flex flex-col">
-                <h3 class="font-display-lg text-1xl mb-2" style="color: #ccff80;">Frozen Fresh:</h3>
-                <p class="font-body-sm text-[14px]" style="color: #ffffff;"> Long-lasting quality with zero
-                  preservatives.</p>
-              </div>
-            </div>
-            <!-- Step 3 -->
-            <div class="connector-line slide-up-box reveal-on-scroll relative flex flex-col items-start gap-4 pr-8 w-48"
-              style="animation-delay: 0.5s;">
-              <div class="step-circle font-display-lg text-[32px] font-extrabold"
-                style="background-color: #ccff80; color: #131412; animation-delay: 1s;">3</div>
-              <div class="flex flex-col">
-                <h3 class="font-display-lg text-1xl mb-2" style="color: #ccff80;">Consistent Excellence:</h3>
-                <p class="font-body-sm text-[14px]" style="color: #ffffff;"> The same great taste, every time.</p>
-              </div>
-            </div>
-            <!-- Step 4 -->
-            <div class="connector-line slide-up-box reveal-on-scroll relative flex flex-col items-start gap-4 pr-8 w-48"
-              style="animation-delay: 0.7s;">
-              <div class="step-circle font-display-lg text-[32px] font-extrabold"
-                style="background-color: #ccff80; color: #131412; animation-delay: 1.5s;">4</div>
-              <div class="flex flex-col">
-                <h3 class="font-display-lg text-1xl mb-2" style="color: #ccff80;">Cut Prep Time by 70%:</h3>
-                <p class="font-body-sm text-[14px]" style="color: #ffffff;"> Work smarter, not harder.</p>
-              </div>
-            </div>
-            <!-- Step 5 -->
-            <div class="connector-line slide-up-box reveal-on-scroll relative flex flex-col items-start gap-4 w-48"
-              style="animation-delay: 0.9s;">
-              <div class="step-circle font-display-lg text-[32px] font-extrabold"
-                style="background-color: #ccff80; color: #131412; animation-delay: 2s;">5</div>
-              <div class="flex flex-col">
-                <h3 class="font-display-lg text-1xl mb-2" style="color: #ccff80;">Kitchen-Ready: </h3>
-                <p class="font-body-sm text-[14px]" style="color: #ffffff;">Your secret weapon for high-demand service
-                  and emergency rush hours.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <br><br>
-        <h2 class="font-display-lg text-3xl mb-16 text-[#131412]">OUR CLIENTS</h2>
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-7xl mx-auto items-stretch">
-          <!-- Hospitality Partners -->
-          <div class="content-box bg-[#ffffff] rounded-xl p-12 flex flex-col items-center h-full">
-            <h3 class="font-display-lg text-2xl mb-12 text-[bg-black] border-b-2 border-[#ccff80] inline-block pb-2">
-              HOSPITALITY PARTNERS</h3>
-            <div class="flex flex-wrap justify-center items-center gap-8 md:gap-12 mt-auto mb-auto">
-              <img src="{{ url_for('static', path='images/p1.png') }}"
-                class="w-32 md:w-40 h-auto object-contain animate-float-rotate" alt="Hospitality Partner 1"
-                style="animation-delay: 0s;">
-              <img src="{{ url_for('static', path='images/p2.png') }}"
-                class="w-32 md:w-40 h-auto object-contain animate-float-rotate" alt="Hospitality Partner 2"
-                style="animation-delay: 0.1s;">
-              <img src="{{ url_for('static', path='images/p3.png') }}"
-                class="w-32 md:w-40 h-auto object-contain animate-float-rotate" alt="Hospitality Partner 3"
-                style="animation-delay: 0.2s;">
-              <img src="{{ url_for('static', path='images/p4.png') }}"
-                class="w-32 md:w-40 h-auto object-contain animate-float-rotate" alt="Hospitality Partner 4"
-                style="animation-delay: 0.3s;">
-            </div>
-          </div>
+    <!-- Vignette -->
+    <div id="portal-vignette"></div>
 
-          <!-- Food Service Partners -->
-          <div class="content-box bg-[#ffffff] rounded-xl p-12 flex flex-col items-center h-full">
-            <h3 class="font-display-lg text-2xl mb-12 text-[bg-black] border-b-2 border-[#ccff80] inline-block pb-2">
-              FOOD SERVICE PARTNERS</h3>
-            <div class="flex flex-wrap justify-center items-center gap-8 md:gap-12 mt-auto mb-auto">
-              <img src="{{ url_for('static', path='images/pp1.png') }}"
-                class="w-32 md:w-40 h-auto object-contain animate-float-rotate" alt="Food Service Partner 1"
-                style="animation-delay: 0.5s;">
-              <img src="{{ url_for('static', path='images/pp2.png') }}"
-                class="w-32 md:w-40 h-auto object-contain animate-float-rotate" alt="Food Service Partner 2"
-                style="animation-delay: 1.5s;">
-              <img src="{{ url_for('static', path='images/pp3.png') }}"
-                class="w-32 md:w-40 h-auto object-contain animate-float-rotate" alt="Food Service Partner 3"
-                style="animation-delay: 2.5s;">
-            </div>
-          </div>
+    <!-- Ambient floating spices (decoration) -->
+    <div style="position:absolute;top:12%;left:6%;font-size:2rem;opacity:0.06;
+         animation:floatAmbient 7s ease-in-out infinite;pointer-events:none;z-index:2;">🌿</div>
+    <div style="position:absolute;top:20%;right:8%;font-size:1.5rem;opacity:0.08;
+         animation:floatAmbient 5s ease-in-out infinite 1.2s;pointer-events:none;z-index:2;">✦</div>
+    <div style="position:absolute;bottom:18%;left:10%;font-size:1.8rem;opacity:0.05;
+         animation:floatAmbient 6s ease-in-out infinite 0.6s;pointer-events:none;z-index:2;">⬡</div>
+    <div style="position:absolute;bottom:22%;right:6%;font-size:2.2rem;opacity:0.04;
+         animation:floatAmbient 8s ease-in-out infinite 2s;pointer-events:none;z-index:2;">✦</div>
+
+  </div><!-- /#portal-scene -->
+
+
+  <!-- ═══════════════════════════════════════════════
+       MAIN CONTENT (revealed after portal)
+  ═══════════════════════════════════════════════ -->
+  <div id="main-content">
+
+    <!-- ─────────── NAVIGATION ─────────── -->
+    <nav id="main-nav" aria-label="Primary Navigation">
+      <div class="nav-inner">
+        <a class="nav-logo" href="#section-brand" aria-label="NusaDagang Home">
+          <img src="{{ url_for('static', path='logo1.png') }}" alt="NusaDagang Logo" />
+        </a>
+        <div class="nav-links" id="nav-links">
+          <a class="nav-link active" href="#section-brand" id="nav-home">Home</a>
+          <a class="nav-link" href="#section-about" id="nav-about">About Us</a>
+          <a class="nav-link" href="#section-rtc" id="nav-rtc">Ready-to-Cook</a>
+          <a class="nav-link" href="#section-spices" id="nav-spices">Spices</a>
+          <a class="nav-link" href="#section-values" id="nav-values">Value Promises</a>
+          <a class="nav-link" href="#section-contact" id="nav-contact">Contact</a>
         </div>
-        <BR><BR>
-        <!-- why nusa -->
-        <P class="font-display-lg text-1xl mb-8">WHY CHOOSE US</P>
-        <h2 class="font-display-lg text-3xl mb-8">WHY NUSA DAGANG?</h2>
-        <p>We are more than just a food supplier; we are your strategic partner in the kitchen. By combining high-tech
-          processing with pure, natural ingredients, we help you streamline your workflow and eliminate unnecessary
-          fillers. When you partner with us, you get a reliable solution that saves you time, reduces operational
-          pressure, and ensures your dishes always meet the high standards your reputation depends on.</p>
+        <button class="nav-hamburger" id="nav-hamburger-btn" aria-label="Open navigation menu">
+          <span class="material-symbols-outlined" style="font-size:28px;color:var(--gold);">menu</span>
+        </button>
+      </div>
+      <!-- Mobile menu -->
+      <div id="mobile-nav">
+        <a class="mobile-nav-link active" href="#section-brand">Home</a>
+        <a class="mobile-nav-link" href="#section-about">About Us</a>
+        <a class="mobile-nav-link" href="#section-rtc">Our Services</a>
+        <a class="mobile-nav-link" href="#section-contact">Contact</a>
+      </div>
+    </nav>
+
+    <!-- ─────────── VERTICAL SCROLL INDICATOR ─────────── -->
+    <nav id="scroll-indicator" aria-label="Page section indicator">
+      <div class="scroll-tick active" data-section="brand" title="Brand"></div>
+      <div class="scroll-tick" data-section="about" title="About"></div>
+      <div class="scroll-tick" data-section="rtc" title="Products"></div>
+      <div class="scroll-tick" data-section="spices" title="Spices"></div>
+      <div class="scroll-tick" data-section="values" title="Values"></div>
+      <div class="scroll-tick" data-section="contact" title="Contact"></div>
+    </nav>
+
+
+    <!-- ═══════════════════════════════════════════════
+         SECTION 2: BRAND HERO SHOWCASE
+    ═══════════════════════════════════════════════ -->
+    <section id="section-brand" data-section="brand">
+
+      <!-- Background image layer -->
+      <div class="brand-bg"></div>
+
+      <!-- Floating decorative spice icons -->
+      <div class="float-icon" aria-hidden="true" style="top:15%;left:8%;">🌿</div>
+      <div class="float-icon" aria-hidden="true" style="top:22%;right:10%;">✦</div>
+      <div class="float-icon" aria-hidden="true" style="bottom:28%;left:12%;">⬡</div>
+      <div class="float-icon" aria-hidden="true" style="bottom:20%;right:9%;">🌿</div>
+
+      <!-- Main content -->
+      <div class="brand-hero-content" style="position:relative;z-index:2;">
+        <span class="brand-tag" id="brand-tag">Premium B2B Culinary Solutions</span>
+        <h1 class="brand-headline" id="brand-headline">
+          Discover Authentic<br>Flavors &amp; Solutions
+        </h1>
+        <p class="brand-sub" id="brand-sub">
+          NusaDagang Resources crafts high-quality, preservative-free food
+          processing ingredients trusted by restaurants, hotels &amp; central kitchens.
+        </p>
+
+      </div>
+
+      <!-- Scroll cue -->
+      <div class="scroll-cue" aria-hidden="true">
+        <div class="scroll-cue-line"></div>
+        <span class="scroll-cue-label">Scroll</span>
+      </div>
 
     </section>
 
-  </main>
 
-  <!-- Footer -->
-  <footer class="bg-surface-container-lowest border-none mt-24">
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 px-margin-edge py-16 w-full max-w-container-max mx-auto">
-      <div class="space-y-6">
-        <div class="font-display-lg text-2xl text-primary">NUSA DAGANG</div>
-        <p class="font-body-md text-on-surface-variant text-sm opacity-60">Nusa Dagang Resources (202503267841-V)</p>
+    <!-- ═══════════════════════════════════════════════
+         SECTION 3: ABOUT / MISSION / VISION
+    ═══════════════════════════════════════════════ -->
+    <section id="section-about" data-section="about">
+      <div class="about-grid">
+
+        <!-- LEFT: Text -->
+        <div class="about-left">
+          <span class="section-tag reveal-up" id="about-tag">About NusaDagang</span>
+          <h2 class="about-headline reveal-up reveal-delay-1" id="about-headline">
+            Redefining the<br>Culinary Supply Chain
+          </h2>
+          <div class="gold-divider reveal-up reveal-delay-2"></div>
+          <p class="about-body reveal-up reveal-delay-2">
+            Nusa Dagang Resources specialises in high-quality, preservative-free food ingredients —
+            from precision-blended spice pastes to chopped aromatics. We streamline kitchen
+            operations for the F&amp;B industry, central kitchens, and catering businesses,
+            reducing prep time and labour costs without compromise.
+          </p>
+          <div class="about-block reveal-up reveal-delay-3">
+            <div class="about-block-label">Mission</div>
+            <p class="about-block-text">
+              To provide high-quality, preservative-free food processing solutions that
+              enhance efficiency and consistency for businesses in the food industry.
+            </p>
+          </div>
+          <div class="about-block reveal-up reveal-delay-4">
+            <div class="about-block-label">Vision</div>
+            <p class="about-block-text">
+              To become the leading and most trusted food processing partner, delivering
+              innovative solutions that support the growth of the global food service industry.
+            </p>
+          </div>
+        </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════════
+         SECTION 4: READY T[O] COOK — INTERACTIVE WHEEL
+    ═══════════════════════════════════════════════ -->
+    <section id="section-rtc" data-section="rtc">
+
+      <!-- Centered Section Title -->
+      <div class="services-header reveal-up" style="text-align:center; margin-bottom: 60px;">
+        <h2 class="services-title"
+          style="font-family:var(--font-display); font-size:clamp(2.5rem, 5vw, 3.5rem); font-weight:700; color:var(--gold); letter-spacing:0.05em; text-transform:uppercase;">
+          Our Services</h2>
       </div>
-      <div class="space-y-4">
-        <h4 class="font-body-md font-bold uppercase tracking-widest text-primary text-[11px]">Communication</h4>
-        <ul class="space-y-2">
-          <li><a class="text-on-surface-variant hover:text-primary transition-colors text-sm"
-              href="mailto:admin@nusadagang.com">admin@nusadagang.com</a></li>
-          <li><a class="text-on-surface-variant hover:text-primary transition-colors text-sm"
-              href="mailto:hello@nusadagang.com">hello@nusadagang.com</a></li>
-          <li><a class="text-on-surface-variant hover:text-primary transition-colors text-sm"
-              href="mailto:sales@nusadagang.com">sales@nusadagang.com</a></li>
-        </ul>
+
+      <!-- Big display typography with embedded wheel -->
+      <div class="rtc-headline-row reveal-up" id="rtc-headline-row" aria-label="Ready to Cook product showcase">
+        <span class="rtc-word">Ready To</span>
+
+        <!-- The "O" is replaced by the interactive wheel -->
+        <div class="wheel-wrapper" id="wheel-wrapper" role="img" aria-label="Product selection wheel">
+          <div class="wheel-track" id="wheel-track">
+
+            <!-- 6 RTC items - images counter-rotate to stay upright -->
+            <!-- Item 1: Bawang Besar (Blended) -->
+            <div class="wheel-item" data-name="Bawang Besar" data-sub="Blended" data-idx="0"
+              title="Bawang Besar - Blended">
+              <img src="{{ url_for('static', path='images/RTC1.png') }}" alt="Bawang Besar" />
+            </div>
+            <!-- Item 2: Bawang Putih (Blended) -->
+            <div class="wheel-item" data-name="Bawang Putih" data-sub="Blended" data-idx="1"
+              title="Bawang Putih - Blended">
+              <img src="{{ url_for('static', path='images/RTC5.png') }}" alt="Bawang Putih" />
+            </div>
+            <!-- Item 3: Lengkuas -->
+            <div class="wheel-item" data-name="Lengkuas" data-sub="Blended" data-idx="2" title="Lengkuas">
+              <img src="{{ url_for('static', path='images/RTC4.png') }}" alt="Lengkuas" />
+            </div>
+            <!-- Item 4: Halia -->
+            <div class="wheel-item" data-name="Halia" data-sub="Blended" data-idx="3" title="Halia">
+              <img src="{{ url_for('static', path='images/RTC3.png') }}" alt="Halia" />
+            </div>
+            <!-- Item 5: Serai -->
+            <div class="wheel-item" data-name="Serai" data-sub="Blended" data-idx="4" title="Serai">
+              <img src="{{ url_for('static', path='images/RTC6.png') }}" alt="Serai" />
+            </div>
+            <!-- Item 6: Bawang Besar (Chopped) -->
+            <div class="wheel-item" data-name="Bawang Besar" data-sub="Chopped" data-idx="5"
+              title="Bawang Besar - Chopped">
+              <img src="{{ url_for('static', path='images/RTC7.png') }}" alt="Bawang Besar Chopped" />
+            </div>
+
+          </div><!-- /#wheel-track -->
+
+          <!-- The word COOK inside the center of the wheel -->
+          <div class="wheel-center-text">Cook</div>
+
+        </div><!-- /.wheel-wrapper -->
       </div>
-      <div class="space-y-4">
-        <h4 class="font-body-md font-bold uppercase tracking-widest text-primary text-[11px]">Presence</h4>
-        <p class="text-on-surface-variant text-sm">Kuala Lumpur, Malaysia</p>
-        <p class="text-on-surface-variant text-[11px] mt-8 opacity-40">© 2025 Nusa Dagang Resources. All rights
-          reserved.</p>
+
+      <!-- Scroll hint -->
+      <p class="reveal-up reveal-delay-2" style="text-align:center;font-size:11px;letter-spacing:0.2em;
+         text-transform:uppercase;color:var(--muted);margin-bottom:60px;">
+        Scroll to accelerate · Hover to explore
+      </p>
+
+  </div><!-- /.rtc-products-grid -->
+
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════
+         SECTION 5: SPICES HOTSPOT SHOWCASE
+    ═══════════════════════════════════════════════ -->
+  <section id="section-spices" data-section="spices">
+    <div class="spices-section-inner">
+
+      <div class="spices-header">
+        <h2 class="spices-title reveal-up">SPICES</h2>
+        <p class="spices-desc reveal-up reveal-delay-2">
+          Hover over the ingredients to discover the origin, aroma profile, and culinary pairings
+          of each key spice.
+        </p>
+      </div>
+
+      <!-- Spice image with interactive hotspots -->
+      <div class="spices-visual" id="spices-visual">
+
+        <!-- Main spice image -->
+        <img class="spices-img" src="{{ url_for('static', path='images/spices.png') }}"
+          alt="NusaDagang Premium Spices Collection" />
+
+        <!-- HOTSPOT 1: Halia / Ginger -->
+        <div class="spice-hotspot" id="hs-halia" style="left:22%;top:60%;" aria-label="Halia (Ginger) information">
+          <div class="spice-hotspot-dot"></div>
+          <div class="spice-popup">
+            <div class="popup-spice-name">Halia (Ginger)</div>
+            <div class="popup-row">
+              <div class="popup-item">
+                <div class="popup-label">Origin</div>
+                <div class="popup-value">Southeast Asia</div>
+              </div>
+              <div class="popup-item">
+                <div class="popup-label">Aroma Profile</div>
+                <div class="popup-value">Warm, pungent &amp; subtly sweet</div>
+              </div>
+              <div class="popup-item">
+                <div class="popup-label">Best Pairings</div>
+                <div class="popup-value">Chicken, Fish, Soups, Teh Halia</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- HOTSPOT 2: Lengkuas / Galangal -->
+        <div class="spice-hotspot" id="hs-lengkuas" style="left:42%;top:45%;"
+          aria-label="Lengkuas (Galangal) information">
+          <div class="spice-hotspot-dot"></div>
+          <div class="spice-popup">
+            <div class="popup-spice-name">Lengkuas (Galangal)</div>
+            <div class="popup-row">
+              <div class="popup-item">
+                <div class="popup-label">Origin</div>
+                <div class="popup-value">Southeast Asia</div>
+              </div>
+              <div class="popup-item">
+                <div class="popup-label">Aroma Profile</div>
+                <div class="popup-value">Citrusy, piney &amp; medicinal</div>
+              </div>
+              <div class="popup-item">
+                <div class="popup-label">Best Pairings</div>
+                <div class="popup-value">Rendang, Tom Yam, Coconut Curry</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- HOTSPOT 3: Serai / Lemongrass -->
+        <div class="spice-hotspot popup-below" id="hs-serai" style="left:63%;top:35%;"
+          aria-label="Serai (Lemongrass) information">
+          <div class="spice-hotspot-dot"></div>
+          <div class="spice-popup">
+            <div class="popup-spice-name">Serai (Lemongrass)</div>
+            <div class="popup-row">
+              <div class="popup-item">
+                <div class="popup-label">Origin</div>
+                <div class="popup-value">Tropical Asia</div>
+              </div>
+              <div class="popup-item">
+                <div class="popup-label">Aroma Profile</div>
+                <div class="popup-value">Bright citrus, floral &amp; herbal</div>
+              </div>
+              <div class="popup-item">
+                <div class="popup-label">Best Pairings</div>
+                <div class="popup-value">Satay, Laksa, Seafood, Soups</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- HOTSPOT 4: Bawang / Shallot -->
+        <div class="spice-hotspot popup-below" id="hs-bawang" style="left:80%;top:30%;"
+          aria-label="Bawang (Shallot) information">
+          <div class="spice-hotspot-dot"></div>
+          <div class="spice-popup">
+            <div class="popup-spice-name">Bawang (Shallot)</div>
+            <div class="popup-row">
+              <div class="popup-item">
+                <div class="popup-label">Origin</div>
+                <div class="popup-value">Southeast Asia</div>
+              </div>
+              <div class="popup-item">
+                <div class="popup-label">Aroma Profile</div>
+                <div class="popup-value">Sweet, pungent &amp; deeply savory</div>
+              </div>
+              <div class="popup-item">
+                <div class="popup-label">Best Pairings</div>
+                <div class="popup-value">Virtually all Malaysian dishes</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /.spices-visual -->
+
+    </div>
+  </section>
+  <!-- ═══════════════════════════════════════════════
+         SECTION 6: VALUE PROMISES — GSAP HORIZONTAL CAROUSEL
+    ═══════════════════════════════════════════════ -->
+  <section id="section-values" data-section="values"
+    class="relative h-screen w-full bg-[#0a0a0a] text-white overflow-hidden flex flex-col justify-center items-center">
+    
+    <!-- Header Info -->
+    <div class="text-center mb-10 z-10 px-4">
+      <h2 class="text-4xl md:text-5xl font-bold tracking-tight mb-2 text-white">OUR VALUE PROMISES</h2>
+      <p class="text-gray-400 text-sm md:text-base">Dive into authentic excellence powered by quality.</p>
+    </div>
+
+    <!-- Horizontal Moving Track -->
+    <div class="w-full flex justify-start pl-[20vw]">
+      <div id="value-track-outer" class="flex gap-6 items-center flex-nowrap will-change-transform">
+        
+        <!-- Card 01 -->
+        <div
+          class="w-[280px] h-[280px] md:w-[320px] md:h-[320px] bg-[#141414] border border-yellow-500/20 rounded-2xl p-8 flex flex-col justify-center items-center text-center shadow-2xl flex-shrink-0 hover:border-yellow-500/60 transition-colors">
+          <span class="text-5xl font-extrabold text-yellow-400 mb-4">01</span>
+          <h3 class="text-xl font-bold text-white mb-2">Zero Preservatives</h3>
+          <p class="text-gray-400 text-sm leading-relaxed">Long-lasting natural quality.</p>
+        </div>
+
+        <!-- Card 02 -->
+        <div
+          class="w-[280px] h-[280px] md:w-[320px] md:h-[320px] bg-[#141414] border border-yellow-500/20 rounded-2xl p-8 flex flex-col justify-center items-center text-center shadow-2xl flex-shrink-0 hover:border-yellow-500/60 transition-colors">
+          <span class="text-5xl font-extrabold text-yellow-400 mb-4">02</span>
+          <h3 class="text-xl font-bold text-white mb-2">Authentic Flavors</h3>
+          <p class="text-gray-400 text-sm leading-relaxed">True heritage recipes.</p>
+        </div>
+
+        <!-- Card 03 -->
+        <div
+          class="w-[280px] h-[280px] md:w-[320px] md:h-[320px] bg-[#141414] border border-yellow-500/20 rounded-2xl p-8 flex flex-col justify-center items-center text-center shadow-2xl flex-shrink-0 hover:border-yellow-500/60 transition-colors">
+          <span class="text-5xl font-extrabold text-yellow-400 mb-4">03</span>
+          <h3 class="text-xl font-bold text-white mb-2">Premium Sourcing</h3>
+          <p class="text-gray-400 text-sm leading-relaxed">Finest handpicked spices.</p>
+        </div>
+
+        <!-- Card 04 -->
+        <div
+          class="w-[280px] h-[280px] md:w-[320px] md:h-[320px] bg-[#141414] border border-yellow-500/20 rounded-2xl p-8 flex flex-col justify-center items-center text-center shadow-2xl flex-shrink-0 hover:border-yellow-500/60 transition-colors">
+          <span class="text-5xl font-extrabold text-yellow-400 mb-4">04</span>
+          <h3 class="text-xl font-bold text-white mb-2">Ready to Cook</h3>
+          <p class="text-gray-400 text-sm leading-relaxed">Convenient culinary solutions.</p>
+        </div>
+
+        <!-- Card 05 -->
+        <div
+          class="w-[280px] h-[280px] md:w-[320px] md:h-[320px] bg-[#141414] border border-yellow-500/20 rounded-2xl p-8 flex flex-col justify-center items-center text-center shadow-2xl flex-shrink-0 hover:border-yellow-500/60 transition-colors">
+          <span class="text-5xl font-extrabold text-yellow-400 mb-4">05</span>
+          <h3 class="text-xl font-bold text-white mb-2">Quality Assured</h3>
+          <p class="text-gray-400 text-sm leading-relaxed">Strict hygiene standards.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════
+         SECTION 7: CONTACT
+    ═══════════════════════════════════════════════ -->
+  <section id="section-contact" data-section="contact">
+
+    <div class="contact-grid">
+
+      <!-- Left: Info -->
+      <div>
+        <span class="contact-info-label reveal-up">Get in Touch</span>
+        <h2 class="contact-title reveal-up reveal-delay-1">
+          Let's Build<br>Something Together
+        </h2>
+        <div class="gold-divider reveal-up reveal-delay-2" style="margin-bottom:32px;"></div>
+
+        <div class="contact-detail reveal-up reveal-delay-2">
+          <div class="contact-detail-label">General Inquiries</div>
+          <div class="contact-detail-value">
+            <a href="mailto:admin@nusadagang.com">admin@nusadagang.com</a>
+          </div>
+        </div>
+        <div class="contact-detail reveal-up reveal-delay-3">
+          <div class="contact-detail-label">Sales &amp; Partnerships</div>
+          <div class="contact-detail-value">
+            <a href="mailto:sales@nusadagang.com">sales@nusadagang.com</a>
+          </div>
+        </div>
+        <div class="contact-detail reveal-up reveal-delay-4">
+          <div class="contact-detail-label">Location</div>
+          <div class="contact-detail-value">Kuala Lumpur, Malaysia</div>
+        </div>
+        <div class="contact-detail reveal-up reveal-delay-5">
+          <div class="contact-detail-label">Registration</div>
+          <div class="contact-detail-value" style="font-size:12px;">202503267841-V</div>
+        </div>
+      </div>
+
+      <!-- Right: Form -->
+      <div class="reveal-up reveal-delay-2">
+        <form class="contact-form" id="contact-form" onsubmit="handleFormSubmit(event)" novalidate>
+          <div class="form-group">
+            <label class="form-label" for="cf-name">Full Name</label>
+            <input class="form-input" id="cf-name" type="text" name="name" placeholder="Your Name" required
+              autocomplete="name" />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="cf-company">Company</label>
+            <input class="form-input" id="cf-company" type="text" name="company"
+              placeholder="Your Company or Organisation" autocomplete="organization" />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="cf-email">Email Address</label>
+            <input class="form-input" id="cf-email" type="email" name="email" placeholder="your@email.com" required
+              autocomplete="email" />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="cf-message">Message</label>
+            <textarea class="form-textarea" id="cf-message" name="message" rows="4"
+              placeholder="Tell us about your requirements…" required></textarea>
+          </div>
+          <div class="form-group">
+            <!-- Magnetic CTA wrapper -->
+            <div class="magnetic-btn-wrapper" id="magnetic-btn-wrapper">
+              <button type="submit" class="magnetic-btn" id="magnetic-btn">
+                <span>Send Message</span>
+                <span class="btn-arrow">→</span>
+              </button>
+            </div>
+          </div>
+        </form>
+        <!-- Form success message -->
+        <div id="form-success" style="display:none;margin-top:24px;padding:20px;
+               border-left:2px solid var(--gold);background:var(--surface);">
+          <p style="font-size:14px;color:var(--cream);">
+            ✦ &nbsp;Thank you — we'll be in touch shortly.
+          </p>
+        </div>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════
+         FOOTER
+    ═══════════════════════════════════════════════ -->
+  <footer>
+    <div class="footer-inner">
+      <div>
+        <div class="footer-brand">NUSA DAGANG</div>
+        <p class="footer-reg">
+          Nusa Dagang Resources<br>
+          (202503267841-V)<br>
+          Kuala Lumpur, Malaysia
+        </p>
+      </div>
+      <div>
+        <div class="footer-col-title">Navigation</div>
+        <a class="footer-link" href="#section-brand">Home</a>
+        <a class="footer-link" href="#section-about">About Us</a>
+        <a class="footer-link" href="#section-rtc">Ready-to-Cook</a>
+        <a class="footer-link" href="#section-spices">Spices</a>
+        <a class="footer-link" href="#section-values">Value Promises</a>
+        <a class="footer-link" href="#section-contact">Contact</a>
+      </div>
+      <div>
+        <div class="footer-col-title">Contact</div>
+        <a class="footer-link" href="mailto:admin@nusadagang.com">admin@nusadagang.com</a>
+        <a class="footer-link" href="mailto:hello@nusadagang.com">hello@nusadagang.com</a>
+        <a class="footer-link" href="mailto:sales@nusadagang.com">sales@nusadagang.com</a>
+        <p class="footer-copy">© 2025 Nusa Dagang Resources. All rights reserved.</p>
       </div>
     </div>
   </footer>
 
+  </div><!-- /#main-content -->
+
+
+  <!-- ═══════════════════════════════════════════════
+     JAVASCRIPT — All Interactions
+═══════════════════════════════════════════════ -->
   <script>
-    // Parallax
-    const heroBg = document.getElementById('hero-section');
-    const parallaxImg = document.getElementById('parallax-img');
-    if (heroBg && parallaxImg) {
-      heroBg.addEventListener('mousemove', (e) => {
-        const { width, height } = heroBg.getBoundingClientRect();
-        parallaxImg.style.transform = `scale(1.1) translate(${(e.clientX - width / 2) / width * 20}px,${(e.clientY - height / 2) / height * 20}px)`;
-      });
+    'use strict';
+
+    /* ──────────────────────────────────────────────
+       0. UTILITIES
+    ────────────────────────────────────────────── */
+    const qs = (s, ctx = document) => ctx.querySelector(s);
+    const qsa = (s, ctx = document) => [...ctx.querySelectorAll(s)];
+
+    /* ──────────────────────────────────────────────
+       1. CUSTOM CURSOR
+    ────────────────────────────────────────────── */
+    const cursorDot = qs('#cursor-dot');
+    const cursorRing = qs('#cursor-ring');
+    let mouseX = 0, mouseY = 0;
+    let ringX = 0, ringY = 0;
+
+    document.addEventListener('mousemove', e => {
+      mouseX = e.clientX; mouseY = e.clientY;
+      cursorDot.style.left = mouseX + 'px';
+      cursorDot.style.top = mouseY + 'px';
+    });
+
+    function animateCursor() {
+      ringX += (mouseX - ringX) * 0.12;
+      ringY += (mouseY - ringY) * 0.12;
+      cursorRing.style.left = ringX + 'px';
+      cursorRing.style.top = ringY + 'px';
+      requestAnimationFrame(animateCursor);
     }
-    // Scroll reveal
-    const obs = new IntersectionObserver((entries) => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('active'); }), { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-    document.querySelectorAll('.reveal-on-scroll').forEach(el => obs.observe(el));
-    // Hero entrance
-    window.addEventListener('load', () => { setTimeout(() => { document.querySelectorAll('#hero-section .reveal-on-scroll').forEach(el => el.classList.add('active')); }, 300); });
-    // Nav scroll glass
-    window.addEventListener('scroll', () => {
-      const nav = document.getElementById('main-nav');
-      if (window.scrollY > 80) { nav.style.background = 'rgba(91,128,91,0.95)'; nav.style.backdropFilter = 'blur(20px)'; nav.style.boxShadow = '0 2px 24px rgba(0,0,0,0.08)'; }
-      else { nav.style.background = ''; nav.style.backdropFilter = ''; nav.style.boxShadow = ''; }
-    });
-    // Mobile menu toggle
-    document.getElementById('mobile-menu-btn').addEventListener('click', () => {
-      const menu = document.getElementById('mobile-menu');
-      menu.classList.toggle('hidden');
-      menu.classList.toggle('flex');
-    });
-    // Process Flow interaction
-    document.querySelectorAll('.connector-line').forEach(item => {
-      const circle = item.querySelector('.step-circle');
-      if (circle) {
-        item.addEventListener('touchstart', () => {
-          circle.style.transform = 'scale(1.15)';
-          circle.style.boxShadow = '0 0 25px 8px rgba(204, 255, 128, 0.5)';
-        });
-        item.addEventListener('touchend', () => {
-          circle.style.transform = '';
-          circle.style.boxShadow = '';
-        });
+    animateCursor();
+
+    // Cursor state on interactive elements
+    document.addEventListener('mouseover', e => {
+      const el = e.target;
+      if (el.closest('#door-hotspot')) {
+        cursorRing.classList.add('hover-door');
+        document.body.classList.add('cursor-over-door');
+      } else if (el.closest('a, button, .wheel-item, .rtc-product-card, .glass-card')) {
+        cursorRing.classList.add('hover-interactive');
+        cursorRing.classList.remove('hover-door');
+        document.body.classList.remove('cursor-over-door');
+      } else {
+        cursorRing.classList.remove('hover-door', 'hover-interactive');
+        document.body.classList.remove('cursor-over-door');
       }
     });
+
+    /* ──────────────────────────────────────────────
+       2. PORTAL SCENE — DOOR CLICK TRANSITION
+    ────────────────────────────────────────────── */
+    const portalScene = qs('#portal-scene');
+    const shopfrontCont = qs('#shopfront-container');
+    const portalFade = qs('#portal-fade');
+    const mainContent = qs('#main-content');
+    const scrollIndicator = qs('#scroll-indicator');
+
+    let portalExited = false;
+
+
+
+    function exitPortalInstant() {
+      portalScene.style.display = 'none';
+      mainContent.style.opacity = '1';
+      mainContent.style.pointerEvents = 'auto';
+      mainContent.classList.add('visible');
+      scrollIndicator.classList.add('visible');
+      portalExited = true;
+      document.body.style.cursor = '';
+      initPostPortal();
+    }
+
+    function triggerPortalEntry() {
+      if (portalExited) return;
+      portalExited = true;
+
+      // 1. Zoom shopfront
+      shopfrontCont.classList.add('zooming');
+
+      // 2. After zoom starts, begin fade to black
+      setTimeout(() => {
+        portalFade.classList.add('active');
+      }, 500);
+
+      // 3. After fade complete, show main content
+      setTimeout(() => {
+        portalScene.classList.add('exiting');
+        mainContent.style.opacity = '1';
+        mainContent.style.pointerEvents = 'auto';
+        mainContent.classList.add('visible');
+        scrollIndicator.classList.add('visible');
+        document.body.style.cursor = '';
+        sessionStorage.setItem('nd-portal-passed', '1');
+
+        // Trigger brand hero entrance
+        triggerBrandEntrance();
+        initPostPortal();
+      }, 900);
+
+      // 4. Remove portal completely
+      setTimeout(() => {
+        portalScene.classList.add('exited');
+        portalFade.style.display = 'none';
+      }, 1500);
+    }
+
+    // Door click
+    qs('#door-hotspot').addEventListener('click', triggerPortalEntry);
+    qs('#door-hotspot').addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); triggerPortalEntry(); }
+    });
+
+    // Also allow clicking anywhere on portal scene after 3s delay
+    setTimeout(() => {
+      if (!portalExited) {
+        portalScene.style.cursor = 'pointer';
+        portalScene.addEventListener('click', () => {
+          if (!portalExited) triggerPortalEntry();
+        }, { once: true });
+      }
+    }, 3000);
+
+    /* ──────────────────────────────────────────────
+       3. BRAND HERO ENTRANCE ANIMATIONS
+    ────────────────────────────────────────────── */
+    function triggerBrandEntrance() {
+      setTimeout(() => qs('#brand-tag')?.classList.add('visible'), 100);
+      setTimeout(() => qs('#brand-headline')?.classList.add('visible'), 250);
+      setTimeout(() => qs('#brand-sub')?.classList.add('visible'), 400);
+      setTimeout(() => qs('#brand-cta')?.classList.add('visible'), 550);
+    }
+
+    /* ──────────────────────────────────────────────
+       4. LENIS SMOOTH SCROLL + GSAP SETUP
+    ────────────────────────────────────────────── */
+    let lenis, scrollY = 0;
+
+    function initPostPortal() {
+      // Init Lenis
+      lenis = new Lenis({
+        duration: 1.2,
+        easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        smoothWheel: true,
+        wheelMultiplier: 0.8,
+      });
+
+      lenis.on('scroll', ({ scroll }) => {
+        scrollY = scroll;
+        ScrollTrigger.update();
+        updateScrollIndicator(scroll);
+      });
+
+      gsap.registerPlugin(ScrollTrigger);
+      gsap.ticker.add(time => lenis.raf(time * 1000));
+      gsap.ticker.lagSmoothing(0);
+
+      // Smooth anchor link click listener for all hash links
+      qsa('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          const targetId = this.getAttribute('href');
+          if (targetId && targetId !== '#') {
+            const targetEl = qs(targetId);
+            if (targetEl) {
+              e.preventDefault();
+              lenis.scrollTo(targetEl, { offset: -80, duration: 1.2 });
+              qs('#mobile-nav')?.classList.remove('open');
+            }
+          }
+        });
+      });
+
+      // Setup all scroll-driven animations
+      initNavScroll();
+      initScrollReveal();
+      initRTCWheel();
+      initValueHorizontalScroll();
+      initMagneticButton();
+    }
+
+    /* ──────────────────────────────────────────────
+       5. NAVBAR — SCROLL GLASS EFFECT
+    ────────────────────────────────────────────── */
+    function initNavScroll() {
+      const nav = qs('#main-nav');
+      ScrollTrigger.create({
+        start: 80,
+        onUpdate: self => {
+          if (self.progress > 0) nav.classList.add('scrolled');
+          else nav.classList.remove('scrolled');
+        }
+      });
+
+      // Hamburger
+      qs('#nav-hamburger-btn').addEventListener('click', () => {
+        qs('#mobile-nav').classList.toggle('open');
+      });
+    }
+
+    /* ──────────────────────────────────────────────
+       6. SCROLL REVEAL (IntersectionObserver)
+    ────────────────────────────────────────────── */
+    function initScrollReveal() {
+      const revealObs = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            revealObs.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+
+      qsa('.reveal-up').forEach(el => revealObs.observe(el));
+
+
+    }
+
+    /* ──────────────────────────────────────────────
+       7. SCROLL INDICATOR (right ruler)
+    ────────────────────────────────────────────── */
+    const sectionIds = ['brand', 'about', 'rtc', 'spices', 'values', 'contact'];
+    const scrollTicks = qsa('.scroll-tick');
+
+    function updateScrollIndicator(scrollPos) {
+      let activeSection = 'brand';
+      sectionIds.forEach(id => {
+        const el = qs(`#section-${id}`);
+        if (!el) return;
+        const rect = el.getBoundingClientRect();
+        if (rect.top <= window.innerHeight * 0.5) activeSection = id;
+      });
+
+      scrollTicks.forEach(tick => {
+        tick.classList.toggle('active', tick.dataset.section === activeSection);
+      });
+    }
+
+    scrollTicks.forEach(tick => {
+      tick.addEventListener('click', () => {
+        const target = qs(`#section-${tick.dataset.section}`);
+        if (target && lenis) lenis.scrollTo(target, { offset: -80, duration: 1.4 });
+      });
+    });
+
+    /* ──────────────────────────────────────────────
+       8. RTC PRODUCT WHEEL
+    ────────────────────────────────────────────── */
+    function initRTCWheel() {
+      const wheelTrack = qs('#wheel-track');
+      const items = qsa('.wheel-item', wheelTrack);
+
+      let baseSpeed = 20; // seconds per rotation
+      let currentSpeed = baseSpeed;
+      let rafId;
+
+      let wheelAngle = 0;
+      let lastTime = null;
+
+      function animateWheel(ts) {
+        if (!lastTime) lastTime = ts;
+        const dt = (ts - lastTime) / 1000;
+        lastTime = ts;
+
+        if (!wheelTrack.classList.contains('paused')) {
+          const degsPerSec = 360 / currentSpeed;
+          wheelAngle = (wheelAngle + degsPerSec * dt) % 360;
+          wheelTrack.style.transform = `rotate(${wheelAngle}deg)`;
+
+          const radius = wheelTrack.offsetWidth / 2;
+          // Counter-rotate each item to keep them upright
+          items.forEach((item, i) => {
+            const baseAngle = i * 60;
+            item.style.transform =
+              `rotate(${baseAngle}deg) translateY(${-radius}px) rotate(${-baseAngle - wheelAngle}deg)`;
+          });
+        }
+        rafId = requestAnimationFrame(animateWheel);
+      }
+      rafId = requestAnimationFrame(animateWheel);
+
+      // GSAP ScrollTrigger — velocity tracking to accelerate wheel
+      ScrollTrigger.create({
+        trigger: '#section-rtc',
+        start: 'top bottom',
+        end: 'bottom top',
+        onUpdate: self => {
+          const velocity = Math.abs(self.getVelocity());
+          const targetSpeed = Math.max(2, baseSpeed - (velocity / 3000) * 18);
+          currentSpeed += (targetSpeed - currentSpeed) * 0.05;
+        }
+      });
+
+      // Hover: pause and focus item
+      items.forEach(item => {
+        item.addEventListener('mouseenter', () => {
+          wheelTrack.classList.add('paused');
+          item.classList.add('focused');
+        });
+        item.addEventListener('mouseleave', () => {
+          wheelTrack.classList.remove('paused');
+          item.classList.remove('focused');
+        });
+      });
+
+      // Pause when section not visible
+      const rtcObs = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) { cancelAnimationFrame(rafId); rafId = requestAnimationFrame(animateWheel); lastTime = null; }
+          else cancelAnimationFrame(rafId);
+        });
+      }, { threshold: 0.01 });
+      rtcObs.observe(qs('#section-rtc'));
+    }
+
+    /* ──────────────────────────────────────────────
+       9. VALUE PROMISES — GSAP HORIZONTAL SCROLL
+    ────────────────────────────────────────────── */
+    function initValueHorizontalScroll() {
+      const section = qs('#section-values');
+      const track = qs('#value-track-outer');
+      if (!section || !track) return;
+
+      const totalScrollWidth = track.scrollWidth - window.innerWidth + 120;
+
+      gsap.to(track, {
+        x: -totalScrollWidth,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: section,
+          pin: true,
+          scrub: 1,
+          anticipatePin: 1,
+          start: 'top top',
+          end: () => `+=${totalScrollWidth}`,
+          invalidateOnRefresh: true,
+        },
+      });
+    }
+
+    /* ──────────────────────────────────────────────
+       10. MAGNETIC BUTTON
+    ────────────────────────────────────────────── */
+    function initMagneticButton() {
+      const wrapper = qs('#magnetic-btn-wrapper');
+      const btn = qs('#magnetic-btn');
+      if (!wrapper || !btn) return;
+
+      const MAGNETIC_RADIUS = 100;
+      const MAGNETIC_STRENGTH = 0.35;
+
+      wrapper.addEventListener('mousemove', e => {
+        const rect = btn.getBoundingClientRect();
+        const cx = rect.left + rect.width / 2;
+        const cy = rect.top + rect.height / 2;
+        const dx = e.clientX - cx;
+        const dy = e.clientY - cy;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+
+        if (dist < MAGNETIC_RADIUS) {
+          const pull = (1 - dist / MAGNETIC_RADIUS) * MAGNETIC_STRENGTH;
+          const tx = dx * pull * 2;
+          const ty = dy * pull * 2;
+          btn.style.transform = `translate(${tx}px, ${ty}px)`;
+          wrapper.style.transform = `translate(${tx * 0.3}px, ${ty * 0.3}px)`;
+        }
+      });
+
+      wrapper.addEventListener('mouseleave', () => {
+        btn.style.transform = '';
+        wrapper.style.transform = '';
+      });
+    }
+
+    /* ──────────────────────────────────────────────
+       11. FORM SUBMIT
+    ────────────────────────────────────────────── */
+    function handleFormSubmit(e) {
+      e.preventDefault();
+      const form = qs('#contact-form');
+      const success = qs('#form-success');
+      form.style.opacity = '0.4';
+      form.style.pointerEvents = 'none';
+      setTimeout(() => {
+        form.style.display = 'none';
+        success.style.display = 'block';
+      }, 600);
+    }
+
+    /* ──────────────────────────────────────────────
+       12. BACKGROUND PARALLAX FOR BRAND HERO
+    ────────────────────────────────────────────── */
+    function initBrandParallax() {
+      const brandBg = qs('.brand-bg');
+      if (!brandBg) return;
+
+      ScrollTrigger.create({
+        trigger: '#section-brand',
+        start: 'top top',
+        end: 'bottom top',
+        scrub: true,
+        onUpdate: self => {
+          brandBg.style.transform = `scale(1.06) translateY(${self.progress * 40}px)`;
+        }
+      });
+    }
+
+    // If session already passed portal, init Lenis + GSAP immediately
+    if (sessionStorage.getItem('nd-portal-passed') === '1') {
+      setTimeout(() => {
+        exitPortalInstant();
+        triggerBrandEntrance();
+        setTimeout(initBrandParallax, 300);
+      }, 50);
+    }
+
+
+
   </script>
 </body>
 
