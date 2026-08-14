@@ -75,6 +75,7 @@ a {
   pointer-events: none;
   z-index: 9999;
   transform: translate(-50%, -50%);
+  opacity: 0;
   transition: transform 0.1s ease, opacity 0.3s ease;
   mix-blend-mode: difference;
 }
@@ -88,25 +89,47 @@ a {
   pointer-events: none;
   z-index: 9998;
   transform: translate(-50%, -50%);
-  transition: all 0.15s ease;
+  opacity: 0;
+  transition: width 0.2s ease, height 0.2s ease, border-color 0.2s ease, background 0.2s ease, opacity 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 #cursor-ring.hover-door {
-  width: 80px;
-  height: 80px;
+  width: 76px;
+  height: 76px;
   border-color: var(--gold);
-  border-width: 2px;
-  box-shadow: 0 0 20px var(--gold-alpha-30), inset 0 0 20px var(--gold-alpha-10);
+  border-width: 1.5px;
+  background: rgba(242, 202, 80, 0.14);
+  backdrop-filter: blur(2px);
+  box-shadow: 0 0 25px rgba(242, 202, 80, 0.45), inset 0 0 15px rgba(242, 202, 80, 0.2);
+}
+
+#cursor-ring.hover-door::after {
+  content: 'ENTER';
+  font-family: var(--font-body);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  color: var(--gold);
+  text-shadow: 0 0 8px rgba(242, 202, 80, 0.6);
 }
 
 #cursor-ring.hover-interactive {
-  width: 60px;
-  height: 60px;
+  width: 54px;
+  height: 54px;
   border-color: var(--gold);
+  background: rgba(242, 202, 80, 0.05);
 }
 
-body.cursor-over-door {
-  cursor: none;
+body.cursor-over-door,
+body.cursor-over-door #portal-scene,
+body.cursor-over-door #shopfront-container,
+body.cursor-over-door #shopfront-wrapper,
+body.cursor-over-door #shopfront-img,
+body.cursor-over-door #door-hotspot {
+  cursor: none !important;
 }
 
 /* ============================================================
@@ -228,36 +251,24 @@ body.cursor-over-door {
   }
 }
 
-/* Door Hotspot — Mapped directly to the door of the user's image */
+#shopfront-wrapper {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+/* Door Hotspot — Mapped 100% accurately over the door of shopfront.png */
 #door-hotspot {
   position: absolute;
-  z-index: 20;
+  z-index: 50;
   cursor: pointer;
-  left: 42%;
-  top: 50%;
-  width: 16%;
-  height: 33%;
-  border-radius: 4px;
+  left: 41.5%;
+  top: 48%;
+  width: 17%;
+  height: 40%;
   background: transparent;
   border: none;
   outline: none;
-}
-
-.door-glow {
-  display: none !important;
-}
-
-#door-hotspot:hover .door-glow {
-  display: none !important;
-}
-
-/* Enter label that appears on hover */
-.door-enter-label {
-  display: none !important;
-}
-
-#cursor-ring.hover-door {
-  display: none !important;
 }
 
 /* Portal dark vignette overlay */
@@ -768,119 +779,149 @@ body.cursor-over-door {
 }
 
 /* ============================================================
-   SECTION 4: RTC PRODUCT WHEEL
+   SECTION 4: RTC PRODUCT PAN & ORBIT
    ============================================================ */
 #section-rtc {
-  padding: 120px 64px;
-  overflow: hidden;
-}
-
-.rtc-headline-row {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  background: #0a0a0a;
+  color: #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0;
-  flex-wrap: nowrap;
-  margin-bottom: 80px;
+  overflow: hidden;
+  padding: 64px 32px;
 }
 
-.rtc-word {
+.rtc-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 48px;
+  align-items: center;
+  width: 100%;
+  max-width: 1280px;
+}
+
+@media (min-width: 992px) {
+  .rtc-container {
+    grid-template-columns: 5fr 7fr;
+    gap: 32px;
+  }
+}
+
+.rtc-text-col {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: left;
+  gap: 8px;
+  z-index: 20;
+  user-select: none;
+}
+
+.rtc-word-white {
   font-family: var(--font-display);
-  font-size: clamp(2.5rem, 6vw, 6rem);
-  font-weight: 700;
+  font-size: clamp(3.5rem, 8vw, 8.5rem);
+  font-weight: 900;
   letter-spacing: -0.02em;
-  color: var(--cream);
-  white-space: nowrap;
-  line-height: 1;
-  padding: 0 0.25em;
+  line-height: 0.95;
+  color: #ffffff;
+  text-transform: uppercase;
 }
 
-.rtc-word-dim {
-  color: rgba(229, 226, 225, 0.25);
+.rtc-word-amber {
+  font-family: var(--font-display);
+  font-size: clamp(3.5rem, 8vw, 8.5rem);
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  line-height: 0.95;
+  color: rgba(253, 230, 138, 0.9); /* amber-200/90 */
+  text-transform: uppercase;
 }
 
-/* The Wheel */
-.wheel-wrapper {
-  display: inline-flex;
+.rtc-word-gradient {
+  font-family: var(--font-display);
+  font-size: clamp(3.5rem, 8vw, 8.5rem);
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  line-height: 0.95;
+  background: linear-gradient(to right, #fde047, #fbbf24, #eab308);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-transform: uppercase;
+}
+
+.overflow-hidden {
+  overflow: hidden;
+}
+
+/* Stage Column Container */
+.rtc-stage-col {
+  position: relative;
+  min-height: 480px;
+  display: flex;
   align-items: center;
   justify-content: center;
-  width: clamp(280px, 30vw, 420px);
-  height: clamp(280px, 30vw, 420px);
-  flex-shrink: 0;
-  vertical-align: middle;
-  position: relative;
-  margin: 0 20px;
 }
 
-.wheel-track {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  border: 24px solid #000;
-  /* Thick black circular ring from user diagram */
-  box-shadow: 0 0 40px rgba(0, 0, 0, 0.5), inset 0 0 20px rgba(0, 0, 0, 0.8);
-  animation: wheelSpin 20s linear infinite;
-  will-change: transform;
-}
-
-.wheel-track.paused {
-  animation-play-state: paused;
-}
-
-@keyframes wheelSpin {
-  from {
-    transform: rotate(0deg);
-  }
-
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-.wheel-center-text {
+/* Layer 1: Static Transparent Pan (z-10) */
+.rtc-pan-layer {
   position: absolute;
   inset: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: var(--font-display);
-  font-size: clamp(2.5rem, 5vw, 4.5rem);
-  font-weight: 700;
-  color: var(--cream);
-  letter-spacing: -0.02em;
+  z-index: 10;
   pointer-events: none;
-  z-index: 5;
-  text-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
 }
 
-/* 6 circular wheel items */
+.rtc-pan-img {
+  width: min(410px, 80vw);
+  height: min(410px, 80vw);
+  object-fit: contain;
+  filter: drop-shadow(0 25px 50px rgba(0, 0, 0, 0.95));
+}
+
+/* Layer 2: Rotating Circular Orbit Layer (z-20) */
+.rtc-orbit-layer {
+  position: relative;
+  width: min(480px, 92vw);
+  height: min(480px, 92vw);
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  will-change: transform;
+}
+
+/* 8 Orbiting Circular Dish Items */
 .wheel-item {
   position: absolute;
-  width: 80px;
-  height: 80px;
+  width: clamp(64px, 13vw, 80px);
+  height: clamp(64px, 13vw, 80px);
   border-radius: 50%;
-  top: 50%;
-  left: 50%;
-  margin: -40px 0 0 -40px;
-  cursor: pointer;
+  border: 2px solid rgba(251, 191, 36, 0.8);
+  box-shadow: 0 0 18px rgba(251, 191, 36, 0.3), 0 10px 25px rgba(0, 0, 0, 0.8);
   overflow: hidden;
-  border: 2px solid var(--glass-border);
-  background: var(--surface);
-  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s var(--ease-spring);
-  z-index: 6;
+  cursor: pointer;
+  background: #141414;
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), border-color 0.2s ease, box-shadow 0.2s ease;
+  will-change: transform;
 }
 
 .wheel-item img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  display: block;
 }
 
+.wheel-item:hover,
 .wheel-item.focused {
-  border-color: var(--gold);
-  box-shadow: 0 0 20px var(--gold-alpha-30);
-  z-index: 10;
+  border-color: #fbbf24;
+  box-shadow: 0 0 28px rgba(251, 191, 36, 0.7);
+  z-index: 40;
 }
 
 

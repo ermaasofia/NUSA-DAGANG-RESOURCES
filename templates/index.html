@@ -52,7 +52,7 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: linear-gradient(to bottom, rgba(13, 13, 13, 0.9) 0%, rgba(13, 13, 13, 0.55) 50%, rgba(13, 13, 13, 0.9) 100%);
+      background: linear-gradient(to bottom, rgba(255, 255, 255, 0.9) 0%, rgba(13, 13, 13, 0.55) 50%, rgba(13, 13, 13, 0.9) 100%);
     }
 
     #shopfront-img {
@@ -89,11 +89,6 @@
     <div style="position:absolute;inset:0;z-index:1;pointer-events:none;
          background:radial-gradient(ellipse 80% 50% at 50% 100%, rgba(242,202,80,0.05) 0%, transparent 60%);"></div>
 
-    <!-- Portal heading -->
-    <div id="portal-text">
-      <h1 id="portal-title">NusaDagang</h1>
-      <p id="portal-subtitle">Click the Shop Door to Enter</p>
-    </div>
 
     <!-- Shopfront illustration container (this gets the zoom transform) -->
     <div id="shopfront-container">
@@ -138,9 +133,7 @@
         <div class="nav-links" id="nav-links">
           <a class="nav-link active" href="#section-brand" id="nav-home">Home</a>
           <a class="nav-link" href="#section-about" id="nav-about">About Us</a>
-          <a class="nav-link" href="#section-rtc" id="nav-rtc">Ready-to-Cook</a>
-          <a class="nav-link" href="#section-spices" id="nav-spices">Spices</a>
-          <a class="nav-link" href="#section-values" id="nav-values">Value Promises</a>
+          <a class="nav-link" href="#section-rtc" href="=#section-spices" id="nav-rtc">Our Services</a>
           <a class="nav-link" href="#section-contact" id="nav-contact">Contact</a>
         </div>
         <button class="nav-hamburger" id="nav-hamburger-btn" aria-label="Open navigation menu">
@@ -151,7 +144,7 @@
       <div id="mobile-nav">
         <a class="mobile-nav-link active" href="#section-brand">Home</a>
         <a class="mobile-nav-link" href="#section-about">About Us</a>
-        <a class="mobile-nav-link" href="#section-rtc">Our Services</a>
+        <a class="mobile-nav-link" href="#section-rtc" href="#section-spices">Our Services</a>
         <a class="mobile-nav-link" href="#section-contact">Contact</a>
       </div>
     </nav>
@@ -241,399 +234,476 @@
 
 
     <!-- ═══════════════════════════════════════════════
-         SECTION 4: READY T[O] COOK — INTERACTIVE WHEEL
+         SECTION 4: READY TO COOK — INTERACTIVE PAN & ORBIT
     ═══════════════════════════════════════════════ -->
-    <section id="section-rtc" data-section="rtc">
+    <section id="section-rtc" data-section="rtc"
+      class="relative w-full min-h-screen bg-[#0a0a0a] text-white flex flex-col items-center justify-center overflow-hidden py-20 px-8 md:px-20">
 
-      <!-- Centered Section Title -->
-      <div class="services-header reveal-up" style="text-align:center; margin-bottom: 60px;">
-        <h2 class="services-title"
-          style="font-family:var(--font-display); font-size:clamp(2.5rem, 5vw, 3.5rem); font-weight:700; color:var(--gold); letter-spacing:0.05em; text-transform:uppercase;">
-          Our Services</h2>
+      <!-- Top Center Tagline -->
+      <div class="text-anim flex items-center gap-3 mb-8 text-center z-30">
+        <span class="h-[2px] w-8 bg-amber-400"></span>
+        <span class="text-xs uppercase tracking-[0.35em] text-amber-400 font-semibold">
+          OUR SERVICES
+        </span>
+        <span class="h-[2px] w-8 bg-amber-400"></span>
       </div>
 
-      <!-- Big display typography with embedded wheel -->
-      <div class="rtc-headline-row reveal-up" id="rtc-headline-row" aria-label="Ready to Cook product showcase">
-        <span class="rtc-word">Ready To</span>
+      <div class="w-full max-w-7xl grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
 
-        <!-- The "O" is replaced by the interactive wheel -->
-        <div class="wheel-wrapper" id="wheel-wrapper" role="img" aria-label="Product selection wheel">
-          <div class="wheel-track" id="wheel-track">
+        <!-- LEFT COLUMN: Stacked Vertical Typography (Cols 1-5) -->
+        <div id="rtc-text-container" class="lg:col-span-5 flex flex-col justify-center text-left space-y-4 z-20">
 
-            <!-- 6 RTC items - images counter-rotate to stay upright -->
-            <!-- Item 1: Bawang Besar (Blended) -->
-            <div class="wheel-item" data-name="Bawang Besar" data-sub="Blended" data-idx="0"
-              title="Bawang Besar - Blended">
-              <img src="{{ url_for('static', path='images/RTC1.png') }}" alt="Bawang Besar" />
+          <!-- Stacked 3-Line Headline -->
+          <div class="flex flex-col space-y-1">
+            <div class="overflow-hidden">
+              <h1
+                class="text-anim text-6xl md:text-8xl font-serif font-black tracking-tight leading-none text-white uppercase">
+                READY
+              </h1>
             </div>
-            <!-- Item 2: Bawang Putih (Blended) -->
-            <div class="wheel-item" data-name="Bawang Putih" data-sub="Blended" data-idx="1"
-              title="Bawang Putih - Blended">
-              <img src="{{ url_for('static', path='images/RTC5.png') }}" alt="Bawang Putih" />
+            <div class="overflow-hidden">
+              <h1
+                class="text-anim text-6xl md:text-8xl font-serif font-black tracking-tight leading-none text-amber-200/90 uppercase">
+                TO
+              </h1>
             </div>
-            <!-- Item 3: Lengkuas -->
-            <div class="wheel-item" data-name="Lengkuas" data-sub="Blended" data-idx="2" title="Lengkuas">
-              <img src="{{ url_for('static', path='images/RTC4.png') }}" alt="Lengkuas" />
+            <div class="overflow-hidden">
+              <h1
+                class="text-anim text-6xl md:text-8xl font-serif font-black tracking-tight leading-none text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-amber-400 to-yellow-500 uppercase">
+                COOK
+              </h1>
             </div>
-            <!-- Item 4: Halia -->
-            <div class="wheel-item" data-name="Halia" data-sub="Blended" data-idx="3" title="Halia">
-              <img src="{{ url_for('static', path='images/RTC3.png') }}" alt="Halia" />
-            </div>
-            <!-- Item 5: Serai -->
-            <div class="wheel-item" data-name="Serai" data-sub="Blended" data-idx="4" title="Serai">
-              <img src="{{ url_for('static', path='images/RTC6.png') }}" alt="Serai" />
-            </div>
-            <!-- Item 6: Bawang Besar (Chopped) -->
-            <div class="wheel-item" data-name="Bawang Besar" data-sub="Chopped" data-idx="5"
-              title="Bawang Besar - Chopped">
-              <img src="{{ url_for('static', path='images/RTC7.png') }}" alt="Bawang Besar Chopped" />
-            </div>
+          </div>
 
-          </div><!-- /#wheel-track -->
+          <!-- Editorial Description -->
+          <p class="text-anim text-gray-400 text-sm md:text-base leading-relaxed max-w-sm pt-4 font-light">
+            Authentic heritage recipes prepared with fresh, premium ingredients. Discover true Malaysian flavors in
+            minutes.
+          </p>
 
-          <!-- The word COOK inside the center of the wheel -->
-          <div class="wheel-center-text">Cook</div>
+        </div>
 
-        </div><!-- /.wheel-wrapper -->
+        <!-- RIGHT COLUMN: Static Pan + Rotating 8-Dish Orbit (Cols 6-12) -->
+        <div class="lg:col-span-7 flex items-center justify-center relative min-h-[480px]">
+
+          <!-- Static Pan -->
+          <div class="absolute inset-0 flex items-center justify-center z-10 pointer-events-none">
+            <img src="{{ url_for('static', path='images/pan.png') }}" alt="Cooking Pan"
+              class="w-[300px] h-[300px] md:w-[410px] md:h-[410px] object-contain drop-shadow-[0_25px_50px_rgba(0,0,0,0.95)]" />
+          </div>
+
+          <!-- Orbiting Dishes -->
+          <div id="wheel-track"
+            class="relative w-[420px] h-[420px] md:w-[480px] md:h-[480px] flex items-center justify-center z-20 will-change-transform">
+            <div
+              class="wheel-item absolute rounded-full border-2 border-amber-400/80 shadow-[0_0_18px_rgba(251,191,36,0.35)] overflow-hidden cursor-pointer transition-transform duration-200 bg-[#121212] group"
+              data-name="Sambal Tumis" data-idx="0" title="Sambal Tumis" style="width:72px; height:72px;">
+              <img src="{{ url_for('static', path='images/RTC1.png') }}" alt="Sambal Tumis"
+                class="w-full h-full object-cover" />
+              <div
+                class="opacity-0 group-hover:opacity-100 absolute -bottom-7 left-1/2 -translate-x-1/2 bg-black/90 text-[10px] text-amber-300 px-2 py-0.5 rounded border border-amber-400/40 whitespace-nowrap transition-opacity pointer-events-none">
+                Sambal Tumis
+              </div>
+            </div>
+            <div
+              class="wheel-item absolute rounded-full border-2 border-amber-400/80 shadow-[0_0_18px_rgba(251,191,36,0.35)] overflow-hidden cursor-pointer transition-transform duration-200 bg-[#121212] group"
+              data-name="Kari Daging" data-idx="2" title="Kari Daging" style="width:72px; height:72px;">
+              <img src="{{ url_for('static', path='images/RTC3.png') }}" alt="Kari Daging"
+                class="w-full h-full object-cover" />
+              <div
+                class="opacity-0 group-hover:opacity-100 absolute -bottom-7 left-1/2 -translate-x-1/2 bg-black/90 text-[10px] text-amber-300 px-2 py-0.5 rounded border border-amber-400/40 whitespace-nowrap transition-opacity pointer-events-none">
+                Kari Daging
+              </div>
+            </div>
+            <div
+              class="wheel-item absolute rounded-full border-2 border-amber-400/80 shadow-[0_0_18px_rgba(251,191,36,0.35)] overflow-hidden cursor-pointer transition-transform duration-200 bg-[#121212] group"
+              data-name="Tom Yum Heritage" data-idx="3" title="Tom Yum Heritage" style="width:72px; height:72px;">
+              <img src="{{ url_for('static', path='images/RTC4.png') }}" alt="Tom Yum Heritage"
+                class="w-full h-full object-cover" />
+              <div
+                class="opacity-0 group-hover:opacity-100 absolute -bottom-7 left-1/2 -translate-x-1/2 bg-black/90 text-[10px] text-amber-300 px-2 py-0.5 rounded border border-amber-400/40 whitespace-nowrap transition-opacity pointer-events-none">
+                Tom Yum Heritage
+              </div>
+            </div>
+            <div
+              class="wheel-item absolute rounded-full border-2 border-amber-400/80 shadow-[0_0_18px_rgba(251,191,36,0.35)] overflow-hidden cursor-pointer transition-transform duration-200 bg-[#121212] group"
+              data-name="Kurma Tradisi" data-idx="4" title="Kurma Tradisi" style="width:72px; height:72px;">
+              <img src="{{ url_for('static', path='images/RTC5.png') }}" alt="Kurma Tradisi"
+                class="w-full h-full object-cover" />
+              <div
+                class="opacity-0 group-hover:opacity-100 absolute -bottom-7 left-1/2 -translate-x-1/2 bg-black/90 text-[10px] text-amber-300 px-2 py-0.5 rounded border border-amber-400/40 whitespace-nowrap transition-opacity pointer-events-none">
+                Kurma Tradisi
+              </div>
+            </div>
+            <div
+              class="wheel-item absolute rounded-full border-2 border-amber-400/80 shadow-[0_0_18px_rgba(251,191,36,0.35)] overflow-hidden cursor-pointer transition-transform duration-200 bg-[#121212] group"
+              data-name="Sup Rempah" data-idx="5" title="Sup Rempah" style="width:72px; height:72px;">
+              <img src="{{ url_for('static', path='images/RTC6.png') }}" alt="Sup Rempah"
+                class="w-full h-full object-cover" />
+              <div
+                class="opacity-0 group-hover:opacity-100 absolute -bottom-7 left-1/2 -translate-x-1/2 bg-black/90 text-[10px] text-amber-300 px-2 py-0.5 rounded border border-amber-400/40 whitespace-nowrap transition-opacity pointer-events-none">
+                Sup Rempah
+              </div>
+            </div>
+            <div
+              class="wheel-item absolute rounded-full border-2 border-amber-400/80 shadow-[0_0_18px_rgba(251,191,36,0.35)] overflow-hidden cursor-pointer transition-transform duration-200 bg-[#121212] group"
+              data-name="Sambal Hijau" data-idx="6" title="Sambal Hijau" style="width:72px; height:72px;">
+              <img src="{{ url_for('static', path='images/RTC7.png') }}" alt="Sambal Hijau"
+                class="w-full h-full object-cover" />
+              <div
+                class="opacity-0 group-hover:opacity-100 absolute -bottom-7 left-1/2 -translate-x-1/2 bg-black/90 text-[10px] text-amber-300 px-2 py-0.5 rounded border border-amber-400/40 whitespace-nowrap transition-opacity pointer-events-none">
+                Sambal Hijau
+              </div>
+            </div>
+            <div
+              class="wheel-item absolute rounded-full border-2 border-amber-400/80 shadow-[0_0_18px_rgba(251,191,36,0.35)] overflow-hidden cursor-pointer transition-transform duration-200 bg-[#121212] group"
+              data-name="Gulai Kawah" data-idx="7" title="Gulai Kawah" style="width:72px; height:72px;">
+              <img src="{{ url_for('static', path='images/RTC8.png') }}" alt="Gulai Kawah"
+                class="w-full h-full object-cover" />
+              <div
+                class="opacity-0 group-hover:opacity-100 absolute -bottom-7 left-1/2 -translate-x-1/2 bg-black/90 text-[10px] text-amber-300 px-2 py-0.5 rounded border border-amber-400/40 whitespace-nowrap transition-opacity pointer-events-none">
+                Gulai Kawah
+              </div>
+            </div>
+          </div>
+
+        </div>
+
       </div>
-
-      <!-- Scroll hint -->
-      <p class="reveal-up reveal-delay-2" style="text-align:center;font-size:11px;letter-spacing:0.2em;
-         text-transform:uppercase;color:var(--muted);margin-bottom:60px;">
-        Scroll to accelerate · Hover to explore
-      </p>
-
-  </div><!-- /.rtc-products-grid -->
-
-  </section>
+    </section>
 
 
-  <!-- ═══════════════════════════════════════════════
+    <!-- ═══════════════════════════════════════════════
          SECTION 5: SPICES HOTSPOT SHOWCASE
     ═══════════════════════════════════════════════ -->
-  <section id="section-spices" data-section="spices">
-    <div class="spices-section-inner">
+    <section id="section-spices" data-section="spices">
+      <div class="spices-section-inner">
 
-      <div class="spices-header">
-        <h2 class="spices-title reveal-up">SPICES</h2>
-        <p class="spices-desc reveal-up reveal-delay-2">
-          Hover over the ingredients to discover the origin, aroma profile, and culinary pairings
-          of each key spice.
-        </p>
+        <div class="spices-header">
+          <h2 class="spices-title reveal-up">SPICES</h2>
+          <p class="spices-desc reveal-up reveal-delay-2">
+            Hover over the ingredients to discover the origin, aroma profile, and culinary pairings
+            of each key spice.
+          </p>
+        </div>
+
+        <!-- Spice image with interactive hotspots -->
+        <div class="spices-visual" id="spices-visual">
+
+          <!-- Main spice image -->
+          <img class="spices-img" src="{{ url_for('static', path='images/spices.png') }}"
+            alt="NusaDagang Premium Spices Collection" />
+
+          <!-- HOTSPOT 1: Halia / Ginger -->
+          <div class="spice-hotspot" id="hs-halia" style="left:22%;top:60%;" aria-label="Halia (Ginger) information">
+            <div class="spice-hotspot-dot"></div>
+            <div class="spice-popup">
+              <div class="popup-spice-name">Halia (Ginger)</div>
+              <div class="popup-row">
+                <div class="popup-item">
+                  <div class="popup-label">Origin</div>
+                  <div class="popup-value">Southeast Asia</div>
+                </div>
+                <div class="popup-item">
+                  <div class="popup-label">Aroma Profile</div>
+                  <div class="popup-value">Warm, pungent &amp; subtly sweet</div>
+                </div>
+                <div class="popup-item">
+                  <div class="popup-label">Best Pairings</div>
+                  <div class="popup-value">Chicken, Fish, Soups, Teh Halia</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- HOTSPOT 2: Lengkuas / Galangal -->
+          <div class="spice-hotspot" id="hs-lengkuas" style="left:42%;top:45%;"
+            aria-label="Lengkuas (Galangal) information">
+            <div class="spice-hotspot-dot"></div>
+            <div class="spice-popup">
+              <div class="popup-spice-name">Lengkuas (Galangal)</div>
+              <div class="popup-row">
+                <div class="popup-item">
+                  <div class="popup-label">Origin</div>
+                  <div class="popup-value">Southeast Asia</div>
+                </div>
+                <div class="popup-item">
+                  <div class="popup-label">Aroma Profile</div>
+                  <div class="popup-value">Citrusy, piney &amp; medicinal</div>
+                </div>
+                <div class="popup-item">
+                  <div class="popup-label">Best Pairings</div>
+                  <div class="popup-value">Rendang, Tom Yam, Coconut Curry</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- HOTSPOT 3: Serai / Lemongrass -->
+          <div class="spice-hotspot popup-below" id="hs-serai" style="left:63%;top:35%;"
+            aria-label="Serai (Lemongrass) information">
+            <div class="spice-hotspot-dot"></div>
+            <div class="spice-popup">
+              <div class="popup-spice-name">Serai (Lemongrass)</div>
+              <div class="popup-row">
+                <div class="popup-item">
+                  <div class="popup-label">Origin</div>
+                  <div class="popup-value">Tropical Asia</div>
+                </div>
+                <div class="popup-item">
+                  <div class="popup-label">Aroma Profile</div>
+                  <div class="popup-value">Bright citrus, floral &amp; herbal</div>
+                </div>
+                <div class="popup-item">
+                  <div class="popup-label">Best Pairings</div>
+                  <div class="popup-value">Satay, Laksa, Seafood, Soups</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- HOTSPOT 4: Bawang / Shallot -->
+          <div class="spice-hotspot popup-below" id="hs-bawang" style="left:80%;top:30%;"
+            aria-label="Bawang (Shallot) information">
+            <div class="spice-hotspot-dot"></div>
+            <div class="spice-popup">
+              <div class="popup-spice-name">Bawang (Shallot)</div>
+              <div class="popup-row">
+                <div class="popup-item">
+                  <div class="popup-label">Origin</div>
+                  <div class="popup-value">Southeast Asia</div>
+                </div>
+                <div class="popup-item">
+                  <div class="popup-label">Aroma Profile</div>
+                  <div class="popup-value">Sweet, pungent &amp; deeply savory</div>
+                </div>
+                <div class="popup-item">
+                  <div class="popup-label">Best Pairings</div>
+                  <div class="popup-value">Virtually all Malaysian dishes</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div><!-- /.spices-visual -->
+
       </div>
-
-      <!-- Spice image with interactive hotspots -->
-      <div class="spices-visual" id="spices-visual">
-
-        <!-- Main spice image -->
-        <img class="spices-img" src="{{ url_for('static', path='images/spices.png') }}"
-          alt="NusaDagang Premium Spices Collection" />
-
-        <!-- HOTSPOT 1: Halia / Ginger -->
-        <div class="spice-hotspot" id="hs-halia" style="left:22%;top:60%;" aria-label="Halia (Ginger) information">
-          <div class="spice-hotspot-dot"></div>
-          <div class="spice-popup">
-            <div class="popup-spice-name">Halia (Ginger)</div>
-            <div class="popup-row">
-              <div class="popup-item">
-                <div class="popup-label">Origin</div>
-                <div class="popup-value">Southeast Asia</div>
-              </div>
-              <div class="popup-item">
-                <div class="popup-label">Aroma Profile</div>
-                <div class="popup-value">Warm, pungent &amp; subtly sweet</div>
-              </div>
-              <div class="popup-item">
-                <div class="popup-label">Best Pairings</div>
-                <div class="popup-value">Chicken, Fish, Soups, Teh Halia</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- HOTSPOT 2: Lengkuas / Galangal -->
-        <div class="spice-hotspot" id="hs-lengkuas" style="left:42%;top:45%;"
-          aria-label="Lengkuas (Galangal) information">
-          <div class="spice-hotspot-dot"></div>
-          <div class="spice-popup">
-            <div class="popup-spice-name">Lengkuas (Galangal)</div>
-            <div class="popup-row">
-              <div class="popup-item">
-                <div class="popup-label">Origin</div>
-                <div class="popup-value">Southeast Asia</div>
-              </div>
-              <div class="popup-item">
-                <div class="popup-label">Aroma Profile</div>
-                <div class="popup-value">Citrusy, piney &amp; medicinal</div>
-              </div>
-              <div class="popup-item">
-                <div class="popup-label">Best Pairings</div>
-                <div class="popup-value">Rendang, Tom Yam, Coconut Curry</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- HOTSPOT 3: Serai / Lemongrass -->
-        <div class="spice-hotspot popup-below" id="hs-serai" style="left:63%;top:35%;"
-          aria-label="Serai (Lemongrass) information">
-          <div class="spice-hotspot-dot"></div>
-          <div class="spice-popup">
-            <div class="popup-spice-name">Serai (Lemongrass)</div>
-            <div class="popup-row">
-              <div class="popup-item">
-                <div class="popup-label">Origin</div>
-                <div class="popup-value">Tropical Asia</div>
-              </div>
-              <div class="popup-item">
-                <div class="popup-label">Aroma Profile</div>
-                <div class="popup-value">Bright citrus, floral &amp; herbal</div>
-              </div>
-              <div class="popup-item">
-                <div class="popup-label">Best Pairings</div>
-                <div class="popup-value">Satay, Laksa, Seafood, Soups</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- HOTSPOT 4: Bawang / Shallot -->
-        <div class="spice-hotspot popup-below" id="hs-bawang" style="left:80%;top:30%;"
-          aria-label="Bawang (Shallot) information">
-          <div class="spice-hotspot-dot"></div>
-          <div class="spice-popup">
-            <div class="popup-spice-name">Bawang (Shallot)</div>
-            <div class="popup-row">
-              <div class="popup-item">
-                <div class="popup-label">Origin</div>
-                <div class="popup-value">Southeast Asia</div>
-              </div>
-              <div class="popup-item">
-                <div class="popup-label">Aroma Profile</div>
-                <div class="popup-value">Sweet, pungent &amp; deeply savory</div>
-              </div>
-              <div class="popup-item">
-                <div class="popup-label">Best Pairings</div>
-                <div class="popup-value">Virtually all Malaysian dishes</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </div><!-- /.spices-visual -->
-
-    </div>
-  </section>
-  <!-- ═══════════════════════════════════════════════
+    </section>
+    <!-- ═══════════════════════════════════════════════
          SECTION 6: VALUE PROMISES — GSAP HORIZONTAL CAROUSEL
     ═══════════════════════════════════════════════ -->
-  <section id="section-values" data-section="values"
-    class="relative w-full h-screen bg-[#0a0a0a] text-white flex flex-col justify-center overflow-hidden">
-    
-    <!-- Title Header -->
-    <div class="text-center mb-8 px-4 z-10">
-      <h2 class="text-3xl md:text-5xl font-extrabold tracking-wide uppercase text-white mb-2">
-        OUR VALUE PROMISES
-      </h2>
-      <p class="text-gray-400 text-sm md:text-base">
-        Dive into authentic excellence powered by quality.
-      </p>
-    </div>
+    <section id="section-values" data-section="values"
+      class="relative w-full h-screen bg-[#0a0a0a] text-white flex flex-col justify-center overflow-hidden">
 
-    <!-- Horizontal Moving Track -->
-    <div class="w-full overflow-visible pl-[10vw]">
-      <div id="value-track-outer" class="flex gap-8 items-center flex-nowrap will-change-transform pr-[20vw]">
-        
-        <!-- Card 01 -->
-        <div
-          class="flex-shrink-0 w-[280px] h-[300px] md:w-[340px] md:h-[340px] bg-[#121212] border border-[#2a2a2a] hover:border-yellow-500/50 rounded-2xl p-8 flex flex-col justify-center items-center text-center shadow-2xl transition-all duration-300 group">
-          <span class="text-5xl md:text-6xl font-black text-yellow-400/90 mb-4 group-hover:scale-110 transition-transform duration-300">
-            01
-          </span>
-          <h3 class="text-xl md:text-2xl font-bold text-white mb-3">
-            Zero Preservatives
-          </h3>
-          <p class="text-gray-400 text-xs md:text-sm leading-relaxed">
-            Long-lasting natural quality without compromise.
-          </p>
-        </div>
-
-        <!-- Card 02 -->
-        <div
-          class="flex-shrink-0 w-[280px] h-[300px] md:w-[340px] md:h-[340px] bg-[#121212] border border-[#2a2a2a] hover:border-yellow-500/50 rounded-2xl p-8 flex flex-col justify-center items-center text-center shadow-2xl transition-all duration-300 group">
-          <span class="text-5xl md:text-6xl font-black text-yellow-400/90 mb-4 group-hover:scale-110 transition-transform duration-300">
-            02
-          </span>
-          <h3 class="text-xl md:text-2xl font-bold text-white mb-3">
-            Authentic Flavors
-          </h3>
-          <p class="text-gray-400 text-xs md:text-sm leading-relaxed">
-            True heritage recipes crafted for perfection.
-          </p>
-        </div>
-
-        <!-- Card 03 -->
-        <div
-          class="flex-shrink-0 w-[280px] h-[300px] md:w-[340px] md:h-[340px] bg-[#121212] border border-[#2a2a2a] hover:border-yellow-500/50 rounded-2xl p-8 flex flex-col justify-center items-center text-center shadow-2xl transition-all duration-300 group">
-          <span class="text-5xl md:text-6xl font-black text-yellow-400/90 mb-4 group-hover:scale-110 transition-transform duration-300">
-            03
-          </span>
-          <h3 class="text-xl md:text-2xl font-bold text-white mb-3">
-            Premium Sourcing
-          </h3>
-          <p class="text-gray-400 text-xs md:text-sm leading-relaxed">
-            Finest handpicked spices from local growers.
-          </p>
-        </div>
-
-        <!-- Card 04 -->
-        <div
-          class="flex-shrink-0 w-[280px] h-[300px] md:w-[340px] md:h-[340px] bg-[#121212] border border-[#2a2a2a] hover:border-yellow-500/50 rounded-2xl p-8 flex flex-col justify-center items-center text-center shadow-2xl transition-all duration-300 group">
-          <span class="text-5xl md:text-6xl font-black text-yellow-400/90 mb-4 group-hover:scale-110 transition-transform duration-300">
-            04
-          </span>
-          <h3 class="text-xl md:text-2xl font-bold text-white mb-3">
-            Ready to Cook
-          </h3>
-          <p class="text-gray-400 text-xs md:text-sm leading-relaxed">
-            Convenient, fast, and authentic culinary solutions.
-          </p>
-        </div>
-
-        <!-- Card 05 -->
-        <div
-          class="flex-shrink-0 w-[280px] h-[300px] md:w-[340px] md:h-[340px] bg-[#121212] border border-[#2a2a2a] hover:border-yellow-500/50 rounded-2xl p-8 flex flex-col justify-center items-center text-center shadow-2xl transition-all duration-300 group">
-          <span class="text-5xl md:text-6xl font-black text-yellow-400/90 mb-4 group-hover:scale-110 transition-transform duration-300">
-            05
-          </span>
-          <h3 class="text-xl md:text-2xl font-bold text-white mb-3">
-            Quality Assured
-          </h3>
-          <p class="text-gray-400 text-xs md:text-sm leading-relaxed">
-            Strict food safety and unmatched hygiene standards.
-          </p>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-
-  <!-- ═══════════════════════════════════════════════
-         SECTION 7: CONTACT
-    ═══════════════════════════════════════════════ -->
-  <section id="section-contact" data-section="contact">
-
-    <div class="contact-grid">
-
-      <!-- Left: Info -->
-      <div>
-        <span class="contact-info-label reveal-up">Get in Touch</span>
-        <h2 class="contact-title reveal-up reveal-delay-1">
-          Let's Build<br>Something Together
+      <!-- Title Header -->
+      <div class="text-center mb-8 px-4 z-10">
+        <h2 class="text-3xl md:text-5xl font-extrabold tracking-wide uppercase text-white mb-2">
+          OUR VALUE PROMISES
         </h2>
-        <div class="gold-divider reveal-up reveal-delay-2" style="margin-bottom:32px;"></div>
-
-        <div class="contact-detail reveal-up reveal-delay-2">
-          <div class="contact-detail-label">General Inquiries</div>
-          <div class="contact-detail-value">
-            <a href="mailto:admin@nusadagang.com">admin@nusadagang.com</a>
-          </div>
-        </div>
-        <div class="contact-detail reveal-up reveal-delay-3">
-          <div class="contact-detail-label">Sales &amp; Partnerships</div>
-          <div class="contact-detail-value">
-            <a href="mailto:sales@nusadagang.com">sales@nusadagang.com</a>
-          </div>
-        </div>
-        <div class="contact-detail reveal-up reveal-delay-4">
-          <div class="contact-detail-label">Location</div>
-          <div class="contact-detail-value">Kuala Lumpur, Malaysia</div>
-        </div>
-        <div class="contact-detail reveal-up reveal-delay-5">
-          <div class="contact-detail-label">Registration</div>
-          <div class="contact-detail-value" style="font-size:12px;">202503267841-V</div>
-        </div>
-      </div>
-
-      <!-- Right: Form -->
-      <div class="reveal-up reveal-delay-2">
-        <form class="contact-form" id="contact-form" onsubmit="handleFormSubmit(event)" novalidate>
-          <div class="form-group">
-            <label class="form-label" for="cf-name">Full Name</label>
-            <input class="form-input" id="cf-name" type="text" name="name" placeholder="Your Name" required
-              autocomplete="name" />
-          </div>
-          <div class="form-group">
-            <label class="form-label" for="cf-company">Company</label>
-            <input class="form-input" id="cf-company" type="text" name="company"
-              placeholder="Your Company or Organisation" autocomplete="organization" />
-          </div>
-          <div class="form-group">
-            <label class="form-label" for="cf-email">Email Address</label>
-            <input class="form-input" id="cf-email" type="email" name="email" placeholder="your@email.com" required
-              autocomplete="email" />
-          </div>
-          <div class="form-group">
-            <label class="form-label" for="cf-message">Message</label>
-            <textarea class="form-textarea" id="cf-message" name="message" rows="4"
-              placeholder="Tell us about your requirements…" required></textarea>
-          </div>
-          <div class="form-group">
-            <!-- Magnetic CTA wrapper -->
-            <div class="magnetic-btn-wrapper" id="magnetic-btn-wrapper">
-              <button type="submit" class="magnetic-btn" id="magnetic-btn">
-                <span>Send Message</span>
-                <span class="btn-arrow">→</span>
-              </button>
-            </div>
-          </div>
-        </form>
-        <!-- Form success message -->
-        <div id="form-success" style="display:none;margin-top:24px;padding:20px;
-               border-left:2px solid var(--gold);background:var(--surface);">
-          <p style="font-size:14px;color:var(--cream);">
-            ✦ &nbsp;Thank you — we'll be in touch shortly.
-          </p>
-        </div>
-      </div>
-
-    </div>
-
-  </section>
-
-
-  <!-- ═══════════════════════════════════════════════
-         FOOTER
-    ═══════════════════════════════════════════════ -->
-  <footer>
-    <div class="footer-inner">
-      <div>
-        <div class="footer-brand">NUSA DAGANG</div>
-        <p class="footer-reg">
-          Nusa Dagang Resources<br>
-          (202503267841-V)<br>
-          Kuala Lumpur, Malaysia
+        <p class="text-gray-400 text-sm md:text-base">
+          Dive into authentic excellence powered by quality.
         </p>
       </div>
-      <div>
-        <div class="footer-col-title">Navigation</div>
-        <a class="footer-link" href="#section-brand">Home</a>
-        <a class="footer-link" href="#section-about">About Us</a>
-        <a class="footer-link" href="#section-rtc">Ready-to-Cook</a>
-        <a class="footer-link" href="#section-spices">Spices</a>
-        <a class="footer-link" href="#section-values">Value Promises</a>
-        <a class="footer-link" href="#section-contact">Contact</a>
+
+      <!-- Horizontal Moving Track -->
+      <div class="w-full overflow-visible pl-[10vw]">
+        <div id="value-track-outer" class="flex gap-8 items-center flex-nowrap will-change-transform pr-[20vw]">
+
+          <!-- Card 01 -->
+          <div
+            class="flex-shrink-0 w-[280px] h-[300px] md:w-[340px] md:h-[340px] bg-[#121212] border border-[#2a2a2a] hover:border-yellow-500/50 rounded-2xl p-8 flex flex-col justify-center items-center text-center shadow-2xl transition-all duration-300 group">
+            <span
+              class="text-5xl md:text-6xl font-black text-yellow-400/90 mb-4 group-hover:scale-110 transition-transform duration-300">
+              01
+            </span>
+            <h3 class="text-xl md:text-2xl font-bold text-white mb-3">
+              Zero Preservatives
+            </h3>
+            <p class="text-gray-400 text-xs md:text-sm leading-relaxed">
+              Long-lasting natural quality without compromise.
+            </p>
+          </div>
+
+          <!-- Card 02 -->
+          <div
+            class="flex-shrink-0 w-[280px] h-[300px] md:w-[340px] md:h-[340px] bg-[#121212] border border-[#2a2a2a] hover:border-yellow-500/50 rounded-2xl p-8 flex flex-col justify-center items-center text-center shadow-2xl transition-all duration-300 group">
+            <span
+              class="text-5xl md:text-6xl font-black text-yellow-400/90 mb-4 group-hover:scale-110 transition-transform duration-300">
+              02
+            </span>
+            <h3 class="text-xl md:text-2xl font-bold text-white mb-3">
+              Authentic Flavors
+            </h3>
+            <p class="text-gray-400 text-xs md:text-sm leading-relaxed">
+              True heritage recipes crafted for perfection.
+            </p>
+          </div>
+
+          <!-- Card 03 -->
+          <div
+            class="flex-shrink-0 w-[280px] h-[300px] md:w-[340px] md:h-[340px] bg-[#121212] border border-[#2a2a2a] hover:border-yellow-500/50 rounded-2xl p-8 flex flex-col justify-center items-center text-center shadow-2xl transition-all duration-300 group">
+            <span
+              class="text-5xl md:text-6xl font-black text-yellow-400/90 mb-4 group-hover:scale-110 transition-transform duration-300">
+              03
+            </span>
+            <h3 class="text-xl md:text-2xl font-bold text-white mb-3">
+              Premium Sourcing
+            </h3>
+            <p class="text-gray-400 text-xs md:text-sm leading-relaxed">
+              Finest handpicked spices from local growers.
+            </p>
+          </div>
+
+          <!-- Card 04 -->
+          <div
+            class="flex-shrink-0 w-[280px] h-[300px] md:w-[340px] md:h-[340px] bg-[#121212] border border-[#2a2a2a] hover:border-yellow-500/50 rounded-2xl p-8 flex flex-col justify-center items-center text-center shadow-2xl transition-all duration-300 group">
+            <span
+              class="text-5xl md:text-6xl font-black text-yellow-400/90 mb-4 group-hover:scale-110 transition-transform duration-300">
+              04
+            </span>
+            <h3 class="text-xl md:text-2xl font-bold text-white mb-3">
+              Ready to Cook
+            </h3>
+            <p class="text-gray-400 text-xs md:text-sm leading-relaxed">
+              Convenient, fast, and authentic culinary solutions.
+            </p>
+          </div>
+
+          <!-- Card 05 -->
+          <div
+            class="flex-shrink-0 w-[280px] h-[300px] md:w-[340px] md:h-[340px] bg-[#121212] border border-[#2a2a2a] hover:border-yellow-500/50 rounded-2xl p-8 flex flex-col justify-center items-center text-center shadow-2xl transition-all duration-300 group">
+            <span
+              class="text-5xl md:text-6xl font-black text-yellow-400/90 mb-4 group-hover:scale-110 transition-transform duration-300">
+              05
+            </span>
+            <h3 class="text-xl md:text-2xl font-bold text-white mb-3">
+              Quality Assured
+            </h3>
+            <p class="text-gray-400 text-xs md:text-sm leading-relaxed">
+              Strict food safety and unmatched hygiene standards.
+            </p>
+          </div>
+
+        </div>
       </div>
-      <div>
-        <div class="footer-col-title">Contact</div>
-        <a class="footer-link" href="mailto:admin@nusadagang.com">admin@nusadagang.com</a>
-        <a class="footer-link" href="mailto:hello@nusadagang.com">hello@nusadagang.com</a>
-        <a class="footer-link" href="mailto:sales@nusadagang.com">sales@nusadagang.com</a>
-        <p class="footer-copy">© 2025 Nusa Dagang Resources. All rights reserved.</p>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════════
+         SECTION 7: CONTACT
+    ═══════════════════════════════════════════════ -->
+    <section id="section-contact" data-section="contact">
+
+      <div class="contact-grid">
+
+        <!-- Left: Info -->
+        <div>
+          <span class="contact-info-label reveal-up">Get in Touch</span>
+          <h2 class="contact-title reveal-up reveal-delay-1">
+            Let's Build<br>Something Together
+          </h2>
+          <div class="gold-divider reveal-up reveal-delay-2" style="margin-bottom:32px;"></div>
+
+          <div class="contact-detail reveal-up reveal-delay-2">
+            <div class="contact-detail-label">General Inquiries</div>
+            <div class="contact-detail-value">
+              <a href="mailto:admin@nusadagang.com">admin@nusadagang.com</a>
+            </div>
+          </div>
+          <div class="contact-detail reveal-up reveal-delay-3">
+            <div class="contact-detail-label">Sales &amp; Partnerships</div>
+            <div class="contact-detail-value">
+              <a href="mailto:sales@nusadagang.com">sales@nusadagang.com</a>
+            </div>
+          </div>
+          <div class="contact-detail reveal-up reveal-delay-4">
+            <div class="contact-detail-label">Location</div>
+            <div class="contact-detail-value">Kuala Lumpur, Malaysia</div>
+          </div>
+          <div class="contact-detail reveal-up reveal-delay-5">
+            <div class="contact-detail-label">Registration</div>
+            <div class="contact-detail-value" style="font-size:12px;">202503267841-V</div>
+          </div>
+        </div>
+
+        <!-- Right: Form -->
+        <div class="reveal-up reveal-delay-2">
+          <form class="contact-form" id="contact-form" onsubmit="handleFormSubmit(event)" novalidate>
+            <div class="form-group">
+              <label class="form-label" for="cf-name">Full Name</label>
+              <input class="form-input" id="cf-name" type="text" name="name" placeholder="Your Name" required
+                autocomplete="name" />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="cf-company">Company</label>
+              <input class="form-input" id="cf-company" type="text" name="company"
+                placeholder="Your Company or Organisation" autocomplete="organization" />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="cf-email">Email Address</label>
+              <input class="form-input" id="cf-email" type="email" name="email" placeholder="your@email.com" required
+                autocomplete="email" />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="cf-message">Message</label>
+              <textarea class="form-textarea" id="cf-message" name="message" rows="4"
+                placeholder="Tell us about your requirements…" required></textarea>
+            </div>
+            <div class="form-group">
+              <!-- Magnetic CTA wrapper -->
+              <div class="magnetic-btn-wrapper" id="magnetic-btn-wrapper">
+                <button type="submit" class="magnetic-btn" id="magnetic-btn">
+                  <span>Send Message</span>
+                  <span class="btn-arrow">→</span>
+                </button>
+              </div>
+            </div>
+          </form>
+          <!-- Form success message -->
+          <div id="form-success" style="display:none;margin-top:24px;padding:20px;
+               border-left:2px solid var(--gold);background:var(--surface);">
+            <p style="font-size:14px;color:var(--cream);">
+              ✦ &nbsp;Thank you — we'll be in touch shortly.
+            </p>
+          </div>
+        </div>
+
       </div>
-    </div>
-  </footer>
+
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════════
+         FOOTER
+    ═══════════════════════════════════════════════ -->
+    <footer>
+      <div class="footer-inner">
+        <div>
+          <div class="footer-brand">NUSA DAGANG</div>
+          <p class="footer-reg">
+            Nusa Dagang Resources<br>
+            (202503267841-V)<br>
+            Kuala Lumpur, Malaysia
+          </p>
+        </div>
+        <div>
+          <div class="footer-col-title">Navigation</div>
+          <a class="footer-link" href="#section-brand">Home</a>
+          <a class="footer-link" href="#section-about">About Us</a>
+          <a class="footer-link" href="#section-rtc">Ready-to-Cook</a>
+          <a class="footer-link" href="#section-spices">Spices</a>
+          <a class="footer-link" href="#section-values">Value Promises</a>
+          <a class="footer-link" href="#section-contact">Contact</a>
+        </div>
+        <div>
+          <div class="footer-col-title">Contact</div>
+          <a class="footer-link" href="mailto:admin@nusadagang.com">admin@nusadagang.com</a>
+          <a class="footer-link" href="mailto:hello@nusadagang.com">hello@nusadagang.com</a>
+          <a class="footer-link" href="mailto:sales@nusadagang.com">sales@nusadagang.com</a>
+          <p class="footer-copy">© 2025 Nusa Dagang Resources. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
 
   </div><!-- /#main-content -->
 
@@ -885,13 +955,15 @@
     });
 
     /* ──────────────────────────────────────────────
-       8. RTC PRODUCT WHEEL
+       8. RTC PRODUCT PAN & ORBIT
     ────────────────────────────────────────────── */
     function initRTCWheel() {
       const wheelTrack = qs('#wheel-track');
+      if (!wheelTrack) return;
       const items = qsa('.wheel-item', wheelTrack);
+      const totalItems = items.length;
 
-      let baseSpeed = 20; // seconds per rotation
+      let baseSpeed = 25; // seconds per rotation
       let currentSpeed = baseSpeed;
       let rafId;
 
@@ -908,31 +980,55 @@
           wheelAngle = (wheelAngle + degsPerSec * dt) % 360;
           wheelTrack.style.transform = `rotate(${wheelAngle}deg)`;
 
-          const radius = wheelTrack.offsetWidth / 2;
-          // Counter-rotate each item to keep them upright
+          const radius = window.innerWidth < 768 ? 135 : 190;
+
           items.forEach((item, i) => {
-            const baseAngle = i * 60;
-            item.style.transform =
-              `rotate(${baseAngle}deg) translateY(${-radius}px) rotate(${-baseAngle - wheelAngle}deg)`;
+            // Calculate equidistant angular points starting at 12 o'clock top position
+            const angle = (i / totalItems) * 2 * Math.PI - Math.PI / 2;
+            const x = Math.cos(angle) * radius;
+            const y = Math.sin(angle) * radius;
+
+            const isFocused = item.classList.contains('focused');
+            const scaleStr = isFocused ? ' scale(1.25)' : '';
+
+            item.style.transform = `translate(${x}px, ${y}px) rotate(${-wheelAngle}deg)${scaleStr}`;
           });
         }
         rafId = requestAnimationFrame(animateWheel);
       }
       rafId = requestAnimationFrame(animateWheel);
 
-      // GSAP ScrollTrigger — velocity tracking to accelerate wheel
+      // GSAP Text Stagger Entrance Animation (Left Column)
+      gsap.fromTo(
+        '#section-rtc .text-anim',
+        { y: 80, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 1.1,
+          stagger: 0.12,
+          ease: 'power4.out',
+          scrollTrigger: {
+            trigger: '#section-rtc',
+            start: 'top 70%',
+            toggleActions: 'play none none reverse',
+          },
+        }
+      );
+
+      // GSAP ScrollTrigger — velocity tracking to accelerate orbit
       ScrollTrigger.create({
         trigger: '#section-rtc',
         start: 'top bottom',
         end: 'bottom top',
         onUpdate: self => {
           const velocity = Math.abs(self.getVelocity());
-          const targetSpeed = Math.max(2, baseSpeed - (velocity / 3000) * 18);
+          const targetSpeed = Math.max(3, baseSpeed - (velocity / 3000) * 20);
           currentSpeed += (targetSpeed - currentSpeed) * 0.05;
         }
       });
 
-      // Hover: pause and focus item
+      // Hover: pause orbit and scale up item
       items.forEach(item => {
         item.addEventListener('mouseenter', () => {
           wheelTrack.classList.add('paused');
