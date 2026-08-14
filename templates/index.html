@@ -428,56 +428,90 @@
          SECTION 6: VALUE PROMISES — GSAP HORIZONTAL CAROUSEL
     ═══════════════════════════════════════════════ -->
   <section id="section-values" data-section="values"
-    class="relative h-screen w-full bg-[#0a0a0a] text-white overflow-hidden flex flex-col justify-center items-center">
+    class="relative w-full h-screen bg-[#0a0a0a] text-white flex flex-col justify-center overflow-hidden">
     
-    <!-- Header Info -->
-    <div class="text-center mb-10 z-10 px-4">
-      <h2 class="text-4xl md:text-5xl font-bold tracking-tight mb-2 text-white">OUR VALUE PROMISES</h2>
-      <p class="text-gray-400 text-sm md:text-base">Dive into authentic excellence powered by quality.</p>
+    <!-- Title Header -->
+    <div class="text-center mb-8 px-4 z-10">
+      <h2 class="text-3xl md:text-5xl font-extrabold tracking-wide uppercase text-white mb-2">
+        OUR VALUE PROMISES
+      </h2>
+      <p class="text-gray-400 text-sm md:text-base">
+        Dive into authentic excellence powered by quality.
+      </p>
     </div>
 
     <!-- Horizontal Moving Track -->
-    <div class="w-full flex justify-start pl-[20vw]">
-      <div id="value-track-outer" class="flex gap-6 items-center flex-nowrap will-change-transform">
+    <div class="w-full overflow-visible pl-[10vw]">
+      <div id="value-track-outer" class="flex gap-8 items-center flex-nowrap will-change-transform pr-[20vw]">
         
         <!-- Card 01 -->
         <div
-          class="w-[280px] h-[280px] md:w-[320px] md:h-[320px] bg-[#141414] border border-yellow-500/20 rounded-2xl p-8 flex flex-col justify-center items-center text-center shadow-2xl flex-shrink-0 hover:border-yellow-500/60 transition-colors">
-          <span class="text-5xl font-extrabold text-yellow-400 mb-4">01</span>
-          <h3 class="text-xl font-bold text-white mb-2">Zero Preservatives</h3>
-          <p class="text-gray-400 text-sm leading-relaxed">Long-lasting natural quality.</p>
+          class="flex-shrink-0 w-[280px] h-[300px] md:w-[340px] md:h-[340px] bg-[#121212] border border-[#2a2a2a] hover:border-yellow-500/50 rounded-2xl p-8 flex flex-col justify-center items-center text-center shadow-2xl transition-all duration-300 group">
+          <span class="text-5xl md:text-6xl font-black text-yellow-400/90 mb-4 group-hover:scale-110 transition-transform duration-300">
+            01
+          </span>
+          <h3 class="text-xl md:text-2xl font-bold text-white mb-3">
+            Zero Preservatives
+          </h3>
+          <p class="text-gray-400 text-xs md:text-sm leading-relaxed">
+            Long-lasting natural quality without compromise.
+          </p>
         </div>
 
         <!-- Card 02 -->
         <div
-          class="w-[280px] h-[280px] md:w-[320px] md:h-[320px] bg-[#141414] border border-yellow-500/20 rounded-2xl p-8 flex flex-col justify-center items-center text-center shadow-2xl flex-shrink-0 hover:border-yellow-500/60 transition-colors">
-          <span class="text-5xl font-extrabold text-yellow-400 mb-4">02</span>
-          <h3 class="text-xl font-bold text-white mb-2">Authentic Flavors</h3>
-          <p class="text-gray-400 text-sm leading-relaxed">True heritage recipes.</p>
+          class="flex-shrink-0 w-[280px] h-[300px] md:w-[340px] md:h-[340px] bg-[#121212] border border-[#2a2a2a] hover:border-yellow-500/50 rounded-2xl p-8 flex flex-col justify-center items-center text-center shadow-2xl transition-all duration-300 group">
+          <span class="text-5xl md:text-6xl font-black text-yellow-400/90 mb-4 group-hover:scale-110 transition-transform duration-300">
+            02
+          </span>
+          <h3 class="text-xl md:text-2xl font-bold text-white mb-3">
+            Authentic Flavors
+          </h3>
+          <p class="text-gray-400 text-xs md:text-sm leading-relaxed">
+            True heritage recipes crafted for perfection.
+          </p>
         </div>
 
         <!-- Card 03 -->
         <div
-          class="w-[280px] h-[280px] md:w-[320px] md:h-[320px] bg-[#141414] border border-yellow-500/20 rounded-2xl p-8 flex flex-col justify-center items-center text-center shadow-2xl flex-shrink-0 hover:border-yellow-500/60 transition-colors">
-          <span class="text-5xl font-extrabold text-yellow-400 mb-4">03</span>
-          <h3 class="text-xl font-bold text-white mb-2">Premium Sourcing</h3>
-          <p class="text-gray-400 text-sm leading-relaxed">Finest handpicked spices.</p>
+          class="flex-shrink-0 w-[280px] h-[300px] md:w-[340px] md:h-[340px] bg-[#121212] border border-[#2a2a2a] hover:border-yellow-500/50 rounded-2xl p-8 flex flex-col justify-center items-center text-center shadow-2xl transition-all duration-300 group">
+          <span class="text-5xl md:text-6xl font-black text-yellow-400/90 mb-4 group-hover:scale-110 transition-transform duration-300">
+            03
+          </span>
+          <h3 class="text-xl md:text-2xl font-bold text-white mb-3">
+            Premium Sourcing
+          </h3>
+          <p class="text-gray-400 text-xs md:text-sm leading-relaxed">
+            Finest handpicked spices from local growers.
+          </p>
         </div>
 
         <!-- Card 04 -->
         <div
-          class="w-[280px] h-[280px] md:w-[320px] md:h-[320px] bg-[#141414] border border-yellow-500/20 rounded-2xl p-8 flex flex-col justify-center items-center text-center shadow-2xl flex-shrink-0 hover:border-yellow-500/60 transition-colors">
-          <span class="text-5xl font-extrabold text-yellow-400 mb-4">04</span>
-          <h3 class="text-xl font-bold text-white mb-2">Ready to Cook</h3>
-          <p class="text-gray-400 text-sm leading-relaxed">Convenient culinary solutions.</p>
+          class="flex-shrink-0 w-[280px] h-[300px] md:w-[340px] md:h-[340px] bg-[#121212] border border-[#2a2a2a] hover:border-yellow-500/50 rounded-2xl p-8 flex flex-col justify-center items-center text-center shadow-2xl transition-all duration-300 group">
+          <span class="text-5xl md:text-6xl font-black text-yellow-400/90 mb-4 group-hover:scale-110 transition-transform duration-300">
+            04
+          </span>
+          <h3 class="text-xl md:text-2xl font-bold text-white mb-3">
+            Ready to Cook
+          </h3>
+          <p class="text-gray-400 text-xs md:text-sm leading-relaxed">
+            Convenient, fast, and authentic culinary solutions.
+          </p>
         </div>
 
         <!-- Card 05 -->
         <div
-          class="w-[280px] h-[280px] md:w-[320px] md:h-[320px] bg-[#141414] border border-yellow-500/20 rounded-2xl p-8 flex flex-col justify-center items-center text-center shadow-2xl flex-shrink-0 hover:border-yellow-500/60 transition-colors">
-          <span class="text-5xl font-extrabold text-yellow-400 mb-4">05</span>
-          <h3 class="text-xl font-bold text-white mb-2">Quality Assured</h3>
-          <p class="text-gray-400 text-sm leading-relaxed">Strict hygiene standards.</p>
+          class="flex-shrink-0 w-[280px] h-[300px] md:w-[340px] md:h-[340px] bg-[#121212] border border-[#2a2a2a] hover:border-yellow-500/50 rounded-2xl p-8 flex flex-col justify-center items-center text-center shadow-2xl transition-all duration-300 group">
+          <span class="text-5xl md:text-6xl font-black text-yellow-400/90 mb-4 group-hover:scale-110 transition-transform duration-300">
+            05
+          </span>
+          <h3 class="text-xl md:text-2xl font-bold text-white mb-3">
+            Quality Assured
+          </h3>
+          <p class="text-gray-400 text-xs md:text-sm leading-relaxed">
+            Strict food safety and unmatched hygiene standards.
+          </p>
         </div>
 
       </div>
@@ -928,18 +962,17 @@
       const track = qs('#value-track-outer');
       if (!section || !track) return;
 
-      const totalScrollWidth = track.scrollWidth - window.innerWidth + 120;
+      const getScrollAmount = () => -(track.scrollWidth - window.innerWidth + 200);
 
       gsap.to(track, {
-        x: -totalScrollWidth,
+        x: getScrollAmount,
         ease: 'none',
         scrollTrigger: {
           trigger: section,
+          start: 'top top',
+          end: () => `+=${track.scrollWidth}`,
           pin: true,
           scrub: 1,
-          anticipatePin: 1,
-          start: 'top top',
-          end: () => `+=${totalScrollWidth}`,
           invalidateOnRefresh: true,
         },
       });
