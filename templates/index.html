@@ -1141,7 +1141,7 @@
     }
 
     /* ──────────────────────────────────────────────
-       3D INDEPENDENT CHUNKY BLOCKS (THREE.JS)
+       3D INDEPENDENT CHUNKY BLOCKS (MATCHING REFERENCE IMAGE)
     ────────────────────────────────────────────── */
     function init3DStackedCards() {
       const container = document.getElementById('cards-3d-container');
@@ -1151,8 +1151,8 @@
       const height = container.clientHeight || 580;
 
       const scene = new THREE.Scene();
-      const camera = new THREE.PerspectiveCamera(42, width / height, 0.1, 1000);
-      camera.position.set(0, 0, 5.5);
+      const camera = new THREE.PerspectiveCamera(44, width / height, 0.1, 1000);
+      camera.position.set(0, 0, 5.8);
 
       const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
       renderer.setSize(width, height);
@@ -1161,16 +1161,16 @@
       renderer.shadowMap.type = THREE.PCFSoftShadowMap;
       container.appendChild(renderer.domElement);
 
-      // Studio Lighting
+      // Cinematic Studio Lighting
       const ambientLight = new THREE.AmbientLight(0xffffff, 0.9);
       scene.add(ambientLight);
 
-      const dirLight1 = new THREE.DirectionalLight(0xfff6e5, 2.0);
+      const dirLight1 = new THREE.DirectionalLight(0xfff6e5, 2.2);
       dirLight1.position.set(5, 7, 5);
       dirLight1.castShadow = true;
       scene.add(dirLight1);
 
-      const dirLight2 = new THREE.DirectionalLight(0xfbbf24, 0.8);
+      const dirLight2 = new THREE.DirectionalLight(0xfbbf24, 0.9);
       dirLight2.position.set(-5, -2, 2);
       scene.add(dirLight2);
 
@@ -1208,31 +1208,34 @@
 
       const blockMaterials = [sideMat, sideMat, sideMat, sideMat, frontMat, backMat];
 
-      // Chunky 3D Block Geometry (Substantial depth 0.75)
-      const boxGeo = new THREE.BoxGeometry(2.5, 1.15, 0.75);
+      // Chunky 3D Block Geometry (Solid brick proportions matching reference: W:2.1, H:1.05, D:0.95)
+      const boxGeo = new THREE.BoxGeometry(2.1, 1.05, 0.95);
 
-      // Block Specifications
+      // 3 Independent Block Configurations (Dynamic positions like reference image)
       const blockConfigs = [
         {
-          basePos: [-0.25, 1.45, 0],
-          baseRot: [0.18, -0.28, 0.08],
-          floatSpeed: 1.3,
-          floatIntensity: 0.4,
-          phaseOffset: 0
+          basePos: [-1.1, 1.25, 0.2],
+          baseRot: [0.65, -0.45, 0.4],
+          floatSpeed: 1.1,
+          floatIntensity: 0.6,
+          spinSpeed: 0.4,
+          phaseOffset: 0.0
         },
         {
-          basePos: [0.35, 0, 0.25],
-          baseRot: [-0.12, 0.25, -0.06],
+          basePos: [1.05, 0.15, 0.35],
+          baseRot: [-0.25, 0.55, -0.2],
           floatSpeed: 1.6,
-          floatIntensity: 0.5,
-          phaseOffset: 2
+          floatIntensity: 0.7,
+          spinSpeed: -0.5,
+          phaseOffset: 2.3
         },
         {
-          basePos: [-0.2, -1.45, -0.1],
-          baseRot: [0.14, -0.18, 0.04],
-          floatSpeed: 1.2,
-          floatIntensity: 0.4,
-          phaseOffset: 4
+          basePos: [-0.35, -1.35, -0.15],
+          baseRot: [0.35, -0.25, -0.45],
+          floatSpeed: 1.3,
+          floatIntensity: 0.5,
+          spinSpeed: 0.3,
+          phaseOffset: 4.5
         }
       ];
 
@@ -1336,31 +1339,39 @@
       window.addEventListener('touchmove', handlePointerMove, { passive: true });
       window.addEventListener('touchend', handlePointerUp);
 
-      // Animation Loop
+      // Animation Loop: Each block moves and drifts INDEPENDENTLY
       const clock = new THREE.Clock();
       function animate() {
         requestAnimationFrame(animate);
 
         const elapsedTime = clock.getElapsedTime();
 
-        // Update each block independently
         cardMeshes.forEach((item, idx) => {
           const t = elapsedTime * item.floatSpeed + item.phaseOffset;
-          const floatY = Math.sin(t * 0.9) * 0.05 * item.floatIntensity;
+
+          // Independent float trajectory in 3D (X, Y, Z sine oscillation)
+          const floatY = Math.sin(t * 0.9) * 0.08 * item.floatIntensity;
+          const floatX = Math.cos(t * 0.7) * 0.04 * item.floatIntensity;
+          const floatZ = Math.sin(t * 0.5) * 0.05 * item.floatIntensity;
 
           // Lerp independent drag rotation
           item.rotOffset.x += (item.targetRotOffset.x - item.rotOffset.x) * 0.1;
           item.rotOffset.y += (item.targetRotOffset.y - item.rotOffset.y) * 0.1;
 
           // Scale up slightly on hover / drag
-          const targetScale = (hoveredBlockIndex === idx || activeBlockIndex === idx) ? 1.04 : 1.0;
+          const targetScale = (hoveredBlockIndex === idx || activeBlockIndex === idx) ? 1.05 : 1.0;
           item.mesh.scale.x += (targetScale - item.mesh.scale.x) * 0.1;
           item.mesh.scale.y += (targetScale - item.mesh.scale.y) * 0.1;
           item.mesh.scale.z += (targetScale - item.mesh.scale.z) * 0.1;
 
+          // Apply independent position and rotation
+          item.mesh.position.x = item.basePos[0] + floatX;
           item.mesh.position.y = item.basePos[1] + floatY;
-          item.mesh.rotation.y = item.baseRot[1] + item.rotOffset.y + Math.sin(t * 0.8) * 0.04;
-          item.mesh.rotation.x = item.baseRot[0] + item.rotOffset.x + Math.cos(t * 0.6) * 0.03;
+          item.mesh.position.z = item.basePos[2] + floatZ;
+
+          item.mesh.rotation.y = item.baseRot[1] + item.rotOffset.y + Math.sin(t * item.spinSpeed) * 0.08;
+          item.mesh.rotation.x = item.baseRot[0] + item.rotOffset.x + Math.cos(t * (item.spinSpeed * 0.8)) * 0.06;
+          item.mesh.rotation.z = item.baseRot[2] + Math.sin(t * 0.5) * 0.04;
         });
 
         renderer.render(scene, camera);
