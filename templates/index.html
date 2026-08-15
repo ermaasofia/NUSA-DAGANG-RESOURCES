@@ -201,39 +201,71 @@
 
 
     <!-- ═══════════════════════════════════════════════
-         SECTION 3: ABOUT / MISSION / VISION
+         SECTION 3: ABOUT / MISSION / VISION + SLIDING PUZZLE
     ═══════════════════════════════════════════════ -->
-    <section id="section-about" data-section="about">
-      <div class="about-grid">
+    <section id="section-about" data-section="about"
+      class="relative w-full min-h-screen bg-[#0a0a0a] text-white flex items-center justify-center py-20 px-8 md:px-20 overflow-hidden">
+      <div class="w-full max-w-7xl grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
 
-        <!-- LEFT: Text -->
-        <div class="about-left">
-          <span class="section-tag reveal-up" id="about-tag">About NusaDagang</span>
-          <h2 class="about-headline reveal-up reveal-delay-1" id="about-headline">
-            Redefining the<br>Culinary Supply Chain
-          </h2>
-          <div class="gold-divider reveal-up reveal-delay-2"></div>
-          <p class="about-body reveal-up reveal-delay-2">
-            Nusa Dagang Resources specialises in high-quality, preservative-free food ingredients —
-            from precision-blended spice pastes to chopped aromatics. We streamline kitchen
-            operations for the F&amp;B industry, central kitchens, and catering businesses,
-            reducing prep time and labour costs without compromise.
-          </p>
-          <div class="about-block reveal-up reveal-delay-3">
-            <div class="about-block-label">Mission</div>
-            <p class="about-block-text">
-              To provide high-quality, preservative-free food processing solutions that
-              enhance efficiency and consistency for businesses in the food industry.
+        <!-- LEFT COLUMN: About Us, Mission & Vision -->
+        <div class="lg:col-span-6 flex flex-col space-y-8 text-left z-10">
+          <div>
+            <span class="text-xs uppercase tracking-[0.3em] text-amber-400 font-semibold block mb-2" id="about-tag">
+              About NusaDagang
+            </span>
+            <h2 class="text-4xl md:text-6xl font-serif font-black tracking-tight text-white leading-tight" id="about-headline">
+              Culinary Supply Chain
+            </h2>
+            <div class="w-16 h-[2px] bg-amber-400 mt-4 mb-6"></div>
+            <p class="text-gray-300 text-sm md:text-base leading-relaxed font-light">
+              Nusa Dagang Resources specialises in high-quality, preservative-free food ingredients — from precision-blended spice pastes to chopped aromatics. We streamline kitchen operations for the F&amp;B industry, central kitchens, and catering businesses, reducing prep time and labour costs without compromise.
             </p>
           </div>
-          <div class="about-block reveal-up reveal-delay-4">
-            <div class="about-block-label">Vision</div>
-            <p class="about-block-text">
-              To become the leading and most trusted food processing partner, delivering
-              innovative solutions that support the growth of the global food service industry.
-            </p>
+
+          <div class="space-y-6 border-t border-white/10 pt-6">
+            <div>
+              <h3 class="text-xs uppercase tracking-[0.3em] text-amber-400 font-bold mb-2">
+                MISSION
+              </h3>
+              <p class="text-gray-300 text-sm md:text-base leading-relaxed font-light">
+                To provide high-quality, preservative-free food processing solutions that enhance efficiency and consistency for businesses in the food industry.
+              </p>
+            </div>
+
+            <div>
+              <h3 class="text-xs uppercase tracking-[0.3em] text-amber-400 font-bold mb-2">
+                VISION
+              </h3>
+              <p class="text-gray-300 text-sm md:text-base leading-relaxed font-light">
+                To become the leading and most trusted food processing partner across regional and international culinary markets.
+              </p>
+            </div>
           </div>
         </div>
+
+        <!-- RIGHT COLUMN: 3x3 Animated Sliding Puzzle -->
+        <div class="lg:col-span-6 flex flex-col items-center justify-center relative">
+          <div class="relative p-6 rounded-3xl bg-[#121212]/80 border border-amber-500/20 backdrop-blur-xl shadow-[0_25px_60px_rgba(0,0,0,0.85)]">
+
+            <!-- Ambient Background Glow -->
+            <div class="absolute -top-10 -right-10 w-48 h-48 bg-amber-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+            <!-- 3x3 Puzzle Board -->
+            <div id="puzzle-board"
+              class="grid grid-cols-3 gap-2 w-[280px] h-[280px] md:w-[360px] md:h-[360px] bg-[#1a1a1a] p-2 rounded-2xl border border-white/10 relative">
+              <!-- Tile elements populated and animated dynamically via JS -->
+            </div>
+
+            <!-- Subtitle tag under puzzle -->
+            <div class="text-center mt-4">
+              <span class="text-[11px] uppercase tracking-widest text-gray-400">
+                Interactive Kinetic Brand Motif
+              </span>
+            </div>
+          </div>
+        </div>
+
+      </div>
     </section>
     <!-- ═══════════════════════════════════════════════
          SECTION: IMPACT COUNTERS
@@ -1109,11 +1141,89 @@
       // Setup all scroll-driven animations
       initNavScroll();
       initScrollReveal();
+      initSlidingPuzzle();
       initRTCWheel();
       initImpactCounters();
       initSpicesHotspots();
       initValueHorizontalScroll();
       initMagneticButton();
+    }
+
+    /* ──────────────────────────────────────────────
+       3x3 ANIMATED SLIDING PUZZLE LOGIC
+    ────────────────────────────────────────────── */
+    function initSlidingPuzzle() {
+      const board = qs('#puzzle-board');
+      if (!board) return;
+
+      let tiles = [0, 1, 2, 3, null, 4, 5, 6, 7];
+
+      function renderBoard() {
+        board.innerHTML = '';
+        tiles.forEach((tileVal, index) => {
+          if (tileVal === null) {
+            const emptyEl = document.createElement('div');
+            emptyEl.className = 'w-full h-full rounded-xl bg-black/50 border border-dashed border-white/10';
+            board.appendChild(emptyEl);
+          } else {
+            const tileEl = document.createElement('div');
+            tileEl.className = 'relative w-full h-full rounded-xl bg-gradient-to-br from-amber-400 via-amber-500 to-yellow-600 border border-amber-300/40 shadow-lg cursor-pointer overflow-hidden flex items-center justify-center group hover:scale-[0.98] transition-all duration-300';
+
+            const tileRow = Math.floor(tileVal / 3);
+            const tileCol = tileVal % 3;
+
+            tileEl.innerHTML = `
+              <div class="absolute inset-0 bg-[#0d0d0d] flex items-center justify-center"
+                   style="background-image: radial-gradient(circle at center, #fbbf24 20%, #171717 80%); background-position: ${-tileCol * 100}% ${-tileRow * 100}%;">
+                <span class="text-xl md:text-2xl font-serif font-black text-amber-200/40 select-none group-hover:text-amber-200 transition-colors">
+                  ${tileVal + 1}
+                </span>
+              </div>
+            `;
+
+            tileEl.addEventListener('click', () => handleTileClick(index));
+            board.appendChild(tileEl);
+          }
+        });
+      }
+
+      function handleTileClick(index) {
+        const emptyIndex = tiles.indexOf(null);
+        const row = Math.floor(index / 3);
+        const col = index % 3;
+        const emptyRow = Math.floor(emptyIndex / 3);
+        const emptyCol = emptyIndex % 3;
+
+        const isAdjacent =
+          (Math.abs(row - emptyRow) === 1 && col === emptyCol) ||
+          (Math.abs(col - emptyCol) === 1 && row === emptyRow);
+
+        if (isAdjacent) {
+          tiles[emptyIndex] = tiles[index];
+          tiles[index] = null;
+          renderBoard();
+        }
+      }
+
+      function autoStep() {
+        const emptyIndex = tiles.indexOf(null);
+        const validMoves = [];
+        const row = Math.floor(emptyIndex / 3);
+        const col = emptyIndex % 3;
+
+        if (row > 0) validMoves.push(emptyIndex - 3); // Up
+        if (row < 2) validMoves.push(emptyIndex + 3); // Down
+        if (col > 0) validMoves.push(emptyIndex - 1); // Left
+        if (col < 2) validMoves.push(emptyIndex + 1); // Right
+
+        const randomMove = validMoves[Math.floor(Math.random() * validMoves.length)];
+        tiles[emptyIndex] = tiles[randomMove];
+        tiles[randomMove] = null;
+        renderBoard();
+      }
+
+      renderBoard();
+      setInterval(autoStep, 1200);
     }
 
     /* ──────────────────────────────────────────────
