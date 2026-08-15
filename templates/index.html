@@ -201,95 +201,37 @@
 
 
     <!-- ═══════════════════════════════════════════════
-         SECTION 3: ABOUT / MISSION / VISION + SLIDING PUZZLE
+         SECTION 3: ABOUT / MISSION / VISION
     ═══════════════════════════════════════════════ -->
-    <section id="section-about" data-section="about"
-      class="relative w-full min-h-screen bg-[#0a0a0a] text-white flex items-center justify-center py-20 px-8 md:px-20 overflow-hidden">
-      <div class="w-full max-w-7xl grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+    <section id="section-about" data-section="about">
+      <div class="about-grid">
 
-        <!-- LEFT COLUMN: About Us, Mission & Vision -->
-        <div class="lg:col-span-6 flex flex-col space-y-8 text-left z-10">
-          <div>
-            <span class="text-xs uppercase tracking-[0.3em] text-amber-400 font-semibold block mb-2" id="about-tag">
-              About NusaDagang
-            </span>
-            <h2 class="text-4xl md:text-6xl font-serif font-black tracking-tight text-white leading-tight" id="about-headline">
-              Culinary Supply Chain
-            </h2>
-            <div class="w-16 h-[2px] bg-amber-400 mt-4 mb-6"></div>
-            <p class="text-gray-300 text-sm md:text-base leading-relaxed font-light">
-              Nusa Dagang Resources specialises in high-quality, preservative-free food ingredients — from precision-blended spice pastes to chopped aromatics. We streamline kitchen operations for the F&amp;B industry, central kitchens, and catering businesses, reducing prep time and labour costs without compromise.
+        <!-- LEFT: Text -->
+        <div class="about-left">
+          <span class="section-tag reveal-up" id="about-tag">About NusaDagang</span>
+          <h2 class="about-headline reveal-up reveal-delay-1" id="about-headline">
+            Redefining the<br>Culinary Supply Chain
+          </h2>
+          <div class="gold-divider reveal-up reveal-delay-2"></div>
+          <p class="about-body reveal-up reveal-delay-2">
+            Nusa Dagang Resources specialises in high-quality, preservative-free food ingredients —
+            from precision-blended spice pastes to chopped aromatics. We streamline kitchen
+            operations for the F&amp;B industry, central kitchens, and catering businesses,
+            reducing prep time and labour costs without compromise.
+          </p>
+          <div class="about-block reveal-up reveal-delay-3">
+            <div class="about-block-label">Mission</div>
+            <p class="about-block-text">
+              To provide high-quality, preservative-free food processing solutions that
+              enhance efficiency and consistency for businesses in the food industry.
             </p>
           </div>
-
-          <div class="space-y-6 border-t border-white/10 pt-6">
-            <div>
-              <h3 class="text-xs uppercase tracking-[0.3em] text-amber-400 font-bold mb-2">
-                MISSION
-              </h3>
-              <p class="text-gray-300 text-sm md:text-base leading-relaxed font-light">
-                To provide high-quality, preservative-free food processing solutions that enhance efficiency and consistency for businesses in the food industry.
-              </p>
-            </div>
-
-            <div>
-              <h3 class="text-xs uppercase tracking-[0.3em] text-amber-400 font-bold mb-2">
-                VISION
-              </h3>
-              <p class="text-gray-300 text-sm md:text-base leading-relaxed font-light">
-                To become the leading and most trusted food processing partner across regional and international culinary markets.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <!-- RIGHT COLUMN: Interactive Image Sliding Puzzle (6 Showcase Pictures) -->
-        <div class="lg:col-span-6 flex flex-col items-center justify-center relative">
-          <div class="relative p-6 rounded-3xl bg-[#121212]/80 border border-amber-500/20 backdrop-blur-xl shadow-[0_25px_60px_rgba(0,0,0,0.85)] flex flex-col items-center">
-
-            <!-- Ambient Background Glow -->
-            <div class="absolute -top-10 -right-10 w-48 h-48 bg-amber-500/10 rounded-full blur-3xl pointer-events-none"></div>
-
-            <!-- 3x3 Puzzle Board -->
-            <div id="puzzle-board"
-              class="grid grid-cols-3 gap-2 w-[280px] h-[280px] md:w-[360px] md:h-[360px] bg-[#1a1a1a] p-2 rounded-2xl border border-white/10 relative">
-              <!-- Tile elements populated dynamically via JS -->
-            </div>
-
-            <!-- 6 Image Selector Buttons -->
-            <div class="mt-5 flex flex-wrap justify-center gap-2 max-w-[360px]">
-              <button onclick="switchPuzzleImage('/static/images/logonusa2.png', this)"
-                class="puzzle-img-btn active px-3 py-1 rounded-full text-[10px] font-semibold tracking-wider border border-amber-400/40 bg-amber-400/20 text-amber-300 hover:bg-amber-400 hover:text-black transition-all">
-                Brand Emblem
-              </button>
-              <button onclick="switchPuzzleImage('/static/images/spices.png', this)"
-                class="puzzle-img-btn px-3 py-1 rounded-full text-[10px] font-semibold tracking-wider border border-white/10 bg-white/5 text-gray-300 hover:bg-amber-400 hover:text-black transition-all">
-                Spices Showcase
-              </button>
-              <button onclick="switchPuzzleImage('/static/images/pan.png', this)"
-                class="puzzle-img-btn px-3 py-1 rounded-full text-[10px] font-semibold tracking-wider border border-white/10 bg-white/5 text-gray-300 hover:bg-amber-400 hover:text-black transition-all">
-                Searing Pan
-              </button>
-              <button onclick="switchPuzzleImage('/static/images/RTC1.png', this)"
-                class="puzzle-img-btn px-3 py-1 rounded-full text-[10px] font-semibold tracking-wider border border-white/10 bg-white/5 text-gray-300 hover:bg-amber-400 hover:text-black transition-all">
-                Rendang Paste
-              </button>
-              <button onclick="switchPuzzleImage('/static/images/RTC2.png', this)"
-                class="puzzle-img-btn px-3 py-1 rounded-full text-[10px] font-semibold tracking-wider border border-white/10 bg-white/5 text-gray-300 hover:bg-amber-400 hover:text-black transition-all">
-                Sambal Paste
-              </button>
-              <button onclick="switchPuzzleImage('/static/images/RTC3.png', this)"
-                class="puzzle-img-btn px-3 py-1 rounded-full text-[10px] font-semibold tracking-wider border border-white/10 bg-white/5 text-gray-300 hover:bg-amber-400 hover:text-black transition-all">
-                Kari Paste
-              </button>
-            </div>
-
-            <!-- Subtitle tag under puzzle -->
-            <div class="text-center mt-3">
-              <span class="text-[10px] uppercase tracking-widest text-amber-400/70 font-mono">
-                ✨ Interactive Image Puzzle (Click tiles or pick a picture)
-              </span>
-            </div>
+          <div class="about-block reveal-up reveal-delay-4">
+            <div class="about-block-label">Vision</div>
+            <p class="about-block-text">
+              To become the leading and most trusted food processing partner, delivering
+              innovative solutions that support the growth of the global food service industry.
+            </p>
           </div>
         </div>
 
@@ -1169,104 +1111,11 @@
       // Setup all scroll-driven animations
       initNavScroll();
       initScrollReveal();
-      initSlidingPuzzle();
       initRTCWheel();
       initImpactCounters();
       initSpicesHotspots();
       initValueHorizontalScroll();
       initMagneticButton();
-    }
-
-    /* ──────────────────────────────────────────────
-       3x3 ANIMATED SLIDING PUZZLE LOGIC (IMAGE SLICED, NO NUMBERS)
-    ────────────────────────────────────────────── */
-    let currentPuzzleImage = '/static/images/logonusa2.png';
-    let renderPuzzleBoardFn = null;
-
-    function switchPuzzleImage(imgUrl, btnEl) {
-      currentPuzzleImage = imgUrl;
-      if (btnEl) {
-        qsa('.puzzle-img-btn').forEach(btn => {
-          btn.className = 'puzzle-img-btn px-3 py-1 rounded-full text-[10px] font-semibold tracking-wider border border-white/10 bg-white/5 text-gray-300 hover:bg-amber-400 hover:text-black transition-all';
-        });
-        btnEl.className = 'puzzle-img-btn active px-3 py-1 rounded-full text-[10px] font-semibold tracking-wider border border-amber-400/40 bg-amber-400/20 text-amber-300 hover:bg-amber-400 hover:text-black transition-all';
-      }
-      if (renderPuzzleBoardFn) renderPuzzleBoardFn();
-    }
-
-    function initSlidingPuzzle() {
-      const board = qs('#puzzle-board');
-      if (!board) return;
-
-      let tiles = [0, 1, 2, 3, null, 4, 5, 6, 7];
-
-      function renderBoard() {
-        board.innerHTML = '';
-        tiles.forEach((tileVal, index) => {
-          if (tileVal === null) {
-            const emptyEl = document.createElement('div');
-            emptyEl.className = 'w-full h-full rounded-xl bg-black/60 border border-dashed border-amber-400/25 flex items-center justify-center';
-            emptyEl.innerHTML = `<span class="text-[9px] text-amber-400/40 font-mono uppercase tracking-widest">NUSA</span>`;
-            board.appendChild(emptyEl);
-          } else {
-            const tileEl = document.createElement('div');
-            tileEl.className = 'relative w-full h-full rounded-xl border border-amber-400/30 shadow-lg cursor-pointer overflow-hidden group hover:scale-[0.97] transition-all duration-300';
-
-            const tileRow = Math.floor(tileVal / 3);
-            const tileCol = tileVal % 3;
-            const posX = tileCol * 50;
-            const posY = tileRow * 50;
-
-            tileEl.style.backgroundImage = `url('${currentPuzzleImage}')`;
-            tileEl.style.backgroundSize = '300% 300%';
-            tileEl.style.backgroundPosition = `${posX}% ${posY}%`;
-            tileEl.style.backgroundRepeat = 'no-repeat';
-
-            tileEl.addEventListener('click', () => handleTileClick(index));
-            board.appendChild(tileEl);
-          }
-        });
-      }
-
-      renderPuzzleBoardFn = renderBoard;
-
-      function handleTileClick(index) {
-        const emptyIndex = tiles.indexOf(null);
-        const row = Math.floor(index / 3);
-        const col = index % 3;
-        const emptyRow = Math.floor(emptyIndex / 3);
-        const emptyCol = emptyIndex % 3;
-
-        const isAdjacent =
-          (Math.abs(row - emptyRow) === 1 && col === emptyCol) ||
-          (Math.abs(col - emptyCol) === 1 && row === emptyRow);
-
-        if (isAdjacent) {
-          tiles[emptyIndex] = tiles[index];
-          tiles[index] = null;
-          renderBoard();
-        }
-      }
-
-      function autoStep() {
-        const emptyIndex = tiles.indexOf(null);
-        const validMoves = [];
-        const row = Math.floor(emptyIndex / 3);
-        const col = emptyIndex % 3;
-
-        if (row > 0) validMoves.push(emptyIndex - 3); // Up
-        if (row < 2) validMoves.push(emptyIndex + 3); // Down
-        if (col > 0) validMoves.push(emptyIndex - 1); // Left
-        if (col < 2) validMoves.push(emptyIndex + 1); // Right
-
-        const randomMove = validMoves[Math.floor(Math.random() * validMoves.length)];
-        tiles[emptyIndex] = tiles[randomMove];
-        tiles[randomMove] = null;
-        renderBoard();
-      }
-
-      renderBoard();
-      setInterval(autoStep, 1200);
     }
 
     /* ──────────────────────────────────────────────
