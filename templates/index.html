@@ -12,7 +12,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Righteous&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&display=swap"
     rel="stylesheet" />
 
   <!-- Material Symbols -->
@@ -25,6 +25,9 @@
 
   <!-- Lenis Smooth Scroll -->
   <script src="https://unpkg.com/lenis@1.1.14/dist/lenis.min.js"></script>
+
+  <!-- Anime.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.2/anime.min.js"></script>
 
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -155,6 +158,7 @@
       <div class="scroll-tick" data-section="about" title="About"></div>
       <div class="scroll-tick" data-section="rtc" title="Products"></div>
       <div class="scroll-tick" data-section="spices" title="Spices"></div>
+      <div class="scroll-tick" data-section="impact" title="Impact"></div>
       <div class="scroll-tick" data-section="values" title="Values"></div>
       <div class="scroll-tick" data-section="contact" title="Contact"></div>
     </nav>
@@ -231,7 +235,73 @@
           </div>
         </div>
     </section>
+    <!-- ═══════════════════════════════════════════════
+         SECTION: IMPACT COUNTERS
+    ═══════════════════════════════════════════════ -->
+    <section id="section-impact" data-section="impact"
+      class="relative w-full min-h-[60vh] bg-[#0a0a0a] text-white flex items-center justify-center py-20 px-6 md:px-16 overflow-hidden">
+      <div class="w-full max-w-6xl grid grid-cols-1 md:grid-cols-2 gap-8 z-10">
 
+        <!-- Card 1: 3500+ KG Ready-to-Cook Pastes Delivered -->
+        <div
+          class="impact-card relative rounded-3xl p-10 md:p-14 bg-[#111111]/90 border border-white/10 hover:border-white/30 backdrop-blur-2xl shadow-[0_20px_50px_rgba(0,0,0,0.8)] transition-all duration-500 group flex flex-col justify-center text-left">
+          <!-- Top Subtle Light Reflection Line -->
+          <div
+            class="absolute top-0 left-10 right-10 h-[1px] bg-gradient-to-r from-transparent via-white/40 to-transparent">
+          </div>
+
+          <!-- Liquid Chrome Balloon Number Container -->
+          <div class="flex items-baseline py-3 px-1 overflow-visible mb-2">
+            <span
+              class="impact-counter text-6xl md:text-7xl xl:text-8xl font-black tracking-wide leading-tight select-none inline-block transition-all duration-300"
+              style="font-family: 'Righteous', 'Dela Gothic One', sans-serif; background: linear-gradient(135deg, #ffffff 0%, #e4e4e7 25%, #71717a 50%, #ffffff 75%, #a1a1aa 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; filter: drop-shadow(0 6px 16px rgba(255,255,255,0.3)) drop-shadow(0 2px 4px rgba(0,0,0,0.9));"
+              data-target="3500">
+              0
+            </span>
+            <span
+              class="text-5xl md:text-6xl xl:text-7xl font-extrabold ml-2 select-none"
+              style="font-family: 'Righteous', 'Dela Gothic One', sans-serif; background: linear-gradient(135deg, #ffffff 0%, #e4e4e7 40%, #a1a1aa 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+              +
+            </span>
+          </div>
+
+          <!-- Clean Subtitle Description -->
+          <p class="text-base md:text-xl font-light text-gray-300 tracking-wide leading-relaxed mt-2">
+            KG Ready-to-Cook Pastes Delivered
+          </p>
+        </div>
+
+        <!-- Card 2: 10000+ Customers Enjoying Our Spices -->
+        <div
+          class="impact-card relative rounded-3xl p-10 md:p-14 bg-[#111111]/90 border border-white/10 hover:border-white/30 backdrop-blur-2xl shadow-[0_20px_50px_rgba(0,0,0,0.8)] transition-all duration-500 group flex flex-col justify-center text-left">
+          <!-- Top Subtle Light Reflection Line -->
+          <div
+            class="absolute top-0 left-10 right-10 h-[1px] bg-gradient-to-r from-transparent via-white/40 to-transparent">
+          </div>
+
+          <!-- Liquid Chrome Balloon Number Container -->
+          <div class="flex items-baseline py-3 px-1 overflow-visible mb-2">
+            <span
+              class="impact-counter text-6xl md:text-7xl xl:text-8xl font-black tracking-wide leading-tight select-none inline-block transition-all duration-300"
+              style="font-family: 'Righteous', 'Dela Gothic One', sans-serif; background: linear-gradient(135deg, #ffffff 0%, #e4e4e7 25%, #71717a 50%, #ffffff 75%, #a1a1aa 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; filter: drop-shadow(0 6px 16px rgba(255,255,255,0.3)) drop-shadow(0 2px 4px rgba(0,0,0,0.9));"
+              data-target="10000">
+              0
+            </span>
+            <span
+              class="text-5xl md:text-6xl xl:text-7xl font-extrabold ml-2 select-none"
+              style="font-family: 'Righteous', 'Dela Gothic One', sans-serif; background: linear-gradient(135deg, #ffffff 0%, #e4e4e7 40%, #a1a1aa 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+              +
+            </span>
+          </div>
+
+          <!-- Clean Subtitle Description -->
+          <p class="text-base md:text-xl font-light text-gray-300 tracking-wide leading-relaxed mt-2">
+            Customers Enjoying Our Spices
+          </p>
+        </div>
+
+      </div>
+    </section>
 
     <!-- ═══════════════════════════════════════════════
          SECTION 4: READY TO COOK — INTERACTIVE PAN & ORBIT
@@ -314,6 +384,7 @@
                 class="opacity-0 group-hover:opacity-100 absolute -bottom-7 left-1/2 -translate-x-1/2 bg-black/90 text-[10px] text-amber-300 px-2 py-0.5 rounded border border-amber-400/40 whitespace-nowrap transition-opacity pointer-events-none">
                 Kari Daging
               </div>
+
             </div>
             <div
               class="wheel-item absolute rounded-full border-2 border-amber-400/80 shadow-[0_0_18px_rgba(251,191,36,0.35)] overflow-hidden cursor-pointer transition-transform duration-200 bg-[#121212] group"
@@ -374,121 +445,235 @@
 
 
     <!-- ═══════════════════════════════════════════════
-         SECTION 5: SPICES HOTSPOT SHOWCASE
+         SECTION 5: SPICES SHOWCASE
     ═══════════════════════════════════════════════ -->
-    <section id="section-spices" data-section="spices">
-      <div class="spices-section-inner">
+    <section id="section-spices" data-section="spices"
+      class="relative w-full min-h-screen bg-[#070707] text-white flex flex-col items-center justify-center py-16 px-4 md:px-8 overflow-visible select-none">
 
-        <div class="spices-header">
-          <h2 class="spices-title reveal-up">SPICES</h2>
-          <p class="spices-desc reveal-up reveal-delay-2">
-            Hover over the ingredients to discover the origin, aroma profile, and culinary pairings
-            of each key spice.
+      <!-- Header & Friendly Note -->
+      <div class="text-center mb-8 z-20 flex flex-col items-center">
+        <span class="text-xs uppercase tracking-[0.35em] text-amber-400 font-semibold mb-2">
+          RAW &amp; AUTHENTIC
+        </span>
+        <h2 class="text-4xl md:text-6xl font-serif font-black tracking-tight text-white mb-4">
+          SPICES SHOWCASE
+        </h2>
+
+        <!-- User Guide Pill -->
+        <div
+          class="inline-flex items-center gap-2 bg-amber-400/10 border border-amber-400/30 backdrop-blur-md px-4 py-1.5 rounded-full shadow-[0_0_15px_rgba(251,191,36,0.15)]">
+          <span class="w-2 h-2 rounded-full bg-amber-400 animate-ping"></span>
+          <p class="text-xs md:text-sm text-amber-200 font-medium">
+            ✨ Click or hover on glowing points to explore spice profiles
           </p>
         </div>
+      </div>
 
-        <!-- Spice image with interactive hotspots -->
-        <div class="spices-visual" id="spices-visual">
+      <!-- Main Image Stage Container (overflow-visible for 3D floating cards) -->
+      <div
+        class="relative w-full max-w-6xl aspect-[16/10] md:aspect-[16/9] rounded-3xl overflow-visible shadow-[0_30px_90px_rgba(0,0,0,0.95)]">
 
-          <!-- Main spice image -->
-          <img class="spices-img" src="{{ url_for('static', path='images/spices.png') }}"
-            alt="NusaDagang Premium Spices Collection" />
+        <!-- Background Image & Vignette Wrapper -->
+        <div class="relative w-full h-full rounded-3xl overflow-hidden border border-white/15 bg-neutral-950">
+          <img src="{{ url_for('static', path='images/spices.png') }}" alt="Authentic Spices Overview"
+            class="w-full h-full object-cover filter brightness-90 contrast-105" />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/40 pointer-events-none"></div>
+        </div>
 
-          <!-- HOTSPOT 1: Halia / Ginger -->
-          <div class="spice-hotspot" id="hs-halia" style="left:22%;top:60%;" aria-label="Halia (Ginger) information">
-            <div class="spice-hotspot-dot"></div>
-            <div class="spice-popup">
-              <div class="popup-spice-name">Halia (Ginger)</div>
-              <div class="popup-row">
-                <div class="popup-item">
-                  <div class="popup-label">Origin</div>
-                  <div class="popup-value">Southeast Asia</div>
-                </div>
-                <div class="popup-item">
-                  <div class="popup-label">Aroma Profile</div>
-                  <div class="popup-value">Warm, pungent &amp; subtly sweet</div>
-                </div>
-                <div class="popup-item">
-                  <div class="popup-label">Best Pairings</div>
-                  <div class="popup-value">Chicken, Fish, Soups, Teh Halia</div>
-                </div>
+        <!-- Hotspot 1: Cinnamon Sticks (Kulit Kayu Manis) - Pops DOWN/RIGHT -->
+        <div class="spice-hotspot-item absolute -translate-x-1/2 -translate-y-1/2 z-40" style="left:20%; top:35%;"
+          data-spice="cinnamon">
+          <button type="button"
+            class="spice-pin-btn relative flex items-center justify-center w-7 h-7 md:w-8 md:h-8 group cursor-pointer focus:outline-none"
+            aria-label="View details for Cinnamon Sticks">
+            <span class="absolute w-full h-full rounded-full bg-amber-400/40 animate-ping"></span>
+            <span
+              class="absolute w-5 h-5 rounded-full bg-amber-400/80 shadow-[0_0_12px_#fbbf24] transition-transform duration-300 group-hover:scale-125"></span>
+            <span class="relative w-2.5 h-2.5 rounded-full bg-white shadow-sm"></span>
+          </button>
+          <div
+            class="spice-glass-card absolute top-10 left-0 md:-left-4 w-64 md:w-80 rounded-2xl p-5 md:p-6 backdrop-blur-2xl border border-white/25 shadow-[0_30px_70px_rgba(0,0,0,0.95),inset_0_1px_1px_rgba(255,255,255,0.4)] z-50 transition-all duration-300 opacity-100 pointer-events-auto transform translate-y-0 scale-100"
+            style="background: linear-gradient(135deg, rgba(30, 30, 30, 0.85) 0%, rgba(12, 12, 12, 0.9) 100%);">
+            <div class="w-12 h-1 rounded-full bg-gradient-to-r from-amber-300 to-yellow-500 mb-3"></div>
+            <h3 class="text-lg md:text-xl font-serif font-bold text-amber-200 leading-snug">
+              Cinnamon Sticks
+            </h3>
+            <p class="text-[11px] font-sans text-amber-400/90 tracking-wider uppercase mb-3 font-medium">
+              Kulit Kayu Manis
+            </p>
+            <div class="space-y-2 border-t border-white/10 pt-3 text-xs leading-relaxed">
+              <div>
+                <span class="text-gray-400 font-medium block text-[10px] uppercase tracking-wider">Origin</span>
+                <span class="text-gray-200 font-light">Southeast Asia &amp; Sri Lanka</span>
+              </div>
+              <div>
+                <span class="text-gray-400 font-medium block text-[10px] uppercase tracking-wider">Aroma Profile</span>
+                <span class="text-gray-200 font-light">Sweet, woody, warm and intensely fragrant</span>
+              </div>
+              <div>
+                <span class="text-gray-400 font-medium block text-[10px] uppercase tracking-wider">Best Pairings</span>
+                <span class="text-amber-100 font-light">Curries, Rendang, Biryani, Spiced Teas</span>
               </div>
             </div>
           </div>
+        </div>
 
-          <!-- HOTSPOT 2: Lengkuas / Galangal -->
-          <div class="spice-hotspot" id="hs-lengkuas" style="left:42%;top:45%;"
-            aria-label="Lengkuas (Galangal) information">
-            <div class="spice-hotspot-dot"></div>
-            <div class="spice-popup">
-              <div class="popup-spice-name">Lengkuas (Galangal)</div>
-              <div class="popup-row">
-                <div class="popup-item">
-                  <div class="popup-label">Origin</div>
-                  <div class="popup-value">Southeast Asia</div>
-                </div>
-                <div class="popup-item">
-                  <div class="popup-label">Aroma Profile</div>
-                  <div class="popup-value">Citrusy, piney &amp; medicinal</div>
-                </div>
-                <div class="popup-item">
-                  <div class="popup-label">Best Pairings</div>
-                  <div class="popup-value">Rendang, Tom Yam, Coconut Curry</div>
-                </div>
+        <!-- Hotspot 2: Cloves (Bunga Cengkih) - Pops UP/RIGHT -->
+        <div class="spice-hotspot-item absolute -translate-x-1/2 -translate-y-1/2 z-40" style="left:24%; top:60%;"
+          data-spice="cloves">
+          <button type="button"
+            class="spice-pin-btn relative flex items-center justify-center w-7 h-7 md:w-8 md:h-8 group cursor-pointer focus:outline-none"
+            aria-label="View details for Cloves">
+            <span class="absolute w-full h-full rounded-full bg-amber-400/40 animate-ping"></span>
+            <span
+              class="absolute w-5 h-5 rounded-full bg-amber-400/80 shadow-[0_0_12px_#fbbf24] transition-transform duration-300 group-hover:scale-125"></span>
+            <span class="relative w-2.5 h-2.5 rounded-full bg-white shadow-sm"></span>
+          </button>
+          <div
+            class="spice-glass-card absolute bottom-10 left-0 md:-left-4 w-64 md:w-80 rounded-2xl p-5 md:p-6 backdrop-blur-2xl border border-white/25 shadow-[0_30px_70px_rgba(0,0,0,0.95),inset_0_1px_1px_rgba(255,255,255,0.4)] z-50 transition-all duration-300 opacity-0 pointer-events-none transform translate-y-3 scale-95"
+            style="background: linear-gradient(135deg, rgba(30, 30, 30, 0.85) 0%, rgba(12, 12, 12, 0.9) 100%);">
+            <div class="w-12 h-1 rounded-full bg-gradient-to-r from-amber-300 to-yellow-500 mb-3"></div>
+            <h3 class="text-lg md:text-xl font-serif font-bold text-amber-200 leading-snug">
+              Cloves
+            </h3>
+            <p class="text-[11px] font-sans text-amber-400/90 tracking-wider uppercase mb-3 font-medium">
+              Bunga Cengkih
+            </p>
+            <div class="space-y-2 border-t border-white/10 pt-3 text-xs leading-relaxed">
+              <div>
+                <span class="text-gray-400 font-medium block text-[10px] uppercase tracking-wider">Origin</span>
+                <span class="text-gray-200 font-light">Maluku Islands</span>
+              </div>
+              <div>
+                <span class="text-gray-400 font-medium block text-[10px] uppercase tracking-wider">Aroma Profile</span>
+                <span class="text-gray-200 font-light">Pungent, sweet, deeply aromatic with subtle numbness</span>
+              </div>
+              <div>
+                <span class="text-gray-400 font-medium block text-[10px] uppercase tracking-wider">Best Pairings</span>
+                <span class="text-amber-100 font-light">Sup Tulang, Braised Meats, Fragrant Rice</span>
               </div>
             </div>
           </div>
+        </div>
 
-          <!-- HOTSPOT 3: Serai / Lemongrass -->
-          <div class="spice-hotspot popup-below" id="hs-serai" style="left:63%;top:35%;"
-            aria-label="Serai (Lemongrass) information">
-            <div class="spice-hotspot-dot"></div>
-            <div class="spice-popup">
-              <div class="popup-spice-name">Serai (Lemongrass)</div>
-              <div class="popup-row">
-                <div class="popup-item">
-                  <div class="popup-label">Origin</div>
-                  <div class="popup-value">Tropical Asia</div>
-                </div>
-                <div class="popup-item">
-                  <div class="popup-label">Aroma Profile</div>
-                  <div class="popup-value">Bright citrus, floral &amp; herbal</div>
-                </div>
-                <div class="popup-item">
-                  <div class="popup-label">Best Pairings</div>
-                  <div class="popup-value">Satay, Laksa, Seafood, Soups</div>
-                </div>
+        <!-- Hotspot 3: Green Cardamom (Buah Pelaga) - Pops DOWN/CENTER -->
+        <div class="spice-hotspot-item absolute -translate-x-1/2 -translate-y-1/2 z-40" style="left:42%; top:48%;"
+          data-spice="cardamom">
+          <button type="button"
+            class="spice-pin-btn relative flex items-center justify-center w-7 h-7 md:w-8 md:h-8 group cursor-pointer focus:outline-none"
+            aria-label="View details for Green Cardamom">
+            <span class="absolute w-full h-full rounded-full bg-amber-400/40 animate-ping"></span>
+            <span
+              class="absolute w-5 h-5 rounded-full bg-amber-400/80 shadow-[0_0_12px_#fbbf24] transition-transform duration-300 group-hover:scale-125"></span>
+            <span class="relative w-2.5 h-2.5 rounded-full bg-white shadow-sm"></span>
+          </button>
+          <div
+            class="spice-glass-card absolute top-10 left-1/2 -translate-x-1/2 w-64 md:w-80 rounded-2xl p-5 md:p-6 backdrop-blur-2xl border border-white/25 shadow-[0_30px_70px_rgba(0,0,0,0.95),inset_0_1px_1px_rgba(255,255,255,0.4)] z-50 transition-all duration-300 opacity-0 pointer-events-none transform translate-y-3 scale-95"
+            style="background: linear-gradient(135deg, rgba(30, 30, 30, 0.85) 0%, rgba(12, 12, 12, 0.9) 100%);">
+            <div class="w-12 h-1 rounded-full bg-gradient-to-r from-amber-300 to-yellow-500 mb-3"></div>
+            <h3 class="text-lg md:text-xl font-serif font-bold text-amber-200 leading-snug">
+              Green Cardamom
+            </h3>
+            <p class="text-[11px] font-sans text-amber-400/90 tracking-wider uppercase mb-3 font-medium">
+              Buah Pelaga
+            </p>
+            <div class="space-y-2 border-t border-white/10 pt-3 text-xs leading-relaxed">
+              <div>
+                <span class="text-gray-400 font-medium block text-[10px] uppercase tracking-wider">Origin</span>
+                <span class="text-gray-200 font-light">Southern India &amp; Guatemala</span>
+              </div>
+              <div>
+                <span class="text-gray-400 font-medium block text-[10px] uppercase tracking-wider">Aroma Profile</span>
+                <span class="text-gray-200 font-light">Citrusy, herbal, minty with warm undertones</span>
+              </div>
+              <div>
+                <span class="text-gray-400 font-medium block text-[10px] uppercase tracking-wider">Best Pairings</span>
+                <span class="text-amber-100 font-light">Kari Kambing, Kurma, Traditional Desserts</span>
               </div>
             </div>
           </div>
+        </div>
 
-          <!-- HOTSPOT 4: Bawang / Shallot -->
-          <div class="spice-hotspot popup-below" id="hs-bawang" style="left:80%;top:30%;"
-            aria-label="Bawang (Shallot) information">
-            <div class="spice-hotspot-dot"></div>
-            <div class="spice-popup">
-              <div class="popup-spice-name">Bawang (Shallot)</div>
-              <div class="popup-row">
-                <div class="popup-item">
-                  <div class="popup-label">Origin</div>
-                  <div class="popup-value">Southeast Asia</div>
-                </div>
-                <div class="popup-item">
-                  <div class="popup-label">Aroma Profile</div>
-                  <div class="popup-value">Sweet, pungent &amp; deeply savory</div>
-                </div>
-                <div class="popup-item">
-                  <div class="popup-label">Best Pairings</div>
-                  <div class="popup-value">Virtually all Malaysian dishes</div>
-                </div>
+        <!-- Hotspot 4: Mustard Seeds (Biji Sawi) - Pops DOWN/CENTER (Never clips top!) -->
+        <div class="spice-hotspot-item absolute -translate-x-1/2 -translate-y-1/2 z-40" style="left:61%; top:36%;"
+          data-spice="mustard">
+          <button type="button"
+            class="spice-pin-btn relative flex items-center justify-center w-7 h-7 md:w-8 md:h-8 group cursor-pointer focus:outline-none"
+            aria-label="View details for Mustard Seeds">
+            <span class="absolute w-full h-full rounded-full bg-amber-400/40 animate-ping"></span>
+            <span
+              class="absolute w-5 h-5 rounded-full bg-amber-400/80 shadow-[0_0_12px_#fbbf24] transition-transform duration-300 group-hover:scale-125"></span>
+            <span class="relative w-2.5 h-2.5 rounded-full bg-white shadow-sm"></span>
+          </button>
+          <div
+            class="spice-glass-card absolute top-10 left-1/2 -translate-x-1/2 w-64 md:w-80 rounded-2xl p-5 md:p-6 backdrop-blur-2xl border border-white/25 shadow-[0_30px_70px_rgba(0,0,0,0.95),inset_0_1px_1px_rgba(255,255,255,0.4)] z-50 transition-all duration-300 opacity-0 pointer-events-none transform translate-y-3 scale-95"
+            style="background: linear-gradient(135deg, rgba(30, 30, 30, 0.85) 0%, rgba(12, 12, 12, 0.9) 100%);">
+            <div class="w-12 h-1 rounded-full bg-gradient-to-r from-amber-300 to-yellow-500 mb-3"></div>
+            <h3 class="text-lg md:text-xl font-serif font-bold text-amber-200 leading-snug">
+              Mustard Seeds
+            </h3>
+            <p class="text-[11px] font-sans text-amber-400/90 tracking-wider uppercase mb-3 font-medium">
+              Biji Sawi
+            </p>
+            <div class="space-y-2 border-t border-white/10 pt-3 text-xs leading-relaxed">
+              <div>
+                <span class="text-gray-400 font-medium block text-[10px] uppercase tracking-wider">Origin</span>
+                <span class="text-gray-200 font-light">Mediterranean &amp; India</span>
+              </div>
+              <div>
+                <span class="text-gray-400 font-medium block text-[10px] uppercase tracking-wider">Aroma Profile</span>
+                <span class="text-gray-200 font-light">Nutty when tempered, sharp and pungent</span>
+              </div>
+              <div>
+                <span class="text-gray-400 font-medium block text-[10px] uppercase tracking-wider">Best Pairings</span>
+                <span class="text-amber-100 font-light">Pickles, Sambar, Tempered Dal, Fish Curries</span>
               </div>
             </div>
           </div>
+        </div>
 
-        </div><!-- /.spices-visual -->
+        <!-- Hotspot 5: Dried Chili (Cili Kering) - Pops UP/LEFT -->
+        <div class="spice-hotspot-item absolute -translate-x-1/2 -translate-y-1/2 z-40" style="left:82%; top:62%;"
+          data-spice="chili">
+          <button type="button"
+            class="spice-pin-btn relative flex items-center justify-center w-7 h-7 md:w-8 md:h-8 group cursor-pointer focus:outline-none"
+            aria-label="View details for Dried Chili">
+            <span class="absolute w-full h-full rounded-full bg-amber-400/40 animate-ping"></span>
+            <span
+              class="absolute w-5 h-5 rounded-full bg-amber-400/80 shadow-[0_0_12px_#fbbf24] transition-transform duration-300 group-hover:scale-125"></span>
+            <span class="relative w-2.5 h-2.5 rounded-full bg-white shadow-sm"></span>
+          </button>
+          <div
+            class="spice-glass-card absolute bottom-10 right-0 md:-right-4 w-64 md:w-80 rounded-2xl p-5 md:p-6 backdrop-blur-2xl border border-white/25 shadow-[0_30px_70px_rgba(0,0,0,0.95),inset_0_1px_1px_rgba(255,255,255,0.4)] z-50 transition-all duration-300 opacity-0 pointer-events-none transform translate-y-3 scale-95"
+            style="background: linear-gradient(135deg, rgba(30, 30, 30, 0.85) 0%, rgba(12, 12, 12, 0.9) 100%);">
+            <div class="w-12 h-1 rounded-full bg-gradient-to-r from-amber-300 to-yellow-500 mb-3"></div>
+            <h3 class="text-lg md:text-xl font-serif font-bold text-amber-200 leading-snug">
+              Dried Chili
+            </h3>
+            <p class="text-[11px] font-sans text-amber-400/90 tracking-wider uppercase mb-3 font-medium">
+              Cili Kering
+            </p>
+            <div class="space-y-2 border-t border-white/10 pt-3 text-xs leading-relaxed">
+              <div>
+                <span class="text-gray-400 font-medium block text-[10px] uppercase tracking-wider">Origin</span>
+                <span class="text-gray-200 font-light">Central America &amp; Local Farms</span>
+              </div>
+              <div>
+                <span class="text-gray-400 font-medium block text-[10px] uppercase tracking-wider">Aroma Profile</span>
+                <span class="text-gray-200 font-light">Smoky, fiery, pungent heat</span>
+              </div>
+              <div>
+                <span class="text-gray-400 font-medium block text-[10px] uppercase tracking-wider">Best Pairings</span>
+                <span class="text-amber-100 font-light">Sambal Tumis, Asam Pedas, Marinades</span>
+              </div>
+            </div>
+          </div>
+        </div>
 
       </div>
     </section>
+
+
     <!-- ═══════════════════════════════════════════════
          SECTION 6: VALUE PROMISES — GSAP HORIZONTAL CAROUSEL
     ═══════════════════════════════════════════════ -->
@@ -590,86 +775,125 @@
 
 
     <!-- ═══════════════════════════════════════════════
-         SECTION 7: CONTACT
+         SECTION 7: CONTACT & PRODUCTION HOUSE LOCATION
     ═══════════════════════════════════════════════ -->
-    <section id="section-contact" data-section="contact">
+    <section id="section-contact" data-section="contact"
+      class="relative w-full min-h-screen bg-[#080808] text-white flex flex-col items-center justify-center py-16 px-6 md:px-16 overflow-hidden">
+      <div class="w-full max-w-7xl flex flex-col space-y-10">
 
-      <div class="contact-grid">
+        <!-- TOP ROW: Contact Info (Left) + Compact Form (Right) -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
 
-        <!-- Left: Info -->
-        <div>
-          <span class="contact-info-label reveal-up">Get in Touch</span>
-          <h2 class="contact-title reveal-up reveal-delay-1">
-            Let's Build<br>Something Together
-          </h2>
-          <div class="gold-divider reveal-up reveal-delay-2" style="margin-bottom:32px;"></div>
+          <!-- Left: Office Information -->
+          <div class="lg:col-span-5 flex flex-col space-y-6">
+            <div>
+              <span class="text-xs uppercase tracking-[0.3em] text-amber-400 font-semibold">
+                Get In Touch
+              </span>
+              <h2 class="text-3xl md:text-5xl font-serif font-bold text-white mt-1">
+                Contact Us
+              </h2>
+            </div>
 
-          <div class="contact-detail reveal-up reveal-delay-2">
-            <div class="contact-detail-label">General Inquiries</div>
-            <div class="contact-detail-value">
-              <a href="mailto:admin@nusadagang.com">admin@nusadagang.com</a>
-            </div>
-          </div>
-          <div class="contact-detail reveal-up reveal-delay-3">
-            <div class="contact-detail-label">Sales &amp; Partnerships</div>
-            <div class="contact-detail-value">
-              <a href="mailto:sales@nusadagang.com">sales@nusadagang.com</a>
-            </div>
-          </div>
-          <div class="contact-detail reveal-up reveal-delay-4">
-            <div class="contact-detail-label">Location</div>
-            <div class="contact-detail-value">Kuala Lumpur, Malaysia</div>
-          </div>
-          <div class="contact-detail reveal-up reveal-delay-5">
-            <div class="contact-detail-label">Registration</div>
-            <div class="contact-detail-value" style="font-size:12px;">202503267841-V</div>
-          </div>
-        </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-4 text-sm">
+              <div>
+                <p class="text-[11px] uppercase tracking-widest text-amber-400 font-medium mb-1">
+                  Email
+                </p>
+                <a href="mailto:sales@nusadagang.com"
+                  class="text-gray-200 hover:text-amber-300 transition-colors font-medium">
+                  sales@nusadagang.com
+                </a>
+              </div>
 
-        <!-- Right: Form -->
-        <div class="reveal-up reveal-delay-2">
-          <form class="contact-form" id="contact-form" onsubmit="handleFormSubmit(event)" novalidate>
-            <div class="form-group">
-              <label class="form-label" for="cf-name">Full Name</label>
-              <input class="form-input" id="cf-name" type="text" name="name" placeholder="Your Name" required
-                autocomplete="name" />
-            </div>
-            <div class="form-group">
-              <label class="form-label" for="cf-company">Company</label>
-              <input class="form-input" id="cf-company" type="text" name="company"
-                placeholder="Your Company or Organisation" autocomplete="organization" />
-            </div>
-            <div class="form-group">
-              <label class="form-label" for="cf-email">Email Address</label>
-              <input class="form-input" id="cf-email" type="email" name="email" placeholder="your@email.com" required
-                autocomplete="email" />
-            </div>
-            <div class="form-group">
-              <label class="form-label" for="cf-message">Message</label>
-              <textarea class="form-textarea" id="cf-message" name="message" rows="4"
-                placeholder="Tell us about your requirements…" required></textarea>
-            </div>
-            <div class="form-group">
-              <!-- Magnetic CTA wrapper -->
-              <div class="magnetic-btn-wrapper" id="magnetic-btn-wrapper">
-                <button type="submit" class="magnetic-btn" id="magnetic-btn">
-                  <span>Send Message</span>
-                  <span class="btn-arrow">→</span>
-                </button>
+              <div>
+                <p class="text-[11px] uppercase tracking-widest text-amber-400 font-medium mb-1">
+                  Registration
+                </p>
+                <p class="text-gray-300 font-mono text-xs">202503267841-V</p>
+              </div>
+
+              <div class="sm:col-span-2 lg:col-span-1">
+                <p class="text-[11px] uppercase tracking-widest text-amber-400 font-medium mb-1">
+                  Production House Address
+                </p>
+                <p class="text-gray-300 leading-relaxed">
+                  G-13, Jalan Melati Utama 1, Melati Utama, 53100 Kuala Lumpur, Malaysia
+                </p>
               </div>
             </div>
-          </form>
-          <!-- Form success message -->
-          <div id="form-success" style="display:none;margin-top:24px;padding:20px;
-               border-left:2px solid var(--gold);background:var(--surface);">
-            <p style="font-size:14px;color:var(--cream);">
-              ✦ &nbsp;Thank you — we'll be in touch shortly.
-            </p>
           </div>
+
+          <!-- Right: Compact Contact Form -->
+          <div class="lg:col-span-7 bg-[#111111]/70 p-6 md:p-8 rounded-2xl border border-white/5 backdrop-blur-xl">
+            <form class="space-y-4" id="contact-form" onsubmit="handleFormSubmit(event)" novalidate>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label class="text-[10px] uppercase tracking-widest text-amber-400 font-medium block mb-1" for="cf-name">
+                    Name
+                  </label>
+                  <input type="text" id="cf-name" name="name" required placeholder="Your Name"
+                    class="w-full bg-transparent border-b border-white/20 pb-2 text-white placeholder-gray-500 focus:outline-none focus:border-amber-400 transition-colors text-sm" />
+                </div>
+                <div>
+                  <label class="text-[10px] uppercase tracking-widest text-amber-400 font-medium block mb-1" for="cf-email">
+                    Email
+                  </label>
+                  <input type="email" id="cf-email" name="email" required placeholder="you@email.com"
+                    class="w-full bg-transparent border-b border-white/20 pb-2 text-white placeholder-gray-500 focus:outline-none focus:border-amber-400 transition-colors text-sm" />
+                </div>
+              </div>
+
+              <div>
+                <label class="text-[10px] uppercase tracking-widest text-amber-400 font-medium block mb-1" for="cf-message">
+                  Message
+                </label>
+                <textarea rows="2" id="cf-message" name="message" required
+                  placeholder="Tell us about your requirements or bulk orders..."
+                  class="w-full bg-transparent border-b border-white/20 pb-2 text-white placeholder-gray-500 focus:outline-none focus:border-amber-400 transition-colors text-sm resize-none"></textarea>
+              </div>
+
+              <div class="flex justify-end pt-2">
+                <div class="magnetic-btn-wrapper" id="magnetic-btn-wrapper">
+                  <button type="submit" id="magnetic-btn"
+                    class="px-8 py-2.5 rounded-full border border-amber-400/60 bg-amber-400/10 hover:bg-amber-400 hover:text-black text-amber-300 font-bold text-xs tracking-widest uppercase transition-all duration-300 shadow-[0_0_15px_rgba(251,191,36,0.15)] hover:shadow-[0_0_20px_rgba(251,191,36,0.4)]">
+                    Send Message →
+                  </button>
+                </div>
+              </div>
+            </form>
+
+            <!-- Form success message -->
+            <div id="form-success" style="display:none;margin-top:16px;padding:16px;
+                 border-left:2px solid var(--gold);background:var(--surface);border-radius:10px;">
+              <p style="font-size:13px;color:var(--cream);">
+                ✦ &nbsp;Thank you — we'll be in touch shortly.
+              </p>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- BOTTOM ROW: Full-Width Centered Google Map -->
+        <div class="relative w-full h-[340px] md:h-[420px] rounded-3xl overflow-hidden border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.85)] group">
+          <iframe title="NusaDagang Production House Location"
+            src="https://maps.google.com/maps?q=G-13,%20Jalan%20Melati%20Utama%201,%20Melati%20Utama,%2053100%20Kuala%20Lumpur&t=&z=16&ie=UTF8&iwloc=&output=embed"
+            class="w-full h-full border-0 filter invert-[90%] hue-rotate-[180deg] contrast-[90%] brightness-[95%] transition-all duration-500 group-hover:filter-none"
+            loading="lazy" allowfullscreen></iframe>
+
+          <!-- Floating Action Button -->
+          <a href="https://maps.google.com/?q=G-13,+Jalan+Melati+Utama+1,+Melati+Utama,+53100+Kuala+Lumpur"
+            target="_blank" rel="noopener noreferrer"
+            class="absolute bottom-4 right-4 bg-black/85 hover:bg-amber-400 hover:text-black text-amber-300 text-xs font-semibold px-4 py-2.5 rounded-full border border-amber-400/40 backdrop-blur-md transition-all duration-300 flex items-center gap-1.5 shadow-lg">
+            <span>Open in Google Maps</span>
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+            </svg>
+          </a>
         </div>
 
       </div>
-
     </section>
 
 
@@ -886,8 +1110,137 @@
       initNavScroll();
       initScrollReveal();
       initRTCWheel();
+      initImpactCounters();
+      initSpicesHotspots();
       initValueHorizontalScroll();
       initMagneticButton();
+    }
+
+    /* ──────────────────────────────────────────────
+       SPICES SHOWCASE HOTSPOTS & 3D GLASS POPUPS
+    ────────────────────────────────────────────── */
+    function initSpicesHotspots() {
+      const section = qs('#section-spices');
+      if (!section) return;
+
+      const items = qsa('.spice-hotspot-item', section);
+
+      function setActiveSpice(targetItem) {
+        items.forEach(item => {
+          const card = item.querySelector('.spice-glass-card');
+          const isTarget = item === targetItem;
+          if (card) {
+            if (isTarget) {
+              card.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-3', 'scale-95');
+              card.classList.add('opacity-100', 'pointer-events-auto', 'translate-y-0', 'scale-100');
+            } else {
+              card.classList.add('opacity-0', 'pointer-events-none', 'translate-y-3', 'scale-95');
+              card.classList.remove('opacity-100', 'pointer-events-auto', 'translate-y-0', 'scale-100');
+            }
+          }
+        });
+      }
+
+      // Default state: First spice (Cinnamon) is open by default
+      if (items.length > 0) {
+        setActiveSpice(items[0]);
+      }
+
+      items.forEach(item => {
+        const btn = item.querySelector('.spice-pin-btn');
+        if (!btn) return;
+
+        btn.addEventListener('mouseenter', () => setActiveSpice(item));
+        btn.addEventListener('click', e => {
+          e.stopPropagation();
+          const card = item.querySelector('.spice-glass-card');
+          const isOpen = card && card.classList.contains('opacity-100');
+          if (isOpen && item !== items[0]) {
+            setActiveSpice(null);
+          } else {
+            setActiveSpice(item);
+          }
+        });
+      });
+    }
+
+    /* ──────────────────────────────────────────────
+       IMPACT COUNTERS SECTION
+    ────────────────────────────────────────────── */
+    function initImpactCounters() {
+      const section = qs('#section-impact');
+      if (!section) return;
+
+      const cards = qsa('.impact-card', section);
+      const counters = qsa('.impact-counter', section);
+
+      // 1. Entrance Fade & Lift
+      gsap.fromTo(
+        cards,
+        { y: 50, opacity: 0, scale: 0.96 },
+        {
+          y: 0,
+          opacity: 1,
+          scale: 1,
+          duration: 1,
+          stagger: 0.2,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: section,
+            start: 'top 75%',
+            once: true,
+          },
+        }
+      );
+
+      const statsData = [
+        { target: 3500 },
+        { target: 10000 }
+      ];
+
+      // 2. High-speed Animated Number Counter with motion blur
+      ScrollTrigger.create({
+        trigger: section,
+        start: 'top 75%',
+        once: true,
+        onEnter: () => {
+          counters.forEach((el, index) => {
+            if (!el) return;
+            const stat = statsData[index];
+            const targetVal = stat ? stat.target : 0;
+            const counterObj = { val: 0 };
+            el.classList.add('blur-[1.5px]');
+
+            if (typeof anime !== 'undefined') {
+              anime({
+                targets: counterObj,
+                val: targetVal,
+                round: 1,
+                easing: 'easeOutExpo',
+                duration: 2500,
+                update: () => {
+                  el.innerText = Math.round(counterObj.val).toLocaleString();
+                },
+                complete: () => {
+                  el.classList.remove('blur-[1.5px]');
+                },
+              });
+            } else {
+              gsap.to(counterObj, {
+                val: targetVal,
+                duration: 2.5,
+                ease: 'power3.out',
+                onUpdate: () => {
+                  el.innerText = Math.round(counterObj.val).toLocaleString();
+                },
+                onComplete: () => {
+                  el.classList.remove('blur-[1.5px]');
+                }
+              });
+            }
+          });
+        },
+      });
     }
 
     /* ──────────────────────────────────────────────
@@ -930,7 +1283,7 @@
     /* ──────────────────────────────────────────────
        7. SCROLL INDICATOR (right ruler)
     ────────────────────────────────────────────── */
-    const sectionIds = ['brand', 'about', 'rtc', 'spices', 'values', 'contact'];
+    const sectionIds = ['brand', 'about', 'rtc', 'spices', 'impact', 'values', 'contact'];
     const scrollTicks = qsa('.scroll-tick');
 
     function updateScrollIndicator(scrollPos) {
@@ -979,21 +1332,21 @@
           const degsPerSec = 360 / currentSpeed;
           wheelAngle = (wheelAngle + degsPerSec * dt) % 360;
           wheelTrack.style.transform = `rotate(${wheelAngle}deg)`;
-
-          const radius = window.innerWidth < 768 ? 135 : 190;
-
-          items.forEach((item, i) => {
-            // Calculate equidistant angular points starting at 12 o'clock top position
-            const angle = (i / totalItems) * 2 * Math.PI - Math.PI / 2;
-            const x = Math.cos(angle) * radius;
-            const y = Math.sin(angle) * radius;
-
-            const isFocused = item.classList.contains('focused');
-            const scaleStr = isFocused ? ' scale(1.25)' : '';
-
-            item.style.transform = `translate(${x}px, ${y}px) rotate(${-wheelAngle}deg)${scaleStr}`;
-          });
         }
+
+        const radius = window.innerWidth < 768 ? 135 : 190;
+
+        items.forEach((item, i) => {
+          // Calculate equidistant angular points starting at 12 o'clock top position
+          const angle = (i / totalItems) * 2 * Math.PI - Math.PI / 2;
+          const x = Math.cos(angle) * radius;
+          const y = Math.sin(angle) * radius;
+
+          const isFocused = item.classList.contains('focused');
+          const scaleStr = isFocused ? ' scale(2)' : '';
+
+          item.style.transform = `translate(${x}px, ${y}px) rotate(${-wheelAngle}deg)${scaleStr}`;
+        });
         rafId = requestAnimationFrame(animateWheel);
       }
       rafId = requestAnimationFrame(animateWheel);
