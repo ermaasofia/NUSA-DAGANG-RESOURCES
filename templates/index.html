@@ -29,6 +29,9 @@
   <!-- Anime.js -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.2/anime.min.js"></script>
 
+  <!-- Three.js 3D WebGL -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
 
@@ -201,38 +204,56 @@
 
 
     <!-- ═══════════════════════════════════════════════
-         SECTION 3: ABOUT / MISSION / VISION
+         SECTION 3: ABOUT / MISSION / VISION + 3D STACKED CARDS
     ═══════════════════════════════════════════════ -->
-    <section id="section-about" data-section="about">
-      <div class="about-grid">
+    <section id="section-about" data-section="about"
+      class="relative w-full min-h-screen bg-[#090909] text-white flex items-center justify-center py-20 px-8 md:px-20 overflow-hidden">
+      <div class="w-full max-w-7xl grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-14 items-center">
 
-        <!-- LEFT: Text -->
-        <div class="about-left">
-          <span class="section-tag reveal-up" id="about-tag">About NusaDagang</span>
-          <h2 class="about-headline reveal-up reveal-delay-1" id="about-headline">
-            Redefining the<br>Culinary Supply Chain
-          </h2>
-          <div class="gold-divider reveal-up reveal-delay-2"></div>
-          <p class="about-body reveal-up reveal-delay-2">
-            Nusa Dagang Resources specialises in high-quality, preservative-free food ingredients —
-            from precision-blended spice pastes to chopped aromatics. We streamline kitchen
-            operations for the F&amp;B industry, central kitchens, and catering businesses,
-            reducing prep time and labour costs without compromise.
-          </p>
-          <div class="about-block reveal-up reveal-delay-3">
-            <div class="about-block-label">Mission</div>
-            <p class="about-block-text">
-              To provide high-quality, preservative-free food processing solutions that
-              enhance efficiency and consistency for businesses in the food industry.
+        <!-- LEFT COLUMN: About Content, Mission & Vision -->
+        <div class="lg:col-span-6 flex flex-col space-y-8 text-left z-10">
+          <div>
+            <span class="text-xs uppercase tracking-[0.35em] text-amber-400 font-semibold block mb-2" id="about-tag">
+              ABOUT NUSADAGANG
+            </span>
+            <h2 class="text-4xl md:text-6xl font-serif font-black tracking-tight text-white leading-tight" id="about-headline">
+              Redefining the <br />
+              Culinary Supply Chain
+            </h2>
+            <div class="w-16 h-[2px] bg-amber-400 mt-4 mb-6"></div>
+            <p class="text-gray-300 text-sm md:text-base leading-relaxed font-light">
+              Nusa Dagang Resources specialises in high-quality, preservative-free food ingredients — from precision-blended spice pastes to chopped aromatics. We streamline kitchen operations for the F&amp;B industry, central kitchens, and catering businesses, reducing prep time and labour costs without compromise.
             </p>
           </div>
-          <div class="about-block reveal-up reveal-delay-4">
-            <div class="about-block-label">Vision</div>
-            <p class="about-block-text">
-              To become the leading and most trusted food processing partner, delivering
-              innovative solutions that support the growth of the global food service industry.
-            </p>
+
+          <div class="space-y-6 border-t border-white/10 pt-6">
+            <div>
+              <h3 class="text-xs uppercase tracking-[0.3em] text-amber-400 font-bold mb-2">
+                MISSION
+              </h3>
+              <p class="text-gray-300 text-sm md:text-base leading-relaxed font-light">
+                To provide high-quality, preservative-free food processing solutions that enhance efficiency and consistency for businesses in the food industry.
+              </p>
+            </div>
+
+            <div>
+              <h3 class="text-xs uppercase tracking-[0.3em] text-amber-400 font-bold mb-2">
+                VISION
+              </h3>
+              <p class="text-gray-300 text-sm md:text-base leading-relaxed font-light">
+                To become the leading and most trusted food processing partner across regional and international culinary markets.
+              </p>
+            </div>
           </div>
+        </div>
+
+        <!-- RIGHT COLUMN: 3 Stacked 3D Floating Cards Canvas -->
+        <div class="lg:col-span-6 flex items-center justify-center relative w-full">
+          <!-- Ambient Background Glow -->
+          <div class="absolute inset-0 bg-amber-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+          <!-- 3D WebGL Canvas Container -->
+          <div id="cards-3d-container" class="w-full h-[500px] md:h-[620px] relative flex items-center justify-center cursor-grab active:cursor-grabbing"></div>
         </div>
 
       </div>
@@ -1111,11 +1132,209 @@
       // Setup all scroll-driven animations
       initNavScroll();
       initScrollReveal();
+      init3DStackedCards();
       initRTCWheel();
       initImpactCounters();
       initSpicesHotspots();
       initValueHorizontalScroll();
       initMagneticButton();
+    }
+
+    /* ──────────────────────────────────────────────
+       3D STACKED FLOATING CORPORATE CARDS (THREE.JS)
+    ────────────────────────────────────────────── */
+    function init3DStackedCards() {
+      const container = document.getElementById('cards-3d-container');
+      if (!container || typeof THREE === 'undefined') return;
+
+      const width = container.clientWidth || 500;
+      const height = container.clientHeight || 580;
+
+      const scene = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 1000);
+      camera.position.set(0, 0, 5.8);
+
+      const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+      renderer.setSize(width, height);
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      renderer.shadowMap.enabled = true;
+      renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+      container.appendChild(renderer.domElement);
+
+      // Studio Lighting
+      const ambientLight = new THREE.AmbientLight(0xffffff, 0.9);
+      scene.add(ambientLight);
+
+      const dirLight = new THREE.DirectionalLight(0xfff6e5, 1.8);
+      dirLight.position.set(5, 6, 6);
+      dirLight.castShadow = true;
+      scene.add(dirLight);
+
+      const pointLight1 = new THREE.PointLight(0xfbbf24, 0.8);
+      pointLight1.position.set(-4, -3, 3);
+      scene.add(pointLight1);
+
+      const pointLight2 = new THREE.PointLight(0x34d399, 0.5);
+      pointLight2.position.set(3, -4, 2);
+      scene.add(pointLight2);
+
+      // Group wrapper for PresentationControls (mouse drag tilt)
+      const cardsGroup = new THREE.Group();
+      scene.add(cardsGroup);
+
+      // Load Logo Texture
+      const textureLoader = new THREE.TextureLoader();
+      const logoTexture = textureLoader.load('/static/images/logonusa2.png', () => {
+        renderer.render(scene, camera);
+      });
+      if ('sRGBEncoding' in THREE) {
+        logoTexture.encoding = THREE.sRGBEncoding;
+      }
+
+      // 6-Face Materials Setup
+      const sideMat = new THREE.MeshStandardMaterial({
+        color: 0x133820,
+        roughness: 0.35,
+        metalness: 0.25,
+      });
+
+      const frontMat = new THREE.MeshStandardMaterial({
+        map: logoTexture,
+        roughness: 0.2,
+        metalness: 0.15,
+      });
+
+      const backMat = new THREE.MeshStandardMaterial({
+        color: 0x0d2816,
+        roughness: 0.4,
+        metalness: 0.2,
+      });
+
+      // [+X, -X, +Y, -Y, +Z (Front), -Z]
+      const cardMaterials = [sideMat, sideMat, sideMat, sideMat, frontMat, backMat];
+      const boxGeo = new THREE.BoxGeometry(2.8, 1.15, 0.12);
+
+      // Card Specifications
+      const cardConfigs = [
+        {
+          basePos: [-0.3, 1.35, 0],
+          baseRot: [0.15, -0.28, 0.06],
+          floatSpeed: 1.2,
+          floatIntensity: 0.5,
+          phaseOffset: 0
+        },
+        {
+          basePos: [0.35, 0, 0.25],
+          baseRot: [-0.1, 0.25, -0.04],
+          floatSpeed: 1.5,
+          floatIntensity: 0.6,
+          phaseOffset: 2
+        },
+        {
+          basePos: [-0.2, -1.35, -0.1],
+          baseRot: [0.12, -0.18, 0.03],
+          floatSpeed: 1.1,
+          floatIntensity: 0.4,
+          phaseOffset: 4
+        }
+      ];
+
+      const cardMeshes = cardConfigs.map(cfg => {
+        const mesh = new THREE.Mesh(boxGeo, cardMaterials);
+        mesh.position.set(...cfg.basePos);
+        mesh.rotation.set(...cfg.baseRot);
+        mesh.castShadow = true;
+        mesh.receiveShadow = true;
+        cardsGroup.add(mesh);
+        return { mesh, ...cfg };
+      });
+
+      // Presentation Mouse Drag Controls
+      let isDragging = false;
+      let previousMousePos = { x: 0, y: 0 };
+      let targetGroupRot = { x: 0, y: 0 };
+
+      container.addEventListener('mousedown', (e) => {
+        isDragging = true;
+        previousMousePos = { x: e.clientX, y: e.clientY };
+      });
+
+      window.addEventListener('mousemove', (e) => {
+        if (!isDragging) {
+          const rect = container.getBoundingClientRect();
+          if (rect.width > 0 && rect.height > 0) {
+            const mouseX = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+            const mouseY = -(((e.clientY - rect.top) / rect.height) * 2 - 1);
+            if (mouseX >= -1.5 && mouseX <= 1.5 && mouseY >= -1.5 && mouseY <= 1.5) {
+              targetGroupRot.y = mouseX * 0.35;
+              targetGroupRot.x = -mouseY * 0.25;
+            }
+          }
+          return;
+        }
+
+        const deltaX = e.clientX - previousMousePos.x;
+        const deltaY = e.clientY - previousMousePos.y;
+        targetGroupRot.y += deltaX * 0.005;
+        targetGroupRot.x += deltaY * 0.005;
+        previousMousePos = { x: e.clientX, y: e.clientY };
+      });
+
+      window.addEventListener('mouseup', () => { isDragging = false; });
+
+      // Touch controls
+      container.addEventListener('touchstart', (e) => {
+        if (e.touches.length === 1) {
+          isDragging = true;
+          previousMousePos = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+        }
+      });
+      window.addEventListener('touchmove', (e) => {
+        if (isDragging && e.touches.length === 1) {
+          const deltaX = e.touches[0].clientX - previousMousePos.x;
+          const deltaY = e.touches[0].clientY - previousMousePos.y;
+          targetGroupRot.y += deltaX * 0.005;
+          targetGroupRot.x += deltaY * 0.005;
+          previousMousePos = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+        }
+      });
+      window.addEventListener('touchend', () => { isDragging = false; });
+
+      // Animation Loop
+      const clock = new THREE.Clock();
+      function animate() {
+        requestAnimationFrame(animate);
+
+        const elapsedTime = clock.getElapsedTime();
+
+        // Smooth group rotation lerp
+        cardsGroup.rotation.y += (targetGroupRot.y - cardsGroup.rotation.y) * 0.08;
+        cardsGroup.rotation.x += (targetGroupRot.x - cardsGroup.rotation.x) * 0.08;
+
+        // Animate each card's floating physics
+        cardMeshes.forEach(item => {
+          const t = elapsedTime * item.floatSpeed + item.phaseOffset;
+          const floatY = Math.sin(t * 0.8) * 0.08 * item.floatIntensity;
+
+          item.mesh.position.y = item.basePos[1] + floatY;
+          item.mesh.rotation.y = item.baseRot[1] + Math.sin(t * 0.8) * 0.08;
+          item.mesh.rotation.x = item.baseRot[0] + Math.cos(t * 0.6) * 0.05;
+        });
+
+        renderer.render(scene, camera);
+      }
+
+      animate();
+
+      // Responsive Resize Listener
+      window.addEventListener('resize', () => {
+        if (!container) return;
+        const newW = container.clientWidth || 500;
+        const newH = container.clientHeight || 580;
+        camera.aspect = newW / newH;
+        camera.updateProjectionMatrix();
+        renderer.setSize(newW, newH);
+      });
     }
 
     /* ──────────────────────────────────────────────
