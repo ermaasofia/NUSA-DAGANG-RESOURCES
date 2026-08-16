@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>NusaDagang — Authentic Flavors & Culinary Solutions</title>
+  <title>NusaDagang Resaources</title>
   <meta name="description"
     content="NusaDagang Resources — Premium preservative-free food processing for the F&B industry. Authentic Malaysian spice pastes, ready-to-cook blends, and culinary solutions." />
 
@@ -36,10 +36,23 @@
   <script src="https://cdn.tailwindcss.com"></script>
 
   <!-- Main stylesheet -->
-  <link rel="stylesheet" href="{{ url_for('static', path='/css/style.css') }}" />
+  <link rel="stylesheet" href="{{ url_for('static', path='/css/style.css') }}?v=8" />
 
   <style>
     /* Page-specific inline overrides */
+    html,
+    body,
+    #portal-scene,
+    #shopfront-bg,
+    #portal-fade {
+      background: rgba(253, 253, 253) !important;
+    }
+
+    #portal-vignette {
+      background: transparent !important;
+      display: none !important;
+    }
+
     #section-brand {
       min-height: 100vh;
     }
@@ -63,6 +76,18 @@
 
     #shopfront-img {
       content: url('{{ url_for("static", path="images/shopfront.png") }}');
+      filter: none !important;
+      box-shadow: none !important;
+    }
+
+    #signboard-img {
+      content: url('{{ url_for("static", path="images/SB.png") }}');
+      filter: none !important;
+      box-shadow: none !important;
+    }
+
+    #shopfront-container::before {
+      display: none !important;
     }
 
     .spices-img {
@@ -71,7 +96,7 @@
   </style>
 </head>
 
-<body>
+<body style="background: rgba(253, 253, 253) !important;">
 
   <!-- ═══════════════════════════════════════════════
        CUSTOM CURSOR
@@ -82,45 +107,36 @@
   <!-- ═══════════════════════════════════════════════
        PORTAL FADE OVERLAY (black screen on transition)
   ═══════════════════════════════════════════════ -->
-  <div id="portal-fade"></div>
+  <div id="portal-fade" style="background: rgba(253, 253, 253) !important;"></div>
 
   <!-- ═══════════════════════════════════════════════
        SECTION 1: PORTAL — 2.5D SHOPFRONT SCENE
   ═══════════════════════════════════════════════ -->
-  <div id="portal-scene" role="main" aria-label="NusaDagang Shopfront Entrance">
+  <div id="portal-scene" style="background: rgba(253, 253, 253) !important;" role="main"
+    aria-label="NusaDagang Shopfront Entrance">
 
-    <div id="shopfront-bg"></div>
-
-    <!-- Particle/ambient glow backdrop -->
-    <div style="position:absolute;inset:0;z-index:1;pointer-events:none;
-         background:radial-gradient(ellipse 80% 50% at 50% 100%, rgba(242,202,80,0.05) 0%, transparent 60%);"></div>
-
+    <div id="shopfront-bg" style="background: rgba(253, 253, 253) !important;"></div>
 
     <!-- Shopfront illustration container (this gets the zoom transform) -->
     <div id="shopfront-container">
-      <!-- The actual shopfront illustration -->
-      <img id="shopfront-img" src="{{ url_for('static', path='images/shopfront.png') }}"
-        alt="NusaDagang Shopfront Illustration" draggable="false" />
+      <div id="shopfront-wrapper">
+        <!-- Signboard image SB.png -->
+        <img id="signboard-img" src="{{ url_for('static', path='images/SB.png') }}"
+          alt="Click the door to explore Nusa Dagang" draggable="false" />
 
-      <!-- Interactive Door Hotspot -->
-      <div id="door-hotspot" role="button" tabindex="0" aria-label="Enter the NusaDagang Shop" title="Enter Shop">
-        <div class="door-glow"></div>
-        <div class="door-enter-label">Enter</div>
+        <!-- The actual shopfront illustration -->
+        <img id="shopfront-img" src="{{ url_for('static', path='images/shopfront.png') }}"
+          alt="NusaDagang Shopfront Illustration" draggable="false" />
+
+        <!-- Interactive Door Hotspot -->
+        <div id="door-hotspot" role="button" tabindex="0" aria-label="Enter the NusaDagang Shop" title="Enter Shop">
+          <div class="door-glow"></div>
+        </div>
       </div>
     </div>
 
     <!-- Vignette -->
     <div id="portal-vignette"></div>
-
-    <!-- Ambient floating spices (decoration) -->
-    <div style="position:absolute;top:12%;left:6%;font-size:2rem;opacity:0.06;
-         animation:floatAmbient 7s ease-in-out infinite;pointer-events:none;z-index:2;">🌿</div>
-    <div style="position:absolute;top:20%;right:8%;font-size:1.5rem;opacity:0.08;
-         animation:floatAmbient 5s ease-in-out infinite 1.2s;pointer-events:none;z-index:2;">✦</div>
-    <div style="position:absolute;bottom:18%;left:10%;font-size:1.8rem;opacity:0.05;
-         animation:floatAmbient 6s ease-in-out infinite 0.6s;pointer-events:none;z-index:2;">⬡</div>
-    <div style="position:absolute;bottom:22%;right:6%;font-size:2.2rem;opacity:0.04;
-         animation:floatAmbient 8s ease-in-out infinite 2s;pointer-events:none;z-index:2;">✦</div>
 
   </div><!-- /#portal-scene -->
 
@@ -208,7 +224,7 @@
     <!-- ═══════════════════════════════════════════════
          SECTION 3: ABOUT / MISSION / VISION
     ═══════════════════════════════════════════════ -->
-    <section id="section-about" data-section="about">
+    <section id="section-about" style="background: #000000 !important;" data-section="about">
       <div class="about-grid">
 
         <!-- LEFT: Text -->
