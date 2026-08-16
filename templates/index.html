@@ -19,6 +19,9 @@
   <link rel="stylesheet"
     href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1" />
 
+  <!-- Three.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
   <!-- GSAP -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
@@ -136,7 +139,8 @@
         <div class="nav-links" id="nav-links">
           <a class="nav-link active" href="#section-brand" id="nav-home">Home</a>
           <a class="nav-link" href="#section-about" id="nav-about">About Us</a>
-          <a class="nav-link" href="#section-rtc" href="=#section-spices" id="nav-rtc">Our Services</a>
+          <a class="nav-link" href="#section-rtc" href="#section-spices" id="nav-rtc">Our Services</a>
+          <a class="nav-link" href="#section-values" id="nav-values">Why Us</a>
           <a class="nav-link" href="#section-contact" id="nav-contact">Contact</a>
         </div>
         <button class="nav-hamburger" id="nav-hamburger-btn" aria-label="Open navigation menu">
@@ -148,6 +152,7 @@
         <a class="mobile-nav-link active" href="#section-brand">Home</a>
         <a class="mobile-nav-link" href="#section-about">About Us</a>
         <a class="mobile-nav-link" href="#section-rtc" href="#section-spices">Our Services</a>
+        <a class="mobile-nav-link" href="#section-values">Why Us</a>
         <a class="mobile-nav-link" href="#section-contact">Contact</a>
       </div>
     </nav>
@@ -235,6 +240,11 @@
           </div>
         </div>
 
+        <!-- RIGHT: 3D Scene Container -->
+        <div class="about-right flex items-center justify-center min-h-[520px]">
+          <div id="cards-3d-container" class="w-full h-full min-h-[520px]"></div>
+        </div>
+
       </div>
     </section>
     <!-- ═══════════════════════════════════════════════
@@ -260,15 +270,19 @@
               data-target="3500">
               0
             </span>
-            <span class="text-5xl md:text-6xl xl:text-7xl font-extrabold ml-2 select-none"
+            <span class="text-5xl md:text-6xl xl:text-8xl font-extrabold ml-2 select-none"
               style="font-family: 'Righteous', 'Dela Gothic One', sans-serif; background: linear-gradient(135deg, #ffffff 0%, #e4e4e7 40%, #a1a1aa 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
               +
+            </span>
+            <span class="text-5xl md:text-6xl xl:text-2xl font-extrabold ml-2 select-none"
+              style="font-family: 'Righteous', 'Dela Gothic One', sans-serif; background: linear-gradient(135deg, #ffffff 0%, #e4e4e7 40%, #a1a1aa 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+              KG
             </span>
           </div>
 
           <!-- Clean Subtitle Description -->
           <p class="text-base md:text-xl font-light text-gray-300 tracking-wide leading-relaxed mt-2">
-            KG Ready-to-Cook Pastes Delivered
+            Ready-to-Cook Pastes Delivered
           </p>
         </div>
 
@@ -288,15 +302,19 @@
               data-target="10000">
               0
             </span>
-            <span class="text-5xl md:text-6xl xl:text-7xl font-extrabold ml-2 select-none"
+            <span class="text-5xl md:text-6xl xl:text-8xl font-extrabold ml-2 select-none"
               style="font-family: 'Righteous', 'Dela Gothic One', sans-serif; background: linear-gradient(135deg, #ffffff 0%, #e4e4e7 40%, #a1a1aa 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
               +
+            </span>
+            <span class="text-5xl md:text-4xl xl:text-2xl font-extrabold ml-2 select-none"
+              style="font-family: 'Righteous', 'Dela Gothic One', sans-serif; background: linear-gradient(135deg, #ffffff 0%, #e4e4e7 40%, #a1a1aa 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+              UNITS
             </span>
           </div>
 
           <!-- Clean Subtitle Description -->
           <p class="text-base md:text-xl font-light text-gray-300 tracking-wide leading-relaxed mt-2">
-            Customers Enjoying Our Spices
+            of Authentic Spices Sold
           </p>
         </div>
 
@@ -436,6 +454,26 @@
                 Gulai Kawah
               </div>
             </div>
+            <div
+              class="wheel-item absolute rounded-full border-2 border-amber-400/80 shadow-[0_0_18px_rgba(251,191,36,0.35)] overflow-hidden cursor-pointer transition-transform duration-200 bg-[#121212] group"
+              data-name="Tom Yum Heritage" data-idx="3" title="Tom Yum Heritage" style="width:72px; height:72px;">
+              <img src="{{ url_for('static', path='images/RTC9.png') }}" alt="Tom Yum Heritage"
+                class="w-full h-full object-cover" />
+              <div
+                class="opacity-0 group-hover:opacity-100 absolute -bottom-7 left-1/2 -translate-x-1/2 bg-black/90 text-[10px] text-amber-300 px-2 py-0.5 rounded border border-amber-400/40 whitespace-nowrap transition-opacity pointer-events-none">
+                Tom Yum Heritage
+              </div>
+            </div>
+            <div
+              class="wheel-item absolute rounded-full border-2 border-amber-400/80 shadow-[0_0_18px_rgba(251,191,36,0.35)] overflow-hidden cursor-pointer transition-transform duration-200 bg-[#121212] group"
+              data-name="Tom Yum Heritage" data-idx="3" title="Tom Yum Heritage" style="width:72px; height:72px;">
+              <img src="{{ url_for('static', path='images/RTC10.png') }}" alt="Tom Yum Heritage"
+                class="w-full h-full object-cover" />
+              <div
+                class="opacity-0 group-hover:opacity-100 absolute -bottom-7 left-1/2 -translate-x-1/2 bg-black/90 text-[10px] text-amber-300 px-2 py-0.5 rounded border border-amber-400/40 whitespace-nowrap transition-opacity pointer-events-none">
+                Tom Yum Heritage
+              </div>
+            </div>
           </div>
 
         </div>
@@ -520,7 +558,7 @@
         </div>
 
         <!-- Hotspot 2: Cloves (Bunga Cengkih) - Pops UP/RIGHT -->
-        <div class="spice-hotspot-item absolute -translate-x-1/2 -translate-y-1/2 z-40" style="left:24%; top:60%;"
+        <div class="spice-hotspot-item absolute -translate-x-1/2 -translate-y-1/2 z-40" style="left:28%; top:45%;"
           data-spice="cloves">
           <button type="button"
             class="spice-pin-btn relative flex items-center justify-center w-7 h-7 md:w-8 md:h-8 group cursor-pointer focus:outline-none"
@@ -596,7 +634,7 @@
         </div>
 
         <!-- Hotspot 4: Mustard Seeds (Biji Sawi) - Pops DOWN/CENTER (Never clips top!) -->
-        <div class="spice-hotspot-item absolute -translate-x-1/2 -translate-y-1/2 z-40" style="left:61%; top:36%;"
+        <div class="spice-hotspot-item absolute -translate-x-1/2 -translate-y-1/2 z-40" style="left:54%; top:26%;"
           data-spice="mustard">
           <button type="button"
             class="spice-pin-btn relative flex items-center justify-center w-7 h-7 md:w-8 md:h-8 group cursor-pointer focus:outline-none"
@@ -666,6 +704,234 @@
               <div>
                 <span class="text-gray-400 font-medium block text-[10px] uppercase tracking-wider">Best Pairings</span>
                 <span class="text-amber-100 font-light">Sambal Tumis, Asam Pedas, Marinades</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hotspot 6: 6 - Pops DOWN/RIGHT -->
+        <div class="spice-hotspot-item absolute -translate-x-1/2 -translate-y-1/2 z-40" style="left:40%; top:29%;"
+          data-spice="cinnamon">
+          <button type="button"
+            class="spice-pin-btn relative flex items-center justify-center w-7 h-7 md:w-8 md:h-8 group cursor-pointer focus:outline-none"
+            aria-label="View details for Cinnamon Sticks">
+            <span class="absolute w-full h-full rounded-full bg-amber-400/40 animate-ping"></span>
+            <span
+              class="absolute w-5 h-5 rounded-full bg-amber-400/80 shadow-[0_0_12px_#fbbf24] transition-transform duration-300 group-hover:scale-125"></span>
+            <span class="relative w-2.5 h-2.5 rounded-full bg-white shadow-sm"></span>
+          </button>
+          <div
+            class="spice-glass-card absolute top-10 left-0 md:-left-4 w-64 md:w-80 rounded-2xl p-5 md:p-6 backdrop-blur-2xl border border-white/25 shadow-[0_30px_70px_rgba(0,0,0,0.95),inset_0_1px_1px_rgba(255,255,255,0.4)] z-50 transition-all duration-300 opacity-100 pointer-events-auto transform translate-y-0 scale-100"
+            style="background: linear-gradient(135deg, rgba(30, 30, 30, 0.85) 0%, rgba(12, 12, 12, 0.9) 100%);">
+            <div class="w-12 h-1 rounded-full bg-gradient-to-r from-amber-300 to-yellow-500 mb-3"></div>
+            <h3 class="text-lg md:text-xl font-serif font-bold text-amber-200 leading-snug">
+              Cinnamon Sticks
+            </h3>
+            <p class="text-[11px] font-sans text-amber-400/90 tracking-wider uppercase mb-3 font-medium">
+              Kulit Kayu Manis
+            </p>
+            <div class="space-y-2 border-t border-white/10 pt-3 text-xs leading-relaxed">
+              <div>
+                <span class="text-gray-400 font-medium block text-[10px] uppercase tracking-wider">Origin</span>
+                <span class="text-gray-200 font-light">Southeast Asia &amp; Sri Lanka</span>
+              </div>
+              <div>
+                <span class="text-gray-400 font-medium block text-[10px] uppercase tracking-wider">Aroma Profile</span>
+                <span class="text-gray-200 font-light">Sweet, woody, warm and intensely fragrant</span>
+              </div>
+              <div>
+                <span class="text-gray-400 font-medium block text-[10px] uppercase tracking-wider">Best Pairings</span>
+                <span class="text-amber-100 font-light">Curries, Rendang, Biryani, Spiced Teas</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hotspot 7:7 - Pops DOWN/RIGHT -->
+        <div class="spice-hotspot-item absolute -translate-x-1/2 -translate-y-1/2 z-40" style="left:55%; top:42%;"
+          data-spice="cinnamon">
+          <button type="button"
+            class="spice-pin-btn relative flex items-center justify-center w-7 h-7 md:w-8 md:h-8 group cursor-pointer focus:outline-none"
+            aria-label="View details for Cinnamon Sticks">
+            <span class="absolute w-full h-full rounded-full bg-amber-400/40 animate-ping"></span>
+            <span
+              class="absolute w-5 h-5 rounded-full bg-amber-400/80 shadow-[0_0_12px_#fbbf24] transition-transform duration-300 group-hover:scale-125"></span>
+            <span class="relative w-2.5 h-2.5 rounded-full bg-white shadow-sm"></span>
+          </button>
+          <div
+            class="spice-glass-card absolute top-10 left-0 md:-left-4 w-64 md:w-80 rounded-2xl p-5 md:p-6 backdrop-blur-2xl border border-white/25 shadow-[0_30px_70px_rgba(0,0,0,0.95),inset_0_1px_1px_rgba(255,255,255,0.4)] z-50 transition-all duration-300 opacity-100 pointer-events-auto transform translate-y-0 scale-100"
+            style="background: linear-gradient(135deg, rgba(30, 30, 30, 0.85) 0%, rgba(12, 12, 12, 0.9) 100%);">
+            <div class="w-12 h-1 rounded-full bg-gradient-to-r from-amber-300 to-yellow-500 mb-3"></div>
+            <h3 class="text-lg md:text-xl font-serif font-bold text-amber-200 leading-snug">
+              7
+            </h3>
+            <p class="text-[11px] font-sans text-amber-400/90 tracking-wider uppercase mb-3 font-medium">
+              Kulit Kayu Manis
+            </p>
+            <div class="space-y-2 border-t border-white/10 pt-3 text-xs leading-relaxed">
+              <div>
+                <span class="text-gray-400 font-medium block text-[10px] uppercase tracking-wider">Origin</span>
+                <span class="text-gray-200 font-light">Southeast Asia &amp; Sri Lanka</span>
+              </div>
+              <div>
+                <span class="text-gray-400 font-medium block text-[10px] uppercase tracking-wider">Aroma Profile</span>
+                <span class="text-gray-200 font-light">Sweet, woody, warm and intensely fragrant</span>
+              </div>
+              <div>
+                <span class="text-gray-400 font-medium block text-[10px] uppercase tracking-wider">Best Pairings</span>
+                <span class="text-amber-100 font-light">Curries, Rendang, Biryani, Spiced Teas</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hotspot 8: -->
+        <div class="spice-hotspot-item absolute -translate-x-1/2 -translate-y-1/2 z-40" style="left:70%; top:48%;"
+          data-spice="cinnamon">
+          <button type="button"
+            class="spice-pin-btn relative flex items-center justify-center w-7 h-7 md:w-8 md:h-8 group cursor-pointer focus:outline-none"
+            aria-label="View details for Cinnamon Sticks">
+            <span class="absolute w-full h-full rounded-full bg-amber-400/40 animate-ping"></span>
+            <span
+              class="absolute w-5 h-5 rounded-full bg-amber-400/80 shadow-[0_0_12px_#fbbf24] transition-transform duration-300 group-hover:scale-125"></span>
+            <span class="relative w-2.5 h-2.5 rounded-full bg-white shadow-sm"></span>
+          </button>
+          <div
+            class="spice-glass-card absolute top-10 left-0 md:-left-4 w-64 md:w-80 rounded-2xl p-5 md:p-6 backdrop-blur-2xl border border-white/25 shadow-[0_30px_70px_rgba(0,0,0,0.95),inset_0_1px_1px_rgba(255,255,255,0.4)] z-50 transition-all duration-300 opacity-100 pointer-events-auto transform translate-y-0 scale-100"
+            style="background: linear-gradient(135deg, rgba(30, 30, 30, 0.85) 0%, rgba(12, 12, 12, 0.9) 100%);">
+            <div class="w-12 h-1 rounded-full bg-gradient-to-r from-amber-300 to-yellow-500 mb-3"></div>
+            <h3 class="text-lg md:text-xl font-serif font-bold text-amber-200 leading-snug">
+              7
+            </h3>
+            <p class="text-[11px] font-sans text-amber-400/90 tracking-wider uppercase mb-3 font-medium">
+              8
+            </p>
+            <div class="space-y-2 border-t border-white/10 pt-3 text-xs leading-relaxed">
+              <div>
+                <span class="text-gray-400 font-medium block text-[10px] uppercase tracking-wider">Origin</span>
+                <span class="text-gray-200 font-light">Southeast Asia &amp; Sri Lanka</span>
+              </div>
+              <div>
+                <span class="text-gray-400 font-medium block text-[10px] uppercase tracking-wider">Aroma Profile</span>
+                <span class="text-gray-200 font-light">Sweet, woody, warm and intensely fragrant</span>
+              </div>
+              <div>
+                <span class="text-gray-400 font-medium block text-[10px] uppercase tracking-wider">Best Pairings</span>
+                <span class="text-amber-100 font-light">Curries, Rendang, Biryani, Spiced Teas</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hotspot 7:7 - Pops DOWN/RIGHT -->
+        <div class="spice-hotspot-item absolute -translate-x-1/2 -translate-y-1/2 z-40" style="left:55%; top:60%;"
+          data-spice="cinnamon">
+          <button type="button"
+            class="spice-pin-btn relative flex items-center justify-center w-7 h-7 md:w-8 md:h-8 group cursor-pointer focus:outline-none"
+            aria-label="View details for Cinnamon Sticks">
+            <span class="absolute w-full h-full rounded-full bg-amber-400/40 animate-ping"></span>
+            <span
+              class="absolute w-5 h-5 rounded-full bg-amber-400/80 shadow-[0_0_12px_#fbbf24] transition-transform duration-300 group-hover:scale-125"></span>
+            <span class="relative w-2.5 h-2.5 rounded-full bg-white shadow-sm"></span>
+          </button>
+          <div
+            class="spice-glass-card absolute top-10 left-0 md:-left-4 w-64 md:w-80 rounded-2xl p-5 md:p-6 backdrop-blur-2xl border border-white/25 shadow-[0_30px_70px_rgba(0,0,0,0.95),inset_0_1px_1px_rgba(255,255,255,0.4)] z-50 transition-all duration-300 opacity-100 pointer-events-auto transform translate-y-0 scale-100"
+            style="background: linear-gradient(135deg, rgba(30, 30, 30, 0.85) 0%, rgba(12, 12, 12, 0.9) 100%);">
+            <div class="w-12 h-1 rounded-full bg-gradient-to-r from-amber-300 to-yellow-500 mb-3"></div>
+            <h3 class="text-lg md:text-xl font-serif font-bold text-amber-200 leading-snug">
+              9
+            </h3>
+            <p class="text-[11px] font-sans text-amber-400/90 tracking-wider uppercase mb-3 font-medium">
+              Kulit Kayu Manis
+            </p>
+            <div class="space-y-2 border-t border-white/10 pt-3 text-xs leading-relaxed">
+              <div>
+                <span class="text-gray-400 font-medium block text-[10px] uppercase tracking-wider">Origin</span>
+                <span class="text-gray-200 font-light">Southeast Asia &amp; Sri Lanka</span>
+              </div>
+              <div>
+                <span class="text-gray-400 font-medium block text-[10px] uppercase tracking-wider">Aroma Profile</span>
+                <span class="text-gray-200 font-light">Sweet, woody, warm and intensely fragrant</span>
+              </div>
+              <div>
+                <span class="text-gray-400 font-medium block text-[10px] uppercase tracking-wider">Best Pairings</span>
+                <span class="text-amber-100 font-light">Curries, Rendang, Biryani, Spiced Teas</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hotspot 7:7 - Pops DOWN/RIGHT -->
+        <div class="spice-hotspot-item absolute -translate-x-1/2 -translate-y-1/2 z-40" style="left:70%; top:66%;"
+          data-spice="cinnamon">
+          <button type="button"
+            class="spice-pin-btn relative flex items-center justify-center w-7 h-7 md:w-8 md:h-8 group cursor-pointer focus:outline-none"
+            aria-label="View details for Cinnamon Sticks">
+            <span class="absolute w-full h-full rounded-full bg-amber-400/40 animate-ping"></span>
+            <span
+              class="absolute w-5 h-5 rounded-full bg-amber-400/80 shadow-[0_0_12px_#fbbf24] transition-transform duration-300 group-hover:scale-125"></span>
+            <span class="relative w-2.5 h-2.5 rounded-full bg-white shadow-sm"></span>
+          </button>
+          <div
+            class="spice-glass-card absolute top-10 left-0 md:-left-4 w-64 md:w-80 rounded-2xl p-5 md:p-6 backdrop-blur-2xl border border-white/25 shadow-[0_30px_70px_rgba(0,0,0,0.95),inset_0_1px_1px_rgba(255,255,255,0.4)] z-50 transition-all duration-300 opacity-100 pointer-events-auto transform translate-y-0 scale-100"
+            style="background: linear-gradient(135deg, rgba(30, 30, 30, 0.85) 0%, rgba(12, 12, 12, 0.9) 100%);">
+            <div class="w-12 h-1 rounded-full bg-gradient-to-r from-amber-300 to-yellow-500 mb-3"></div>
+            <h3 class="text-lg md:text-xl font-serif font-bold text-amber-200 leading-snug">
+              10
+            </h3>
+            <p class="text-[11px] font-sans text-amber-400/90 tracking-wider uppercase mb-3 font-medium">
+              Kulit Kayu Manis
+            </p>
+            <div class="space-y-2 border-t border-white/10 pt-3 text-xs leading-relaxed">
+              <div>
+                <span class="text-gray-400 font-medium block text-[10px] uppercase tracking-wider">Origin</span>
+                <span class="text-gray-200 font-light">Southeast Asia &amp; Sri Lanka</span>
+              </div>
+              <div>
+                <span class="text-gray-400 font-medium block text-[10px] uppercase tracking-wider">Aroma Profile</span>
+                <span class="text-gray-200 font-light">Sweet, woody, warm and intensely fragrant</span>
+              </div>
+              <div>
+                <span class="text-gray-400 font-medium block text-[10px] uppercase tracking-wider">Best Pairings</span>
+                <span class="text-amber-100 font-light">Curries, Rendang, Biryani, Spiced Teas</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hotspot 7:7 - Pops DOWN/RIGHT -->
+        <div class="spice-hotspot-item absolute -translate-x-1/2 -translate-y-1/2 z-40" style="left:87%; top:40%;"
+          data-spice="cinnamon">
+          <button type="button"
+            class="spice-pin-btn relative flex items-center justify-center w-7 h-7 md:w-8 md:h-8 group cursor-pointer focus:outline-none"
+            aria-label="View details for Cinnamon Sticks">
+            <span class="absolute w-full h-full rounded-full bg-amber-400/40 animate-ping"></span>
+            <span
+              class="absolute w-5 h-5 rounded-full bg-amber-400/80 shadow-[0_0_12px_#fbbf24] transition-transform duration-300 group-hover:scale-125"></span>
+            <span class="relative w-2.5 h-2.5 rounded-full bg-white shadow-sm"></span>
+          </button>
+          <div
+            class="spice-glass-card absolute top-10 left-0 md:-left-4 w-64 md:w-80 rounded-2xl p-5 md:p-6 backdrop-blur-2xl border border-white/25 shadow-[0_30px_70px_rgba(0,0,0,0.95),inset_0_1px_1px_rgba(255,255,255,0.4)] z-50 transition-all duration-300 opacity-100 pointer-events-auto transform translate-y-0 scale-100"
+            style="background: linear-gradient(135deg, rgba(30, 30, 30, 0.85) 0%, rgba(12, 12, 12, 0.9) 100%);">
+            <div class="w-12 h-1 rounded-full bg-gradient-to-r from-amber-300 to-yellow-500 mb-3"></div>
+            <h3 class="text-lg md:text-xl font-serif font-bold text-amber-200 leading-snug">
+              11
+            </h3>
+            <p class="text-[11px] font-sans text-amber-400/90 tracking-wider uppercase mb-3 font-medium">
+              Kulit Kayu Manis
+            </p>
+            <div class="space-y-2 border-t border-white/10 pt-3 text-xs leading-relaxed">
+              <div>
+                <span class="text-gray-400 font-medium block text-[10px] uppercase tracking-wider">Origin</span>
+                <span class="text-gray-200 font-light">Southeast Asia &amp; Sri Lanka</span>
+              </div>
+              <div>
+                <span class="text-gray-400 font-medium block text-[10px] uppercase tracking-wider">Aroma Profile</span>
+                <span class="text-gray-200 font-light">Sweet, woody, warm and intensely fragrant</span>
+              </div>
+              <div>
+                <span class="text-gray-400 font-medium block text-[10px] uppercase tracking-wider">Best Pairings</span>
+                <span class="text-amber-100 font-light">Curries, Rendang, Biryani, Spiced Teas</span>
               </div>
             </div>
           </div>
@@ -919,9 +1185,8 @@
           <div class="footer-col-title">Navigation</div>
           <a class="footer-link" href="#section-brand">Home</a>
           <a class="footer-link" href="#section-about">About Us</a>
-          <a class="footer-link" href="#section-rtc">Ready-to-Cook</a>
-          <a class="footer-link" href="#section-spices">Spices</a>
-          <a class="footer-link" href="#section-values">Value Promises</a>
+          <a class="footer-link" href="#section-rtc" href="#section-spices">Our Services</a>
+          <a class="footer-link" href="#section-values">Why Us</a>
           <a class="footer-link" href="#section-contact">Contact</a>
         </div>
         <div>
@@ -1507,6 +1772,163 @@
         setTimeout(initBrandParallax, 300);
       }, 50);
     }
+
+    /* ──────────────────────────────────────────────
+       13. SECTION 3: 3D STACKED CARDS / BLOCKS (THREE.JS)
+    ────────────────────────────────────────────── */
+    function init3DStackedCards() {
+      const container = document.getElementById('cards-3d-container');
+      if (!container || typeof THREE === 'undefined') return;
+      if (container.querySelector('canvas')) return;
+
+      const width = container.clientWidth || 500;
+      const height = container.clientHeight || 580;
+
+      const scene = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera(40, width / height, 0.1, 1000);
+      camera.position.set(0, 0, 6.2);
+
+      const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+      renderer.setSize(width, height);
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      renderer.shadowMap.enabled = true;
+      container.innerHTML = '';
+      container.appendChild(renderer.domElement);
+
+      // Lighting
+      const ambientLight = new THREE.AmbientLight(0xffffff, 0.95);
+      scene.add(ambientLight);
+
+      const dirLight1 = new THREE.DirectionalLight(0xfff6e5, 1.8);
+      dirLight1.position.set(5, 7, 6);
+      scene.add(dirLight1);
+
+      const dirLight2 = new THREE.DirectionalLight(0xfbbf24, 0.7);
+      dirLight2.position.set(-5, -3, 3);
+      scene.add(dirLight2);
+
+      // Textures & Materials
+      const textureLoader = new THREE.TextureLoader();
+      const logoTexture = textureLoader.load('/logonusa2.png');
+      if (THREE.SRGBColorSpace) {
+        logoTexture.colorSpace = THREE.SRGBColorSpace;
+      } else {
+        logoTexture.encoding = THREE.sRGBEncoding;
+      }
+
+      const sideMaterial = new THREE.MeshStandardMaterial({
+        color: 0x133820,
+        roughness: 0.35,
+        metalness: 0.25,
+      });
+
+      const frontMaterial = new THREE.MeshStandardMaterial({
+        map: logoTexture,
+        roughness: 0.2,
+        metalness: 0.15,
+      });
+
+      const backMaterial = new THREE.MeshStandardMaterial({
+        color: 0x0d2816,
+        roughness: 0.4,
+        metalness: 0.2,
+      });
+
+      const materials = [
+        sideMaterial, sideMaterial, sideMaterial, sideMaterial, frontMaterial, backMaterial
+      ];
+
+      // Base Geometry
+      const geometry = new THREE.BoxGeometry(2.1, 1.05, 0.45);
+
+      const blocksConfig = [
+        { pos: [-0.2, 1.15, 0], rot: [0.15, -0.22, 0.05], scale: 0.88, speed: 1.2 },
+        { pos: [0.25, 0, 0.2], rot: [-0.1, 0.2, -0.04], scale: 1.0, speed: 1.5 },
+        { pos: [-0.15, -1.15, -0.05], rot: [0.12, -0.16, 0.03], scale: 0.88, speed: 1.1 },
+      ];
+
+      const blocks = blocksConfig.map((cfg) => {
+        const mesh = new THREE.Mesh(geometry, materials);
+        mesh.position.set(...cfg.pos);
+        mesh.rotation.set(...cfg.rot);
+        mesh.scale.set(cfg.scale, cfg.scale, cfg.scale);
+        scene.add(mesh);
+        return { mesh, ...cfg, initialY: cfg.pos[1] };
+      });
+
+      // Independent 360 Full Drag
+      let activeBlock = null;
+      let previousMousePosition = { x: 0, y: 0 };
+      const raycaster = new THREE.Raycaster();
+      const mouse = new THREE.Vector2();
+
+      function onPointerDown(e) {
+        const rect = renderer.domElement.getBoundingClientRect();
+        mouse.x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+        mouse.y = -((e.clientY - rect.top) / rect.height) * 2 + 1;
+
+        raycaster.setFromCamera(mouse, camera);
+        const intersects = raycaster.intersectObjects(blocks.map(b => b.mesh));
+
+        if (intersects.length > 0) {
+          activeBlock = intersects[0].object;
+          previousMousePosition = { x: e.clientX, y: e.clientY };
+        }
+      }
+
+      function onPointerMove(e) {
+        if (!activeBlock) return;
+        const deltaX = e.clientX - previousMousePosition.x;
+        const deltaY = e.clientY - previousMousePosition.y;
+
+        // Full 360-degree free rotation
+        activeBlock.rotation.y += deltaX * 0.018;
+        activeBlock.rotation.x += deltaY * 0.018;
+
+        previousMousePosition = { x: e.clientX, y: e.clientY };
+      }
+
+      function onPointerUp() {
+        activeBlock = null;
+      }
+
+      renderer.domElement.addEventListener('pointerdown', onPointerDown);
+      window.addEventListener('pointermove', onPointerMove);
+      window.addEventListener('pointerup', onPointerUp);
+
+      // Render Loop
+      const clock = new THREE.Clock();
+      function animate() {
+        requestAnimationFrame(animate);
+        const elapsedTime = clock.getElapsedTime();
+
+        blocks.forEach((item) => {
+          if (item.mesh !== activeBlock) {
+            item.mesh.position.y = item.initialY + Math.sin(elapsedTime * item.speed) * 0.04;
+          }
+        });
+
+        renderer.render(scene, camera);
+      }
+      animate();
+
+      window.addEventListener('resize', () => {
+        const newWidth = container.clientWidth;
+        const newHeight = container.clientHeight;
+        if (newWidth && newHeight) {
+          camera.aspect = newWidth / newHeight;
+          camera.updateProjectionMatrix();
+          renderer.setSize(newWidth, newHeight);
+        }
+      });
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', init3DStackedCards);
+    } else {
+      init3DStackedCards();
+    }
+    setTimeout(init3DStackedCards, 200);
 
 
 

@@ -1,7 +1,8 @@
 from fastapi import FastAPI, Request
-from fastapi.responses import HTMLResponse
+from fastapi.responses import HTMLResponse, FileResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
+import os
 
 app = FastAPI(
     title="NusaDagang Interactive Website",
@@ -13,6 +14,12 @@ app.mount("/static", StaticFiles(directory="static"), name="static")
 
 # Configure Jinja2 templates directory
 templates = Jinja2Templates(directory="templates")
+
+@app.get("/logonusa2.png")
+async def get_logo():
+    if os.path.exists("logonusa2.png"):
+        return FileResponse("logonusa2.png")
+    return FileResponse("static/images/logonusa2.png")
 
 @app.get("/", response_class=HTMLResponse)
 async def read_root(request: Request):
